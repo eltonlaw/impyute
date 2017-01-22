@@ -6,7 +6,7 @@ Data can be missing from a dataset for various reasons. Dependent upon the speci
 
 # Methods
 
-** Simple Random Imputation: ** Fill in missing values with a randomly select value from the same column. Not very useful, but acts as a good baseline.
+**Simple Random Imputation:** Fill in missing values with a randomly select value from the same column. Not very useful, but acts as a good baseline.
 
 ------
 
