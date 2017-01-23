@@ -23,6 +23,10 @@ def test(fn,write=False,n_loops=10):
     if write:
         filename =fn.__name__+"_test_"+str(i)+".txt"
         np.savetxt(filename,test_data+new_data)
+
+def init():
+    #test(simple_random_imputation)
+    test(complete_case_analysis)
     
 
 #############
@@ -39,13 +43,20 @@ def simple_random_imputation(data):
     filled_data = df.as_matrix()
     return filled_data
 
-def complete_case_analysis(data):
+def complete_case(data):
     """ Return only data rows with complete data"""
     df = pd.DataFrame(data)
+    df.dropna(axis=0,how="any",inplace=True)
+    return df
     
     return df.as_matrix()
 
-test(simple_random_imputation)
+def locf(data):
+    """ For missing values use the last observation carried forward """
+    return None
+
+if __name__ == "__main__":
+    init()
 
     
 
