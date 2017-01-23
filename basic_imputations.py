@@ -18,7 +18,7 @@ def test(fn,write=False,n_loops=10):
         print("== Test {} == \n".format(i))
         raw_data = generate_data()
         print("Raw:\n{}".format(raw_data))
-        cleaned_data = fn(cleaned_data)
+        cleaned_data = fn(raw_data)
         print("Cleaned: \n{}\n".format(cleaned_data))
     if write:
         filename =fn.__name__+"_test_"+str(i)+".txt"
@@ -26,10 +26,11 @@ def test(fn,write=False,n_loops=10):
 
 def init():
     #test(simple_random_imputation)
-    test(complete_case_analysis)
+    test(locf)
     
 
 #############
+#data = generate_data()
 
 def simple_random_imputation(data):
     """ Find the missing values in the dataset and fill them in with a randomly selected value from the same column"""
@@ -47,13 +48,26 @@ def complete_case(data):
     """ Return only data rows with complete data"""
     df = pd.DataFrame(data)
     df.dropna(axis=0,how="any",inplace=True)
-    return df
-    
     return df.as_matrix()
 
 def locf(data):
     """ For missing values use the last observation carried forward """
-    return None
+    df = pd.DataFrame(data)
+    missing_i = []
+    for col in df:
+        missing_col_i = pd.isnull(df[col].values).nonzero()[0]
+        #print("col:{},missing_col_i:{}".format(col,missing_col_i))
+        if len(missing_col_i) > 0:
+            for i in missing_col_i:
+               missing_i.append((col,i))
+    #print("missing_i:{}".format(missing_i))
+    for col,row in missing_i:
+        #print("df[{}][{}]:{}".format(col,row,df[col][row]))
+        try:
+            df.set_value(row,col,df[col-1][row])
+        except:
+            df.set_value(row,col,df[col+1][row])
+    return df.as_matrix()
 
 if __name__ == "__main__":
     init()

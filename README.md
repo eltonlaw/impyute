@@ -8,6 +8,7 @@ Data can be missing from a dataset for various reasons. Dependent upon the speci
 
 **Simple Random Imputation:** Fill in missing values with a randomly selected value from the same column. Not very useful, but acts as a good baseline.
 **Complete Case:** Only use datapoints with complete data. May waste alot of data.
+**Last Observation Carried Forward:** For each missing value substitute the preceding value. If the missing value is in the first column, substitute the next value instead. For time series data only. 
 
 ## Citations
 
