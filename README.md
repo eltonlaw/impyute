@@ -10,6 +10,31 @@ Data can be missing from a dataset for various reasons. Dependent upon the speci
   dependent of observed data
 - Missing Not At Random (MNAR): Data is missing due to the values of those missing
   values. 
+  
+## Quick Demonstration
+
+``` shell
+$ python3
+```
+
+``` python3
+>>> from test import generate_data
+>>> raw_data = generate_data()
+>>> print(raw_data)
+[[  1.   0.   4.   0.   1.]
+ [  1.  nan   6.   4.  nan]
+ [  5.   0.  nan   1.   3.]
+ [  2.   1.   5.   4.   6.]
+ [  2.   1.   0.   0.   6.]]
+>>> from basic_imputations import simple_random_imputation     
+>>> cleaned_data = simple_random_imputation(raw_data) 
+>>> print(cleaned_data)
+[[ 1.    0.    4.    0.    1.  ]
+ [ 1.    0.5   6.    4.    4.  ]
+ [ 5.    0.    3.75  1.    3.  ]
+ [ 2.    1.    5.    4.    6.  ]
+ [ 2.    1.    0.    0.    6.  ]]
+```
 
 ## Basic Methods
 
@@ -22,8 +47,6 @@ Data can be missing from a dataset for various reasons. Dependent upon the speci
 ## Better Methods
 
 **Multivariate Imputation by Chained Equations:** Underlying assumption that data is MAR. First perform simple imputation for each missing value, then for one category/column set the filled values in it back to missing. Train a linear regression model, setting the dependent variable as the column you just chose. Using the trained model, predict the missing variables. Repeat until values converge for all columns with missing variables.
-
-
 
 ## Citations
 
