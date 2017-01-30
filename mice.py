@@ -42,7 +42,7 @@ def mice(data):
             X_train.append(np.delete(data[x],dependent_col))
             Y_train.append(data[x][dependent_col])
         model = LinearRegression()
-        #model.fit(X_train,Y_train)
+        model.fit(X_train,Y_train)
         
         # Step 4: Missing values for the missing variable/column are replaced with predictions from our new linear regression model
         temp = []
