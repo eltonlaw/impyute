@@ -1,11 +1,5 @@
-def drop_null(A):
-    A_clean = []
-    for a_i in A:
-        if not(a_i == ([] or 0 or None)) and not np.isnan(a_i):
-            A_clean.append(a_i)
-    return A_clean
-
-#########
+import pandas as pd
+import numpy as np
 
 def simple_random_imputation(data):
     """ Find the missing values in the dataset and fill them in with a randomly selected value from the same column
@@ -24,7 +18,7 @@ def simple_random_imputation(data):
     for col in df:
         df_null = pd.isnull(df[col])
         if (True in df_null.values):
-            unique_values  = drop_null(df[col].unique()) # .unique method includes null values so we have to drop them afterward
+            unique_values  = [a_i for a_i in df[col].unique() if not(a_i == ([] or 0 or None)) and not np.isnan(a_i)]  # .unique method includes null values so we have to drop them afterward
             df[col][df_null] = np.random.choice(unique_values)
     filled_data = df.as_matrix()
     return filled_data
@@ -57,7 +51,6 @@ def locf(data):
     numpy.ndarray
     
     """
-
     df = pd.DataFrame(data)
     missing_i = []
     for col in df:
