@@ -4,7 +4,17 @@ from test import generate_data
 from sklearn.linear_model import LinearRegression
 
 def mice(data):
-    """Multivariate Imputation by Chained Equations"""
+    """Multivariate Imputation by Chained Equations
+
+    PARAMETERS
+    ---------
+    data: numpy.ndarray
+
+    RETURNS
+    ------
+    numpy.ndarray
+    
+    """
     null_xyv = np.argwhere(np.isnan(data))
     null_xyv = np.append(null_xyv,np.zeros((np.shape(null_xyv)[0],1)),axis=1) # Add a column of zeros to the index values
     null_xyv = [[int(x),int(y),v] for x,y,v in null_xyv]

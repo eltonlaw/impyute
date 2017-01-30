@@ -1,5 +1,24 @@
+def drop_null(A):
+    A_clean = []
+    for a_i in A:
+        if not(a_i == ([] or 0 or None)) and not np.isnan(a_i):
+            A_clean.append(a_i)
+    return A_clean
+
+#########
+
 def simple_random_imputation(data):
-    """ Find the missing values in the dataset and fill them in with a randomly selected value from the same column"""
+    """ Find the missing values in the dataset and fill them in with a randomly selected value from the same column
+    
+    PARAMETERS
+    ---------
+    data: numpy.ndarray
+
+    RETURNS
+    ------
+    numpy.ndarray
+    
+    """
     df = pd.DataFrame(data)
 
     for col in df:
@@ -11,13 +30,34 @@ def simple_random_imputation(data):
     return filled_data
 
 def complete_case(data):
-    """ Return only data rows with complete data"""
+    """ Return only data rows with complete data
+
+    PARAMETERS
+    ---------
+    data: numpy.ndarray
+
+    RETURNS
+    ------
+    numpy.ndarray
+    
+    """
     df = pd.DataFrame(data)
     df.dropna(axis=0,how="any",inplace=True)
     return df.as_matrix()
 
 def locf(data):
-    """ For missing values use the last observation carried forward """
+    """ For missing values use the last observation carried forward 
+
+    PARAMETERS
+    ---------
+    data: numpy.ndarray
+
+    RETURNS
+    ------
+    numpy.ndarray
+    
+    """
+
     df = pd.DataFrame(data)
     missing_i = []
     for col in df:
@@ -34,9 +74,4 @@ def locf(data):
         except:
             df.set_value(row,col,df[col+1][row])
     return df.as_matrix()
-
-if __name__ == "__main__":
-    init()
-
-    
 
