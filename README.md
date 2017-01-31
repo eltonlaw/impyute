@@ -40,13 +40,19 @@ $ python3
 
 **Simple Random Imputation:** Fill in missing values with a randomly selected value from the same column. Not very useful, but acts as a good baseline.
 
+**Mean Imputation:** The missing value is replaced by the mean of the available data. 
+
 **Complete Case:** Only use datapoints with complete data. May waste alot of data.
 
 **Last Observation Carried Forward:** For each missing value substitute the preceding value. If the missing value is in the first column, substitute the next value instead. For time series data only. 
 
-## Better Methods
+## Regression Methods
 
 **Multivariate Imputation by Chained Equations:** Underlying assumption that data is MAR. First perform simple imputation for each missing value, then for one category/column set the filled values in it back to missing. Train a linear regression model, setting the dependent variable as the column you just chose. Using the trained model, predict the missing variables. Repeat until values converge for all columns with missing variables.
+
+## Matching Methods
+
+**Nearest Neighbour Approach:** 
 
 ## Citations
 
@@ -58,3 +64,6 @@ Azur MJ, Stuart EA, Frangakis C, Leaf PJ. Multiple Imputation by Chained Equatio
 What is it and how does it work? International journal of methods in psychiatric
 research. 2011;20(1):40-49. doi:10.1002/mpr.329.
 
+## To do
+* Create multiple test datasets that each represent the different types of missingness. Compare and contrast which models work best for which types of data, look at variations in standard deviation etc.
+* Add hot deck imputation methods
