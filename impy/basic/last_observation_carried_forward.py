@@ -1,43 +1,7 @@
 import pandas as pd
 import numpy as np
 
-def mean_imputation(data):
-    """Multivariate Imputation by Chained Equations
-
-    PARAMETERS
-    ---------
-    data: numpy.ndarray
-
-    RETURNS
-    ------
-    numpy.ndarray
-    
-    """
-    null_xy = np.argwhere(np.isnan(data))
-    cols_missing = set([y  for x,y in null_xy])
-    for x,y in null_xy: 
-        col_wo_nan = data[:,[y]][~np.isnan(data[:,[y]])]
-        new_value = np.mean(col_wo_nan)
-        data[x][y] = new_value
-    return data
-
-def complete_case(data):
-    """ Return only data rows with complete data
-
-    PARAMETERS
-    ---------
-    data: numpy.ndarray
-
-    RETURNS
-    ------
-    numpy.ndarray
-    
-    """
-    df = pd.DataFrame(data)
-    df.dropna(axis=0,how="any",inplace=True)
-    return df.as_matrix()
-
-def locf(data):
+def last_observation_carried_forward(data):
     """ For missing values use the last observation carried forward 
 
     PARAMETERS

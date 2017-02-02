@@ -10,6 +10,13 @@ Data can be missing from a dataset for various reasons. Dependent upon the speci
   dependent of observed data
 - Missing Not At Random (MNAR): Data is missing due to the values of those missing
   values. 
+
+## Install
+
+``` shell
+$ git clone https://github.com/eltonlaw/impy.git
+$ 
+```
   
 ## Quick Demonstration
 
@@ -18,15 +25,15 @@ $ python3
 ```
 
 ``` python3
->>> from test import generate_data
->>> raw_data = generate_data()
+>>> from impy.datasets import randomly_generate
+>>> raw_data = randomly_generate()
 >>> print(raw_data)
 [[  1.   0.   4.   0.   1.]
  [  1.  nan   6.   4.  nan]
  [  5.   0.  nan   1.   3.]
  [  2.   1.   5.   4.   6.]
  [  2.   1.   0.   0.   6.]]
->>> from basic_imputations import simple_random_imputation     
+>>> from impy.basic import simple_random_imputation     
 >>> cleaned_data = simple_random_imputation(raw_data) 
 >>> print(cleaned_data)
 [[ 1.    0.    4.    0.    1.  ]
@@ -64,6 +71,3 @@ Azur MJ, Stuart EA, Frangakis C, Leaf PJ. Multiple Imputation by Chained Equatio
 What is it and how does it work? International journal of methods in psychiatric
 research. 2011;20(1):40-49. doi:10.1002/mpr.329.
 
-## To do
-* Create multiple test datasets that each represent the different types of missingness. Compare and contrast which models work best for which types of data, look at variations in standard deviation etc.
-* Add hot deck imputation methods

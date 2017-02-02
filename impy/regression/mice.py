@@ -1,9 +1,8 @@
 import numpy as np
-from test import generate_data
 #from ml import LinearRegression
 from sklearn.linear_model import LinearRegression
 
-def mice(data):
+def MICE(data):
     """Multivariate Imputation by Chained Equations
 
     PARAMETERS
