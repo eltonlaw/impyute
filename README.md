@@ -15,7 +15,6 @@ Data can be missing from a dataset for various reasons. Dependent upon the speci
 
 ``` shell
 $ git clone https://github.com/eltonlaw/impy.git
-$ 
 ```
   
 ## Quick Demonstration
@@ -47,7 +46,9 @@ $ python3
 
 **Simple Random Imputation:** Fill in missing values with a randomly selected value from the same column. Not very useful, but acts as a good baseline.
 
-**Mean Imputation:** The missing value is replaced by the mean of the available data. 
+**Mean Imputation:** The missing value is replaced by the mean of the available data in that column. 
+
+**Mean Imputation:** The missing value is replaced by the mode of the available data in that column. 
 
 **Complete Case:** Only use datapoints with complete data. May waste alot of data.
 
