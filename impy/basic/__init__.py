@@ -1,6 +1,6 @@
 from .complete_case import complete_case
-from .last_observation_carried_forward import last_observation_carried_forward
-from .simple_random_imputation import simple_random_imputation
+from .locf import locf
+from .random_imputation import random_imputation
 from .mean_imputation import mean_imputation
 from .mode_imputation import mode_imputation
 
