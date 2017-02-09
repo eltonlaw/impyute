@@ -1,3 +1,8 @@
+"""
+Complete Case Algorithm
+----------------------
+"""
+
 import pandas as pd
 
 def complete_case(data):
@@ -10,9 +15,8 @@ def complete_case(data):
     RETURNS
     ------
     numpy.ndarray
-    
     """
-    df = pd.DataFrame(data)
-    df.dropna(axis=0,how="any",inplace=True)
-    return df.as_matrix()
 
+    df = pd.DataFrame(data)
+    df.dropna(axis=0, how="any", inplace=True)
+    return df.as_matrix()
