@@ -24,16 +24,16 @@ $ python3
 ```
 
 ``` python3
->>> from impy.datasets import randomly_generate
->>> raw_data = randomly_generate()
+>>> from impy.datasets import random_int
+>>> raw_data = random_int()
 >>> print(raw_data)
 [[  1.   0.   4.   0.   1.]
  [  1.  nan   6.   4.  nan]
  [  5.   0.  nan   1.   3.]
  [  2.   1.   5.   4.   6.]
  [  2.   1.   0.   0.   6.]]
->>> from impy.basic import simple_random_imputation     
->>> cleaned_data = simple_random_imputation(raw_data) 
+>>> from impy.basic import random_imputation     
+>>> cleaned_data = random_imputation(raw_data) 
 >>> print(cleaned_data)
 [[ 1.    0.    4.    0.    1.  ]
  [ 1.    0.5   6.    4.    4.  ]
@@ -44,7 +44,7 @@ $ python3
 
 ## Basic Methods
 
-**Simple Random Imputation:** Fill in missing values with a randomly selected value from the same column. Not very useful, but acts as a good baseline.
+**Random Imputation:** Fill in missing values with a randomly selected value from the same column. Not very useful, but acts as a good baseline.
 
 **Mean Imputation:** The missing value is replaced by the mean of the available data in that column. 
 
