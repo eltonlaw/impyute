@@ -1,12 +1,17 @@
 """
 Last Observation Carried Forward Algorithm
---------------------------------
+------------------------------------------
 """
 
 import pandas as pd
 
+
 def locf(data):
     """ For missing values use the last observation carried forward
+
+    For each set of missing indices, use the value of one column before(same
+    row). In the case that the missing value is the first column, we take one
+    column ahead instead (same row still).
 
     PARAMETERS
     ---------
