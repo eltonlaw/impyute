@@ -15,6 +15,8 @@ Data can be missing from a dataset for various reasons. Dependent upon the speci
 
 ``` shell
 $ git clone https://github.com/eltonlaw/impy.git
+$ cd impy 
+$ pip install -e .
 ```
   
 ## Quick Demonstration
@@ -61,6 +63,12 @@ $ python3
 ## Matching Methods
 
 **Nearest Neighbour Approach:** 
+
+## Running Tests
+
+``` shell
+$ nosetests
+```
 
 ## Citations
 
