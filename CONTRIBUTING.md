@@ -1,5 +1,5 @@
 # Contributing to impy
-Before anything else, thank you for deciding to contribute! +1
+Before anything else, thank you for deciding to contribute!
 The following is a set of guidelines for contributing to the imputations library, impy, which is hosted [here](https://github.com/eltonlaw/impy) 
 
 ### Code of Conduct
@@ -30,11 +30,11 @@ Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com
 
 ### Current To-Do's
 * Restructure project structure so algorithms are sorted into types of imputations(single/multiple imputation, regression, likelihood) or types of dataset(time series, independent) 
-* impy/datasets: Add complete case datasets, Add datasets with natural MCAR/MAR/MNAR, Add MAR/MNAR mutators  
+* _impy/datasets_: Add complete case datasets, Add datasets with natural MCAR/MAR/MNAR, Add MAR/MNAR mutators  
 * Add Expectation Maximization imputer
 * Add Kalman Filter
 * Add EM with Kalman Filter imputer
-* impy/diagnostics: Find attributes of raw dataset(% missingness etc.), Visualize missing values, provide info about imputed values 
+* _impy/diagnostics_: Find attributes of raw dataset(% missingness etc.), Visualize missing values, provide info about imputed values 
 
 ### Running Tests
 
