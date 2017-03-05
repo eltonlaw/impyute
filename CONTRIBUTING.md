@@ -28,4 +28,17 @@ Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com
 * **Describe the current behavior** and **explain which behavior you expected to see instead** and why.
 * **Anything else you think would be helpful**
 
+### Current To-Do's
+* Restructure project structure so algorithms are sorted into types of imputations(single/multiple imputation, regression, likelihood) or types of dataset(time series, independent) 
+* impy/datasets: Add complete case datasets, Add datasets with natural MCAR/MAR/MNAR, Add MAR/MNAR mutators  
+* Add Expectation Maximization imputer
+* Add Kalman Filter
+* Add EM with Kalman Filter imputer
+* impy/diagnostics: Find attributes of raw dataset(% missingness etc.), Visualize missing values, provide info about imputed values 
+
+### Running Tests
+
+``` shell
+$ nosetests
+```
 

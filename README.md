@@ -64,11 +64,6 @@ $ python3
 
 **Nearest Neighbour Approach:** 
 
-## Running Tests
-
-``` shell
-$ nosetests
-```
 
 ## Citations
 
