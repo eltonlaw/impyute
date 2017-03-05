@@ -21,7 +21,7 @@ All Python must adhere to [PEP8](https://www.python.org/dev/peps/pep-0008/)
 
 ### Suggesting Enhancements
 This project was created to from having data with missing values to having data without missing values. Any enhancement that brings value in that direction is good. If there's something interesting or that you're unsure about, open an issue and we can discuss it.
-Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com/features/issues/). Create an issue and try most or all of the following information:
+Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com/features/issues/). Create an issue and try to provide most or all of the following information:
 * **Use a clear and descriptive title** for the issue to identify the suggestion.
 * **Provide a description of the suggested enhancement** in as many details as possible.
 * **Provide specific examples to demonstrate the steps**. Include copy/pasteable snippets which you use in those examples, as [Markdown code blocks](https://help.github.com/articles/markdown-basics/#multiple-lines).
