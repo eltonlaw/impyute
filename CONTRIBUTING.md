@@ -10,13 +10,14 @@ By participating, you are expected to uphold this code.
 All Python must adhere to [PEP8](https://www.python.org/dev/peps/pep-0008/)
 
 ### Bugs
+
 #### Reporting
 * **Ensure the bug was not already reported** by searching on GitHub under [Issues](https://github.com/eltonlaw/impy/issues).
 * * If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/rails/rails/issues/new). Be sure to include a **title and clear description**, as much relevant information as possible, and a **code sample** or an **executable test case** demonstrating the expected behavior that is not occurring.
+
 #### Patching
 * Open a new GitHub pull request with the patch.
 * Ensure the PR description clearly describes the problem and solution. Include the relevant issue number if applicable.
-* Before submitting, please read the [Contributing to Ruby on Rails](https://github.com/eltonlaw/impy/blob/master/CONTRIBUTING.md) guide to know more about coding conventions and benchmarks.
 
 ### Suggesting Enhancements
 This project was created to from having data with missing values to having data without missing values. Any enhancement that brings value in that direction is good. If there's something interesting or that you're unsure about, open an issue and we can discuss it.
