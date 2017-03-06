@@ -1,3 +1,4 @@
-from .base import randomly_generate
+"""__init__.py"""
+from .base import random_int
 
-__all__ = ["randomly_generate"]
+__all__ = ["random_int"]

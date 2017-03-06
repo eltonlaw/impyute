@@ -45,3 +45,8 @@ class Mutator:
         not at random
         """
         pass
+
+    def complete(self, data, threshold):
+        """ Do nothing to the data """
+        output = {"data": data, "threshold": np.nan}
+        return output
