@@ -1,7 +1,7 @@
 """test_complete_case.py"""
 import unittest
 import numpy as np
-from impy.basic import complete_case
+from impy.deletions import complete_case
 
 
 class TestCC(unittest.TestCase):

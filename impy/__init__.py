@@ -1,1 +1,2 @@
-__all__ = ["datasets","basic","regression"]
+__all__ = ["datasets", "imputations", "diagnostics",
+           "deletions", "machine_learning"]

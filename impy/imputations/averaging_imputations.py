@@ -24,7 +24,7 @@ def mean_imputation(data):
 
 
 def median_imputation(data):
-    """ Substitute missing values with the mode of that column
+    """ Substitute missing values with the median of that column(middle)
 
     PARAMETERS
     ---------
@@ -43,10 +43,14 @@ def median_imputation(data):
         medians[str(y_i)] = median_y
     for x_i, y_i in null_xy:
         data[x_i][y_i] = medians[str(y_i)]
+    return data
 
 
 def mode_imputation(data):
-    """ Substitute missing values with the mode of that column
+    """ Substitute missing values with the mode of that column(most frequent)
+
+    In the case that there is a tie (there are multiple, most frequent values)
+    for a column randomly pick one of them.
 
     PARAMETERS
     ---------
