@@ -1,5 +1,4 @@
-" Dataset Generation "
-
+""" Artificial Dataset Generation """
 import numpy as np
 from impy.datasets.mutate import Mutator
 
@@ -31,7 +30,7 @@ def random_uniform(bound=(0, 10), shape=(5, 5), missingness="mcar",
     a = bound[0]
     b = bound[1]
     if data_type == "int":
-        generated_data = np.random.randint(a, b, size=shape)
+        generated_data = np.random.randint(a, b, size=shape).astype(float)
     elif data_type == "float":
         generated_data = np.random.uniform(a, b, size=shape)
     mutator = Mutator()
