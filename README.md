@@ -1,3 +1,5 @@
+![travis-CI](https://travis-ci.org/eltonlaw/impy.svg?branch=master)
+
 # Imputations
 
 This is a library of missing data imputation algorithms written in Python 3.
