@@ -27,7 +27,7 @@ $ python3
 
 ``` python3
 >>> from impy.datasets import random_int
->>> raw_data = random_int()
+>>> data_w_missing = random_int()
 >>> print(raw_data)
 [[  1.   0.   4.   0.   1.]
  [  1.  nan   6.   4.  nan]
@@ -35,8 +35,8 @@ $ python3
  [  2.   1.   5.   4.   6.]
  [  2.   1.   0.   0.   6.]]
 >>> from impy.basic import random_imputation     
->>> cleaned_data = random_imputation(raw_data) 
->>> print(cleaned_data)
+>>> data_filled = random_imputation(data_w_missing) 
+>>> print(data_filled)
 [[ 1.    0.    4.    0.    1.  ]
  [ 1.    0.5   6.    4.    4.  ]
  [ 5.    0.    3.75  1.    3.  ]
@@ -44,25 +44,26 @@ $ python3
  [ 2.    1.    0.    0.    6.  ]]
 ```
 
-## Basic Methods
+## Imputations
 
 **Random Imputation:** Fill in missing values with a randomly selected value from the same column. Not very useful, but acts as a good baseline.
 
 **Mean Imputation:** The missing value is replaced by the mean of the available data in that column. 
 
-**Mean Imputation:** The missing value is replaced by the mode of the available data in that column. 
+**Mode Imputation:** The missing value is replaced by the mode of the available data in that column. 
 
-**Complete Case:** Only use datapoints with complete data. May waste alot of data.
-
-**Last Observation Carried Forward:** For each missing value substitute the preceding value. If the missing value is in the first column, substitute the next value instead. For time series data only. 
-
-## Regression Methods
+**Median Imputation:** The missing value is replaced by the median of the available data in that column. 
 
 **Multivariate Imputation by Chained Equations:** Underlying assumption that data is MAR. First perform simple imputation for each missing value, then for one category/column set the filled values in it back to missing. Train a linear regression model, setting the dependent variable as the column you just chose. Using the trained model, predict the missing variables. Repeat until values converge for all columns with missing variables.
 
-## Matching Methods
+**Expectation Maximization:** An iterative method to estimate missing data values by splitting up the imputaton process into two parts. Model/parameter estimation is done then used to predict new values. These new values in turn are used to calculate error and model/parameter values are retuned then actual values are predicted again. This happens over and over until it converges.
 
-**Nearest Neighbour Approach:** 
+**Last Observation Carried Forward:** For each missing value substitute the preceding value. If the missing value is in the first column, substitute the next value instead. For time series data only. 
+
+## Deletion Methods
+
+**Complete Case:** Only use datapoints with complete data aka drops all rows with missing data. May waste alot of data.
+
 
 
 ## Citations

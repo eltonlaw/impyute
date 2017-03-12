@@ -5,8 +5,8 @@ from impy.datasets.mutate import Mutator
 
 def random_uniform(bound=(0, 10), shape=(5, 5), missingness="mcar",
                    threshold=0.2, data_type="int"):
-    """ Return randomly generated dataset of numbers with uniform values
-    between 0 and range_i.
+    """ Return randomly generated dataset of numbers with uniformly
+    distributed values between bound[0] and bound[1]
 
     PARAMETERS
     ---------
@@ -41,8 +41,8 @@ def random_uniform(bound=(0, 10), shape=(5, 5), missingness="mcar",
 
 def random_normal(theta=(0, 1), shape=(5, 5), missingness="mcar",
                   threshold=0.2, data_type="int"):
-    """ Return randomly generated dataset of numbers with uniform values
-    between 0 and range_i.
+    """ Return randomly generated dataset of numbers with normally
+    distributed values with given and sigma.
 
     PARAMETERS
     ---------
