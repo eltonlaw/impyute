@@ -2,13 +2,13 @@
 import unittest
 import numpy as np
 from impy.imputations import locf
-from impy.datasets import random_int
+from impy.datasets import random_uniform
 
 
 class TestLOCF(unittest.TestCase):
     """ Tests for Last Observation Carried Forward """
     def setUp(self):
-        self.data = random_int(missingness="complete")
+        self.data = random_uniform(missingness="complete")
 
     def test_return_type(self):
         """LOCF Check if it returns numpy's n-dimensional array"""

@@ -4,13 +4,13 @@ import numpy as np
 from impy.imputations import mean_imputation
 from impy.imputations import mode_imputation
 from impy.imputations import median_imputation
-from impy.datasets import random_int
+from impy.datasets import random_uniform
 
 
 class TestAveraging(unittest.TestCase):
     """ Tests for Averaging """
     def setUp(self):
-        self.data = random_int(missingness="complete")
+        self.data = random_uniform(missingness="complete")
 
     def test_mean_return_type(self):
         """Mean Imputation Return Type"""
