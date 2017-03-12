@@ -1,9 +1,20 @@
 language: python
 python:
-  - "3.5"
-  - "3.6"
-  - "3.7-dev" # 3.7 development branch
-# command to install dependencies
-install: "pip install -r requirements.txt"
-# command to run tests
+    - "nightly"
+    - 3.6
+    - 3.5
+    - 3.4
+    - 3.3
+install:
+    - pip install -r requirements.txt
 script: nosetests
+deploy:
+  provider: releases
+  api_key:
+    secure: FSkD2Vl5mfVWjEtCD4K7o+zywEvuM9Phvhev3cBGqVzpChhPrPeIT1Gb8z9m3VRxoHgBmnBAGVd3C2aRNddMKFh4zPqzQQJiEuslbqbE4WkUhDWLaq9uMsV16E4ea8a3KiUD1W+od9PKNGtegwbPQVjUUlpOcsaphsm9nqtn/JiEffDF6377nBJHgydS1p07NtKDRk+duSFb9KuTUWg1imwRLb9YvEFMwqqgG5ViyQRiJq1SPcwEDu0OfKOXgXlanGE5S7yXOfWl3/hapBHPHdNt/jvJzn5ga/GS9u5Mdh7KSqOHaVBnv4WDDOo/m4KPcIQPoEO4UwSfMgNMZih+gSyXNjRKkYqzPnkQZbK5aGIcUTsbT6zpMo5nyf+tmqq6v+293cwkSugXl11bOPShpOOzMMlrULWmv5YJsNCsUpDpJQN6YgmY9k2HJ5wMYywjjbumG/ACvPcKogKgCWHC1mSIqs6SBCaXCdUtsR4/GEjoulmHr3jY5SO2KM8jAO+6X/XLmuPj1sesaicnnKPMKVUlDDTQw8jfRbBv7+g9Mdvd2PeRSVQL7NyAyrGmgie30SEbxzk+hWWZCZIfhu1vlgMgUmHf1GojIlVIiFe0NXXo2PksTpOs9zUG+EzLwiF0rTRbrVBYdXsRxh1pFN6VIA1+M2WtpVlsLXd7oEeS7L4=
+  file_glob: true
+  file: impy/*
+  skip_cleanup: true
+  on:
+    repo: eltonlaw/impy
+    tags: true
