@@ -1,4 +1,4 @@
-![travis-CI](https://travis-ci.org/eltonlaw/impy.svg?branch=master)
+[![travis-CI](https://travis-ci.org/eltonlaw/impy.svg?branch=master)](https://travis-ci.org/eltonlaw/impy)
 
 # Imputations
 
