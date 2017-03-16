@@ -1,5 +1,4 @@
 import numpy as np
-# from ml import LinearRegression
 from sklearn.linear_model import LinearRegression
 from impy.diagnostics import find_null
 
@@ -14,11 +13,12 @@ def MICE(data):
     RETURNS
     ------
     numpy.ndarray
+
     """
-    null_xyv = find_null(data)
+    null_xy = find_null(data)
 
     # Add a column of zeros to the index values
-    null_xyv = np.append(null_xyv, np.zeros(np.shape(null_xyv)[0], 1), axis=1)
+    null_xyv = np.append(null_xy, np.zeros((np.shape(null_xy)[0], 1)), axis=1)
 
     null_xyv = [[int(x), int(y), v] for x, y, v in null_xyv]
     temp = []
@@ -35,7 +35,9 @@ def MICE(data):
     null_xyv = temp
 
     # Step 5: Repeat step 2 - 4 until convergence (the 100 is arbitrary)
-    for _ in range(100):
+
+    converged = [False] * len(null_xyv)
+    while all(converged):
         # Step 2: Placeholders are set back to missing for one variable/column
         dependent_col = int(np.random.choice(list(cols_missing)))
         missing_xs = [int(x) for x, y, value in null_xyv if y == dependent_col]
@@ -52,13 +54,14 @@ def MICE(data):
         # with predictions from our new linear regression model
         temp = []
         # For null indices with the dependent column that was randomly chosen
-        for x_i, y_i, value in ([x_i, y_i, value]
-                                for x_i, y_i, value in null_xyv
-                                if y_i == dependent_col):
-            # Row 'x' without the nan value
-            new_value = model.predict(np.delete(data[x_i], dependent_col))
-
-            data[x_i][y_i] = new_value.reshape(1, -1)
-            temp.append([x_i, y_i, new_value])
+        for i, x_i, y_i, value in enumerate(null_xyv):
+            if y_i == dependent_col:
+                # Row 'x' without the nan value
+                new_value = model.predict(np.delete(data[x_i], dependent_col))
+                data[x_i][y_i] = new_value.reshape(1, -1)
+                temp.append([x_i, y_i, new_value])
+                delta = (new_value-value)/value
+                if delta < 0.1:
+                    converged[i] = True
         null_xyv = temp
     return data
