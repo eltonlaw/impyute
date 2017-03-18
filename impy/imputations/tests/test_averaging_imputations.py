@@ -10,37 +10,53 @@ from impy.datasets import random_uniform
 class TestAveraging(unittest.TestCase):
     """ Tests for Averaging """
     def setUp(self):
-        self.data = random_uniform(missingness="complete")
+        self.data_c = random_uniform(missingness="complete")
+        self.data_m = random_uniform(missingness="mcar")
 
     def test_mean_return_type(self):
-        """Mean Imputation Return Type"""
-        self.assertEqual(str(type(mean_imputation(self.data))),
-                         "<class 'numpy.ndarray'>")
+        """ Mean - Check if return type is a numpy array"""
+        imputed = mode_imputation(self.data_m)
+        self.assertEqual(str(type(imputed)), "<type 'numpy.ndarray'>")
 
     def test_mode_return_type(self):
-        """Mode Imputation Return Type"""
-        self.assertEqual(str(type(mode_imputation(self.data))),
-                         "<class 'numpy.ndarray'>")
+        """ Mode - Check if return type is a numpy array"""
+        imputed = mode_imputation(self.data_m)
+        self.assertEqual(str(type(imputed)), "<type 'numpy.ndarray'>")
 
     def test_median_return_type(self):
-        """Median Imputation Return Type"""
-        self.assertEqual(str(type(median_imputation(self.data))),
-                         "<class 'numpy.ndarray'>")
+        """ Median - Check if return type is a numpy array"""
+        imputed = mode_imputation(self.data_m)
+        self.assertEqual(str(type(imputed)), "<type 'numpy.ndarray'>")
+
+    def test_mean_do_nothing(self):
+        """ Mean - After imputation, no change should occur"""
+        imputed = mean_imputation(self.data_c)
+        self.assertTrue(np.array_equal(imputed, self.data_c))
+
+    def test_mode_do_nothing(self):
+        """ Mode - After imputation, no change should occur"""
+        imputed = mode_imputation(self.data_c)
+        self.assertTrue(np.array_equal(imputed, self.data_c))
+
+    def test_median_do_nothing(self):
+        """ Median - After imputation, no change should occur"""
+        imputed = median_imputation(self.data_c)
+        self.assertTrue(np.array_equal(imputed, self.data_c))
 
     def test_mean_fill(self):
-        """ Mean Imputation Fill Complete Data(nothing should happen)"""
-        actual = mean_imputation(self.data)
-        self.assertTrue(np.array_equal(actual, self.data))
+        """ Mean - After imputation, no Nan's should exist"""
+        imputed = mean_imputation(self.data_m)
+        self.assertFalse(np.isnan(imputed).any())
 
     def test_mode_fill(self):
-        """ Mode Imputation Fill Complete Data(nothing should happen)"""
-        actual = mode_imputation(self.data)
-        self.assertTrue(np.array_equal(actual, self.data))
+        """ Mode - After imputation, no NaN's should exist"""
+        imputed = mode_imputation(self.data_m)
+        self.assertFalse(np.isnan(imputed).any())
 
     def test_median_fill(self):
-        """ Median Imputation Fill Complete Data(nothing should happen)"""
-        actual = median_imputation(self.data)
-        self.assertTrue(np.array_equal(actual, self.data))
+        """ Median - After imputation, no NaN's should exist"""
+        imputed = median_imputation(self.data_m)
+        self.assertFalse(np.isnan(imputed).any())
 
 
 if __name__ == "__main__":
