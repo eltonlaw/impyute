@@ -13,8 +13,8 @@ class TestRandomImputation(unittest.TestCase):
 
     def test_return_type(self):
         """Random - Check if it returns np's n-dimensional array"""
-        self.assertEqual(str(type(random_imputation(self.data_m))),
-                         "<type 'numpy.ndarray'>")
+        imputed = random_imputation(self.data_m)
+        self.assertTrue(isinstance(imputed, np.ndarray))
 
     def test_do_nothing(self):
         """ Random - Fill Complete Data(nothing should happen)"""

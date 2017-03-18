@@ -13,8 +13,8 @@ class TestLOCF(unittest.TestCase):
 
     def test_return_type(self):
         """LOCF Check if it returns numpy's n-dimensional array"""
-        self.assertEqual(str(type(locf(self.data_c))),
-                         "<type 'numpy.ndarray'>")
+        imputed = locf(self.data_m)
+        self.assertTrue(isinstance(imputed, np.ndarray))
 
     def test_na_at_i_start(self):
         """LOCF Check if null value at a row[i],column[0]=row[i],column[1]"""

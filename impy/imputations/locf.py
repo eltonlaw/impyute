@@ -25,6 +25,6 @@ def locf(data):
     for x_i, y_i in null_xy:
         try:
             data[x_i][y_i] = data[x_i][y_i-1]
-        except LookupError as _:
+        except:
             data[x_i][y_i] = data[x_i][y_i+1]
     return data

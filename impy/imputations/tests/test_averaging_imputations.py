@@ -16,17 +16,17 @@ class TestAveraging(unittest.TestCase):
     def test_mean_return_type(self):
         """ Mean - Check if return type is a numpy array"""
         imputed = mode_imputation(self.data_m)
-        self.assertEqual(str(type(imputed)), "<type 'numpy.ndarray'>")
+        self.assertTrue(isinstance(imputed, np.ndarray))
 
     def test_mode_return_type(self):
         """ Mode - Check if return type is a numpy array"""
         imputed = mode_imputation(self.data_m)
-        self.assertEqual(str(type(imputed)), "<type 'numpy.ndarray'>")
+        self.assertTrue(isinstance(imputed, np.ndarray))
 
     def test_median_return_type(self):
         """ Median - Check if return type is a numpy array"""
         imputed = mode_imputation(self.data_m)
-        self.assertEqual(str(type(imputed)), "<type 'numpy.ndarray'>")
+        self.assertTrue(isinstance(imputed, np.ndarray))
 
     def test_mean_do_nothing(self):
         """ Mean - After imputation, no change should occur"""

@@ -13,15 +13,14 @@ class TestGaussian(unittest.TestCase):
 
     def test_return_type(self):
         """gaussian: Tests if it returns a dictionary"""
-        self.assertEqual(
-                str(type(gaussian(self.data, self.valid_dist))),
-                "<type 'dict'>")
+        self.assertTrue(isinstance(gaussian(self.data, self.valid_dist), dict))
 
     def test_invalid_dist(self):
         """gaussian: Tests if invalid "dist" raises an exception"""
         with self.assertRaises(Exception) as context:
             gaussian(self.data, self.invalid_dist)
-        self.assertTrue("Value of 'dist' qw is not valid" in context.exception)
+            self.assertTrue("Value of 'dist' qw is not valid"
+                            in context.exception)
 
 
 if __name__ == "__main__":
