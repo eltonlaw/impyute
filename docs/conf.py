@@ -16,6 +16,12 @@
 
 import sys
 import os
+sys.path.insert(0, os.path.abspath('../impy'))
+sys.path.insert(0, os.path.abspath('../impy/imputations'))
+sys.path.insert(0, os.path.abspath('../impy/tools'))
+sys.path.insert(0, os.path.abspath('../impy/datasets'))
+sys.path.insert(0, os.path.abspath('../impy/diagnostics'))
+
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -37,6 +43,7 @@ extensions = [
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
+    'sphinx.ext.autodoc',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
