@@ -3,35 +3,38 @@ import numpy as np
 
 class Mutator:
     """ Adds missingness to a complete dataset """
+    def __init__(self, data, th=np.random.rand()):
+        self.data = data
+        self.th = th
 
-    def mcar(self, data, threshold=np.random.rand()):
+    def mcar(self):
         """ Mutates a full dataset into a raw dataset that fulfills missingness
         completely at random
 
         PARAMETERS
         ---------
-        threshold: float[0-1] (optional)
+        th: float[0-1] (optional)
             The percentage of null values you want in your dataset
 
         RETURNS
         ------
         dict
         """
-        for (x, y), _ in np.ndenumerate(data):
-            if np.random.rand() > threshold:
+        for (x, y), _ in np.ndenumerate(self.data):
+            if np.random.rand() > self.th:
                 pass
             else:
-                data[x][y] = np.nan
-        output = {"data": data, "threshold": threshold}
+                self.data[x][y] = np.nan
+        output = {"data": self.data, "th": self.th}
         return output
 
-    def mar(self, data, threshold):
+    def mar(self):
         """ Mutates a full dataset into a raw dataset that fulfills missingness
         at random
 
         PARAMETERS
         ---------
-        threshold: (optional)
+        th: (optional)
             The percentage of null values you want in your dataset
 
         RETURNS
@@ -40,13 +43,13 @@ class Mutator:
         """
         pass
 
-    def mnar(self, data):
+    def mnar(self):
         """ Mutates a full dataset into a raw dataset that fulfills missingness
         not at random
         """
         pass
 
-    def complete(self, data, threshold):
+    def complete(self, data, th):
         """ Do nothing to the data """
-        output = {"data": data, "threshold": np.nan}
+        output = {"data": data, "th": np.nan}
         return output
