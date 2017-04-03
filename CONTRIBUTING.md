@@ -39,6 +39,6 @@ Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com
 ### Running Tests
 
 ``` shell
-$ nosetests
+$ python -m unittest discover
 ```
 
