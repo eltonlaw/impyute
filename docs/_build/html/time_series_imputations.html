@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -9,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; impy 0.1 documentation</title>
+  <title>Time Series Imputations &mdash; impy 0.1 documentation</title>
   
 
   
@@ -33,7 +32,8 @@
   
 
   
-    <link rel="top" title="impy 0.1 documentation" href="index.html"/> 
+    <link rel="top" title="impy 0.1 documentation" href="index.html"/>
+        <link rel="prev" title="Overview" href="overview.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -86,9 +86,16 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="time_series_imputations.html">Time Series Imputations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Time Series Imputations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#time-series-data">Time series data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#time-series-imputation-algorithms">Time Series Imputation Algorithms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#arima">ARIMA</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/eltonlaw/impy">GitHub</a></li>
 </ul>
 
@@ -134,12 +141,14 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li></li>
+      <li>Time Series Imputations</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
+            <a href="_sources/time_series_imputations.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -151,23 +160,37 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- <a href="#A"><strong>A</strong></a>
- 
+  <div class="section" id="time-series-imputations">
+<h1>Time Series Imputations<a class="headerlink" href="#time-series-imputations" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="time-series-data">
+<h2>Time series data<a class="headerlink" href="#time-series-data" title="Permalink to this headline">¶</a></h2>
+<p>Time series</p>
 </div>
-<h2 id="A">A</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="time_series_imputations.html#impy.imputations.arima">arima() (in module impy.imputations)</a>
-  </dt>
+<div class="section" id="time-series-imputation-algorithms">
+<h2>Time Series Imputation Algorithms<a class="headerlink" href="#time-series-imputation-algorithms" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="arima">
+<h3>ARIMA<a class="headerlink" href="#arima" title="Permalink to this headline">¶</a></h3>
+<p>Autoregressive Integrated Moving Average.</p>
+<dl class="function">
+<dt id="impy.imputations.arima">
+<code class="descclassname">impy.imputations.</code><code class="descname">arima</code><span class="sig-paren">(</span><em>data</em>, <em>p</em>, <em>d</em>, <em>q</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/impy/imputations/arima.html#arima"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impy.imputations.arima" title="Permalink to this definition">¶</a></dt>
+<dd><p>Autoregressive Integrated Moving Average</p>
+<dl class="docutils">
+<dt>data: numpy.ndarray</dt>
+<dd>The matrix with missing values that you want to impute</dd>
+<dt>p: int</dt>
+<dd>Number of autoregressive terms</dd>
+<dt>d: int</dt>
+<dd>Number of nonseasonal differences needed for stationarity</dd>
+<dt>q: int</dt>
+<dd>Number of lagged forecast errors in the prediction equation</dd>
+</dl>
+<p>numpy.ndarray</p>
+</dd></dl>
 
-  </dl></td>
-</tr></table>
-
+</div>
+</div>
+</div>
 
 
            </div>
@@ -176,6 +199,13 @@
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="overview.html" class="btn btn-neutral" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

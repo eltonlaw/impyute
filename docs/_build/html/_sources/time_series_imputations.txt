@@ -1,0 +1,18 @@
+=========================
+ Time Series Imputations
+=========================
+------------------
+ Time series data
+------------------
+Time series
+
+-----------------------------------
+ Time Series Imputation Algorithms
+-----------------------------------
+
+^^^^^^^
+ ARIMA
+^^^^^^^
+Autoregressive Integrated Moving Average. 
+
+.. autofunction:: impy.imputations.arima

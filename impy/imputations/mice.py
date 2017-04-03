@@ -3,7 +3,7 @@ from sklearn.linear_model import LinearRegression
 from impy.diagnostics import find_null
 
 
-def MICE(data):
+def mice(data):
     """Multivariate Imputation by Chained Equations
 
     PARAMETERS

@@ -3,27 +3,20 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Documentation for impy
+Documentation
 ================================
 
-Contents:
+Table of Contents
 
 .. toctree::
    :maxdepth: 2
    
-   Overview
-   Getting Started
+   Overview <overview>
+   Getting Started 
    Tutorial
    Imputations
+   Time Series Imputations <time_series_imputations>
    Contributing
-   License
+   License 
    GitHub <https://github.com/eltonlaw/impy>
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
 
