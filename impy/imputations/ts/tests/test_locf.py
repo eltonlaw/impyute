@@ -1,7 +1,7 @@
 """test_locf.py"""
 import unittest
 import numpy as np
-from impy.imputations import locf
+from impy.imputations.ts import locf
 from impy.datasets import random_uniform
 
 

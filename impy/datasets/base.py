@@ -1,4 +1,6 @@
-""" Artificial Dataset Generation """
+""" impy.datasets.base
+Artificial Dataset Generation
+"""
 import numpy as np
 from impy.datasets.mutate import Mutator
 
@@ -33,9 +35,8 @@ def random_uniform(bound=(0, 10), shape=(5, 5), missingness="mcar",
         generated_data = np.random.randint(a, b, size=shape).astype(float)
     elif data_type == "float":
         generated_data = np.random.uniform(a, b, size=shape)
-    mutator = Mutator()
-    mutate = getattr(mutator, missingness)
-    raw_data = mutate(generated_data, threshold=threshold)["data"]
+    mutator = Mutator(generated_data)
+    raw_data = getattr(mutator, missingness)()["data"]
     return raw_data
 
 
@@ -68,6 +69,5 @@ def random_normal(theta=(0, 1), shape=(5, 5), missingness="mcar",
     elif data_type == "float":
         pass
     mutator = Mutator()
-    mutate = getattr(mutator, missingness)
-    raw_data = mutate(generated_data, threshold=threshold)["data"]
+    raw_data = getattr(mutator, missingness)()["data"]
     return raw_data

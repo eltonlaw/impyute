@@ -49,7 +49,7 @@ class Mutator:
         """
         pass
 
-    def complete(self, data, th):
+    def complete(self):
         """ Do nothing to the data """
-        output = {"data": data, "th": np.nan}
+        output = {"data": self.data, "th": np.nan}
         return output

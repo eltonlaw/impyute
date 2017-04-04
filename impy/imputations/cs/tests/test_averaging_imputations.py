@@ -1,9 +1,9 @@
 """test_averaging_imputations.py"""
 import unittest
 import numpy as np
-from impy.imputations import mean_imputation
-from impy.imputations import mode_imputation
-from impy.imputations import median_imputation
+from impy.imputations.cs import mean_imputation
+from impy.imputations.cs import mode_imputation
+from impy.imputations.cs import median_imputation
 from impy.datasets import random_uniform
 
 

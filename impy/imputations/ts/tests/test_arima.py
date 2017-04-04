@@ -1,7 +1,7 @@
 """test_arima.py"""
 import unittest
 import numpy as np
-from impy.imputations import arima
+from impy.imputations.ts import arima
 from impy.datasets import random_uniform
 
 
