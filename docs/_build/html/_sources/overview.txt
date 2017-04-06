@@ -4,5 +4,17 @@
 
 impy is a general purpose imputations library for Python that can be used to deal with missing values in your data set. 
 
+impy was built for convenience, an all in one stop so that users can impute their dataset with minimal knowledge and get on with their day. With that in mind, the following tools are provided in this library:
 
-impy was built with convenience in mind, so that users can impute a dataset with minimal knowledge while being given access to all current state of the art models.
+**Tools to Diagnose your Dataset**
+
+* Type of Missingness <missingness tests>
+* Distribution of Data 
+* Suggested Imputation Methods
+* Visualizations of Missingness
+
+**Imputation Algorithms**
+
+* Cross Sectional Data
+* Time Series Data
+

@@ -164,30 +164,17 @@
 <h1>Time Series Imputations<a class="headerlink" href="#time-series-imputations" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="time-series-data">
 <h2>Time series data<a class="headerlink" href="#time-series-data" title="Permalink to this headline">¶</a></h2>
-<p>Time series</p>
+<p>What is time series data?</p>
+<p><em>Stationary Data</em>: Stationary data refers to data with the property that the mean and variance are constant over time. Many time series models assume stationarity as it provides several advantages.</p>
+<p><em>Non-stationary Data</em>: Non-stationarity simply refers to the absence of the stationarity property, there are multiple ways for this to be achieved.</p>
+<p><em>Dependence Structure</em>: Hypothesis about neighbour assumptions</p>
 </div>
 <div class="section" id="time-series-imputation-algorithms">
 <h2>Time Series Imputation Algorithms<a class="headerlink" href="#time-series-imputation-algorithms" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="arima">
 <h3>ARIMA<a class="headerlink" href="#arima" title="Permalink to this headline">¶</a></h3>
-<p>Autoregressive Integrated Moving Average.</p>
-<dl class="function">
-<dt id="impy.imputations.arima">
-<code class="descclassname">impy.imputations.</code><code class="descname">arima</code><span class="sig-paren">(</span><em>data</em>, <em>p</em>, <em>d</em>, <em>q</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/impy/imputations/arima.html#arima"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impy.imputations.arima" title="Permalink to this definition">¶</a></dt>
-<dd><p>Autoregressive Integrated Moving Average</p>
-<dl class="docutils">
-<dt>data: numpy.ndarray</dt>
-<dd>The matrix with missing values that you want to impute</dd>
-<dt>p: int</dt>
-<dd>Number of autoregressive terms</dd>
-<dt>d: int</dt>
-<dd>Number of nonseasonal differences needed for stationarity</dd>
-<dt>q: int</dt>
-<dd>Number of lagged forecast errors in the prediction equation</dd>
-</dl>
-<p>numpy.ndarray</p>
-</dd></dl>
-
+<p>Short for Autoregressive Integrated Moving Average. Autoregressive means that the predicted value incorporates prior values in its calculation.</p>
+<p># .. autofunction:: imputations.arima</p>
 </div>
 </div>
 </div>
