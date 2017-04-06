@@ -12,11 +12,11 @@ Table of Contents
    :maxdepth: 2
    
    Overview <overview>
-   Getting Started 
-   Tutorial
-   Imputations
-   Time Series Imputations <time_series_imputations>
-   Contributing
-   License 
+   Getting Started <getting_started>
+   Tutorial <tutorial>
+   Cross Sectional Imputations <cs_imputations>
+   Time Series Imputations <ts_imputations>
+   Contributing 
+   License <:doc:`/LICENSE`>
    GitHub <https://github.com/eltonlaw/impy>
 

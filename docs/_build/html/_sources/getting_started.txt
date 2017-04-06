@@ -1,0 +1,22 @@
+=================
+ Getting Started
+=================
+
+Installation
+============
+
+Install via pip::
+
+    $ pip install impy 
+
+Dependencies
+------------
+
+- NumPy
+- Pandas
+- SciPy
+- scikit-learn
+
+
+## Installation Issues
+

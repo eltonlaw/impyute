@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Overview &mdash; impy 0.1 documentation</title>
+  <title>Time Series Imputations &mdash; impy 0.1 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
 
   
     <link rel="top" title="impy 0.1 documentation" href="index.html"/>
-        <link rel="prev" title="Documentation" href="index.html"/> 
+        <link rel="prev" title="Overview" href="overview.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -87,7 +87,15 @@
             
             
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Time Series Imputations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#time-series-data">Time series data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#time-series-imputation-algorithms">Time Series Imputation Algorithms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#arima">ARIMA</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/eltonlaw/impy">GitHub</a></li>
 </ul>
 
@@ -133,13 +141,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Overview</li>
+      <li>Time Series Imputations</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/overview.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/ts_imputations.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -152,22 +160,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="overview">
-<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<p>impy is a general purpose, imputations library written in Python. In statistics, imputation is the method of estimating missing values in a data set. There are a lot of different types of imputation, the result of the various types of datasets. On datasets with high percentages of missing values, some methods work better than others and vice versa.  Datasets can be cross sectional or time series, linear or non linear, continuous or categorical or boolean. As you can imagine, there are a lot of different specifications that need to be kept in mind.</p>
-<p>impy was built for convenience, an all in one stop so that users can impute their dataset with minimal knowledge and get on with their day. With that in mind, the following tools are provided in this library:</p>
-<p><strong>Tools to Diagnose Your Dataset</strong></p>
-<ul class="simple">
-<li>Type of Missingness &lt;missingness tests&gt;</li>
-<li>Distribution of Data</li>
-<li>Suggested Imputation Methods</li>
-<li>Visualizations of Missingness</li>
-</ul>
-<p><strong>Imputation Algorithms</strong></p>
-<ul class="simple">
-<li>Cross Sectional Data</li>
-<li>Time Series Data</li>
-</ul>
+  <div class="section" id="time-series-imputations">
+<h1>Time Series Imputations<a class="headerlink" href="#time-series-imputations" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="time-series-data">
+<h2>Time series data<a class="headerlink" href="#time-series-data" title="Permalink to this headline">¶</a></h2>
+<p>What is time series data?</p>
+<p><em>Stationary Data</em>: Stationary data refers to data with the property that the mean and variance are constant over time. Many time series models assume stationarity as it provides several advantages.</p>
+<p><em>Non-stationary Data</em>: Non-stationarity simply refers to the absence of the stationarity property, there are multiple ways for this to be achieved.</p>
+<p><em>Dependence Structure</em>: Hypothesis about neighbour assumptions</p>
+</div>
+<div class="section" id="time-series-imputation-algorithms">
+<h2>Time Series Imputation Algorithms<a class="headerlink" href="#time-series-imputation-algorithms" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="arima">
+<h3>ARIMA<a class="headerlink" href="#arima" title="Permalink to this headline">¶</a></h3>
+<p>Short for Autoregressive Integrated Moving Average. Autoregressive means that the predicted value incorporates prior values in its calculation.</p>
+<p># .. autofunction:: imputations.arima</p>
+</div>
+</div>
 </div>
 
 
@@ -181,7 +190,7 @@
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="index.html" class="btn btn-neutral" title="Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="overview.html" class="btn btn-neutral" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
