@@ -2,14 +2,20 @@
 import unittest
 import numpy as np
 from impy.imputations.ts import arima
-from impy.datasets import random_uniform
+from impy.datasets import test_data
 
 
 class TestArima(unittest.TestCase):
     """ Tests for Autoregressive Integrated Moving Average """
     def setUp(self):
-        self.data_c = random_uniform(missingness="complete")
-        self.data_m = random_uniform(missingness="mcar")
+        """
+        self.data_c: Complete dataset/No missing values
+        self.data_m: Incommplete dataset/Has missing values
+        """
+        mask = np.zeros((5, 5), dtype=bool)
+        self.data_c = test_data(mask)
+        mask[0][0] = True
+        self.data_m = test_data(mask)
 
     def test_return_type(self):
         """Check return type, should return an np.ndarray"""

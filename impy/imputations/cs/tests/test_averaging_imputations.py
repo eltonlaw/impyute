@@ -4,14 +4,20 @@ import numpy as np
 from impy.imputations.cs import mean_imputation
 from impy.imputations.cs import mode_imputation
 from impy.imputations.cs import median_imputation
-from impy.datasets import random_uniform
+from impy.datasets import test_data
 
 
 class TestAveraging(unittest.TestCase):
-    """ Tests for Averaging """
+    """ Tests for Averaging Imputations"""
     def setUp(self):
-        self.data_c = random_uniform(missingness="complete")
-        self.data_m = random_uniform(missingness="mcar")
+        """
+        self.data_c: Complete dataset/No missing values
+        self.data_m: Incommplete dataset/Has missing values
+        """
+        mask = np.zeros((5, 5), dtype=bool)
+        self.data_c = test_data(mask)
+        mask[0][0] = True
+        self.data_m = test_data(mask)
 
     def test_mean_return_type(self):
         """ Mean - Check if return type is a numpy array"""

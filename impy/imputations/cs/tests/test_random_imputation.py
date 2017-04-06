@@ -1,15 +1,21 @@
 """test_random_imputation.py"""
 import unittest
 import numpy as np
-from impy.imputations import random_imputation
-from impy.datasets import random_uniform
+from impy.imputations.cs import random_imputation
+from impy.datasets import test_data
 
 
 class TestRandomImputation(unittest.TestCase):
     """ Tests for Random Imputation """
     def setUp(self):
-        self.data_c = random_uniform(missingness="complete")
-        self.data_m = random_uniform(missingness="mcar")
+        """
+        self.data_c: Complete dataset/No missing values
+        self.data_m: Incommplete dataset/Has missing values
+        """
+        mask = np.zeros((3, 3), dtype=bool)
+        self.data_c = test_data(mask)
+        mask[0][0] = True
+        self.data_m = test_data(mask)
 
     def test_return_type(self):
         """Random - Check if it returns np's n-dimensional array"""
