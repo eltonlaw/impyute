@@ -1,4 +1,4 @@
-.. impy documentation master file, created by
+.. impyute documentation master file, created by
    sphinx-quickstart on Sat Mar 11 02:25:20 2017.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
@@ -18,5 +18,5 @@ Table of Contents
    Time Series Imputations <ts_imputations>
    Contributing 
    License <:doc:`/LICENSE`>
-   GitHub <https://github.com/eltonlaw/impy>
+   GitHub <https://github.com/eltonlaw/impyute>
 

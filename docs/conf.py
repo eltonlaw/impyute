@@ -2,7 +2,7 @@
 # flake8: noqa
 #pylint: skip-file
 #
-# impy documentation build configuration file, created by
+# impyute documentation build configuration file, created by
 # sphinx-quickstart on Sat Mar 11 02:25:20 2017.
 #
 # This file is execfile()d with the current directory set to its
@@ -16,11 +16,11 @@
 
 import sys
 import os
-sys.path.insert(0, os.path.abspath('../impy'))
-sys.path.insert(0, os.path.abspath('../impy/imputations'))
-sys.path.insert(0, os.path.abspath('../impy/tools'))
-sys.path.insert(0, os.path.abspath('../impy/datasets'))
-sys.path.insert(0, os.path.abspath('../impy/diagnostics'))
+sys.path.insert(0, os.path.abspath('../impyute'))
+sys.path.insert(0, os.path.abspath('../impyute/imputations'))
+sys.path.insert(0, os.path.abspath('../impyute/tools'))
+sys.path.insert(0, os.path.abspath('../impyute/datasets'))
+sys.path.insert(0, os.path.abspath('../impyute/diagnostics'))
 
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -61,7 +61,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'impy'
+project = u'impyute'
 copyright = u'2017, Elton Law'
 author = u'Elton Law'
 
@@ -136,7 +136,7 @@ html_theme_path = ["_themes",]
 
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
-#html_title = u'impy v0.1'
+#html_title = u'impyute v0.1'
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None
@@ -218,7 +218,7 @@ html_static_path = ['_static']
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'impydoc'
+htmlhelp_basename = 'impyutedoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -238,7 +238,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'impy.tex', u'impy Documentation',
+    (master_doc, 'impyute.tex', u'impyute Documentation',
      u'Elton Law', 'manual'),
 ]
 
@@ -268,7 +268,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'impy', u'impy Documentation',
+    (master_doc, 'impyute', u'impyute Documentation',
      [author], 1)
 ]
 
@@ -282,8 +282,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'impy', u'impy Documentation',
-     author, 'impy', 'One line description of project.',
+    (master_doc, 'impyute', u'impyute Documentation',
+     author, 'impyute', 'One line description of project.',
      'Miscellaneous'),
 ]
 

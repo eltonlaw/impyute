@@ -7,7 +7,7 @@ Installation
 
 Install via pip::
 
-    $ pip install impy 
+    $ pip install impyute 
 
 Dependencies
 ------------
@@ -22,7 +22,7 @@ Tutorial
 
 A simple example of what this library can do::
 
-    >>> from impy.datasets.random_uniform
+    >>> from impyute.datasets.random_uniform
     >>> raw_data = random_uniform(shape=(5,5), missingness="mcar")
     >>> print(raw_data)
     >>> [[  1.   0.   4.   0.   1.]
@@ -30,7 +30,7 @@ A simple example of what this library can do::
          [  5.   0.  nan   1.   3.]
          [  2.   1.   5.   4.   6.]
          [  2.   1.   0.   0.   6.]]
-    >>> from impy.imputations.cs import mean_imputation
+    >>> from impyute.imputations.cs import mean_imputation
     >>> complete_data = mean_imputation(raw_data)
     >>> print(complete_data)
         [[ 1.    0.    4.    0.    1.   ]
