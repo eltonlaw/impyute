@@ -1,5 +1,5 @@
 [![travis-CI](https://travis-ci.org/eltonlaw/impyute.svg?branch=master)](https://travis-ci.org/eltonlaw/impyute)
-
+[![pypi](https://img.shields.io/pypi/v/impyute.svg)](https://pypi.python.org/pypi/impyute)
 
 # impyute
 
