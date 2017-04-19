@@ -56,6 +56,11 @@ To install impyute, run the following:
 
     $ pip install impyute
 
+Documentation
+-------------
+
+Documentation is available here: http://impyute.readthedocs.io/
+
 
 How to Contribute
 -----------------
@@ -63,28 +68,4 @@ How to Contribute
 Check out CONTRIBUTING_
 
 .. _CONTRIBUTING: https://github.com/eltonlaw/impyute/blob/master/CONTRIBUTING.md
-
-
-User Guide
-===========
-
-Table of Contents
-
-.. toctree::
-   :maxdepth: 2
-   
-   Overview <overview>
-   Getting Started <getting_started>
-   Tutorial <tutorial>
-   Contributing 
-
-
-API
-===
-
-.. toctree::
-   :maxdepth: 2
-
-   API <api/index>
-   GitHub Repo <https://github.com/eltonlaw/impyute>
 

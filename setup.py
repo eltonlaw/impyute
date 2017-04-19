@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 from pip.req import parse_requirements
 
-with open("README.md") as f:
+with open("README.rst") as f:
     LONG_DESCRIPTION = f.read()
 
 parsed_reqs = parse_requirements("requirements.txt", session=False)
@@ -11,7 +11,7 @@ reqs = [str(ir.req) for ir in parsed_reqs]
 setup(name='impyute',
       author='Elton Law',
       author_email='eltonlaw296@gmail.com',
-      version='0.0.1',
+      version='0.0.3',
       url='https://github.com/eltonlaw/impyute',
       description='Library of the different imputation algorithms; methods for \
       dealing with ambiguity and handling missing data.',

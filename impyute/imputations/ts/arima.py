@@ -4,7 +4,7 @@ from impyute.diagnostics import find_null
 
 
 def arima(data, p, d, q):
-    """Autoregressive Integrated Moving Average
+    """Autoregressive Integrated Moving Average Imputation
 
     PARAMETERS
     ----------

@@ -72,6 +72,3 @@ class Kalman:
 
     def predict_next(self):
         return self.X_k0
-
-    def smooth(self):
-        pass
