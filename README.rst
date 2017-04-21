@@ -1,11 +1,11 @@
-Impyute
-========
-
 .. image:: https://travis-ci.org/eltonlaw/impyute.svg?branch=master
     :target: https://travis-ci.org/eltonlaw/impyute
 
 .. image:: https://img.shields.io/pypi/v/impyute.svg
     :target: https://pypi.python.org/pypi/impyute
+
+Impyute
+========
 
  Impyute is a library of missing data imputation algorithms written in Python 3. This library was designed to be super lightweight, here's a sneak peak at what impyute can do. 
 
