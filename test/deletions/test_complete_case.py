@@ -22,19 +22,19 @@ class TestCC(unittest.TestCase):
         pass
 
     def test_return_type(self):
-        """Return type = np array"""
-        output_type = str(type(complete_case(self.data_c)))
-        self.assertEqual(output_type, "<class 'numpy.ndarray'>")
+        """ Check return type, should return an np.ndarray"""
+        imputed = complete_case(self.data_m)
+        self.assertTrue(isinstance(imputed, np.ndarray))
 
-    def test_no_missing(self):
-        """If nothing's missing nothing should change"""
-        actual = complete_case(self.data_c)
-        self.assertTrue(np.array_equal(actual, self.data))
+    def test_impute_no_missing_values(self):
+        """ After imputation, no change should occur"""
+        imputed = complete_case(self.data_c)
+        self.assertTrue(np.array_equal(imputed, self.data_c))
 
-    def test_missing(self):
-        """CC Check if it drops the row if there's a missing data point"""
-        actual = complete_case(self.data_m)
-        self.assertTrue(np.shape(actual) == (2, 3))
+    def test_impute_missing_values(self):
+        """ After imputation, no NaN's should exist"""
+        imputed = complete_case(self.data_m)
+        self.assertTrue(np.shape(imputed) == (4, 5))
 
 
 if __name__ == "__main__":

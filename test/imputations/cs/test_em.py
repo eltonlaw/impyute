@@ -18,12 +18,17 @@ class TestEM(unittest.TestCase):
         self.data_m = test_data(mask)
 
     def test_return_type(self):
-        """Check return type, should return an np.ndarray"""
+        """ Check return type, should return an np.ndarray"""
         imputed = em(self.data_m)
         self.assertTrue(isinstance(imputed, np.ndarray))
 
-    def test_fill(self):
-        """After imputation, no NaN's should exist"""
+    def test_impute_no_missing_values(self):
+        """ After imputation, no change should occur"""
+        imputed = em(self.data_c)
+        self.assertTrue(np.array_equal(imputed, self.data_c))
+
+    def test_impute_missing_values(self):
+        """ After imputation, no NaN's should exist"""
         imputed = em(self.data_m)
         self.assertFalse(np.isnan(imputed).any())
 

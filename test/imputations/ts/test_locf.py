@@ -17,8 +17,18 @@ class TestLOCF(unittest.TestCase):
         mask[0][0] = True
         self.data_m = test_data(mask)
 
+    def test_impute_no_missing_values(self):
+        """ After imputation, no NaN's should exist"""
+        imputed = locf(self.data_c)
+        self.assertTrue(np.array_equal(imputed, self.data_c))
+
+    def test_impute_missing_values(self):
+        """ After imputation, no NaN's should exist"""
+        imputed = locf(self.data_m)
+        self.assertFalse(np.isnan(imputed).any())
+
     def test_return_type(self):
-        """Check if it returns numpy's n-dimensional array"""
+        """ Check return type, should return an np.ndarray"""
         imputed = locf(self.data_m)
         self.assertTrue(isinstance(imputed, np.ndarray))
 
@@ -43,11 +53,6 @@ class TestLOCF(unittest.TestCase):
         actual = locf(self.data_c)
         self.data_c[3][last_i] = self.data_c[3][last_i-1]
         self.assertTrue(np.array_equal(actual, self.data_c))
-
-    def test_fill(self):
-        """ After imputation, no NaN's should exist"""
-        imputed = locf(self.data_m)
-        self.assertFalse(np.isnan(imputed).any())
 
 
 if __name__ == "__main__":
