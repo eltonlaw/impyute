@@ -1,5 +1,5 @@
 """Print input/output multiple times"""
-from impyute.datasets import random_int
+from impyute.datasets import random_normal
 
 
 def print_io(fn, loops=1, **kwargs):
@@ -8,7 +8,7 @@ def print_io(fn, loops=1, **kwargs):
     ---------
     fn: Function
     loops: # of Loops
-    **kwargs: Arguments for random_int function
+    **kwargs: Arguments for random_normal function
 
     RETURNS
     ------
@@ -18,7 +18,7 @@ def print_io(fn, loops=1, **kwargs):
 
     print("Function:{}".format(str(fn.__name__)))
     for i in range(loops):
-        data = random_int(**kwargs)
+        data = random_normal(**kwargs)
         print("\n")
         print("{} ========".format(i))
         print("{}  {}".format(data, fn(data)))
