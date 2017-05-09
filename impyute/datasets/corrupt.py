@@ -3,7 +3,7 @@ import numpy as np
 
 class Corruptor:
     """ Adds missingness to a complete dataset """
-    def __init__(self, data, th=np.random.rand()):
+    def __init__(self, data, th=0.2):
         self.dtype = data.dtype
         self.shape = np.shape(data)
         self.data = data.astype(np.float)
@@ -29,7 +29,7 @@ class Corruptor:
                                   replace=False)
         for x in null_x:
             data_1d[x] = np.nan
-        output = data_1d.reshape(self.shape).astype(self.dtype)
+        output = data_1d.reshape(self.shape)
         return output
 
     def mar(self):
@@ -55,5 +55,5 @@ class Corruptor:
 
     def complete(self):
         """ Do nothing to the data """
-        output = self.data.astype(self.dtype)
+        output = self.data
         return output

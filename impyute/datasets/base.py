@@ -104,5 +104,5 @@ def mnist(missingness="mcar", th=0.2):
     from sklearn.datasets import fetch_mldata
     mnist = fetch_mldata('MNIST original')
     corruptor = Corruptor(mnist.data, th=th)
-    raw_data = getattr(corruptor, missingness)()
-    return raw_data, mnist.target
+    data = getattr(corruptor, missingness)()
+    return {"X": data, "Y": mnist.target}
