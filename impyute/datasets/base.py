@@ -2,7 +2,7 @@
 Artificial Dataset Generation
 """
 import numpy as np
-from impyute.datasets.mutate import Mutator
+from impyute.datasets.corrupt import Corruptor
 
 
 def random_uniform(bound=(0, 10), shape=(5, 5), missingness="mcar",
@@ -35,8 +35,8 @@ def random_uniform(bound=(0, 10), shape=(5, 5), missingness="mcar",
         data = np.random.randint(a, b, size=shape).astype(float)
     elif dtype == "float":
         data = np.random.uniform(a, b, size=shape)
-    mutator = Mutator(data, th=th)
-    raw_data = getattr(mutator, missingness)()["data"]
+    corruptor = Corruptor(data, th=th)
+    raw_data = getattr(corruptor, missingness)()
     return raw_data
 
 
@@ -68,8 +68,8 @@ def random_normal(theta=(0, 1), shape=(5, 5), missingness="mcar",
         data = np.round(data)
     elif dtype == "float":
         pass
-    mutator = Mutator(data, th=th)
-    raw_data = getattr(mutator, missingness)()["data"]
+    corruptor = Corruptor(data, th=th)
+    raw_data = getattr(corruptor, missingness)()["data"]
     return raw_data
 
 
@@ -85,3 +85,24 @@ def test_data(mask, th=0.2):
     data = np.reshape(np.arange(shape[0] * shape[1]), shape).astype("float")
     data[mask] = np.nan
     return data
+
+
+def mnist(missingness="mcar", th=0.2):
+    """ Loads corrupted MNIST
+
+    PARAMETERS
+    ---------
+    missingness: ('mcar', 'mar', 'mnar')
+        Type of missigness you want in your dataset
+    th: float between [0,1]
+        Percentage of missing data in generated data
+
+    RETURNS
+    ------
+    numpy.ndarray
+    """
+    from sklearn.datasets import fetch_mldata
+    mnist = fetch_mldata('MNIST original')
+    corruptor = Corruptor(mnist.data, th=th)
+    raw_data = getattr(corruptor, missingness)()
+    return raw_data, mnist.target
