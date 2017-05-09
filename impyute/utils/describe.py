@@ -1,6 +1,6 @@
 """Print input/output multiple times"""
 
-from impyute.diagnostics import find_null
+from impyute.utils import find_null
 
 
 def describe(data, verbose=True):

@@ -1,4 +1,4 @@
-"""impyute.diagnostics.compare.py"""
+"""impyute.utils.compare.py"""
 
 
 class Tester:
