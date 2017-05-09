@@ -4,7 +4,7 @@ Expectation Maximization Imputation on Time Series Data
 """
 
 import numpy as np
-from impyute.diagnostics import find_null
+from impyute.utils import find_null
 from impyute.filter import Kalman
 
 from impyute.datasets import random_uniform

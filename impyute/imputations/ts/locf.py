@@ -3,7 +3,7 @@ Last Observation Carried Forward Algorithm
 ------------------------------------------
 """
 
-from impyute.diagnostics import find_null
+from impyute.utils import find_null
 
 
 def locf(data):

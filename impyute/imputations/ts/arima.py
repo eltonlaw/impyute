@@ -1,6 +1,6 @@
 """Autoregressive Integrated Moving Average Imputation"""
 import numpy as np
-from impyute.diagnostics import find_null
+from impyute.utils import find_null
 
 
 def arima(data, p, d, q):

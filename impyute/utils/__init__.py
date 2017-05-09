@@ -1,5 +1,5 @@
 """
-The :mod: impyute.diagnostics module provides some simple diagnostic tools to
+The :mod: impyute.utils module provides some simple diagnostic tools to
 find useful information about your data
 """
 

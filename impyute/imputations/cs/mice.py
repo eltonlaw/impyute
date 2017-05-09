@@ -1,6 +1,6 @@
 import numpy as np
 from sklearn.linear_model import LinearRegression
-from impyute.diagnostics import find_null
+from impyute.utils import find_null
 
 
 def mice(data):
