@@ -39,13 +39,23 @@ Feature Support
     * Median Imputation
     * Random Imputation
 * Imputation of Time Series Data
-    * Autoregressive Integrated Moving Average
-    * Expectation Maximization with the Kalman Filter
     * Last Observation Carried Forward
-* Raw and Complete Dataset Generation
+    * Autoregressive Integrated Moving Average (WIP)
+    * Expectation Maximization with the Kalman Filter (WIP)
+* Dataset Generation
+    * Datasets
+        * MNIST
+        * Random uniforml distribution
+        * Random gaussian distribution
+    * Missingness Corruptors
+        * MCAR
+        * MAR (WIP)
+        * MNAR (WIP)
 * Diagnostic Tools
     * Loggers
-    * Dataset Properties
+    * Distribution of Null Values
+    * Comparison of imputations (WIP)
+    * Little's MCAR Test (WIP)
 
 Installation
 ------------
