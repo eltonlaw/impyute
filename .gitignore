@@ -1,3 +1,8 @@
 __pycache__/
 **/.DS_Store
 *.pyc
+.cache/
+.eggs/
+build/
+dist/
+impyute.egg-info/
