@@ -41,7 +41,7 @@ def random_uniform(bound=(0, 10), shape=(5, 5), missingness="mcar",
 
 
 def random_normal(theta=(0, 1), shape=(5, 5), missingness="mcar",
-                  th=0.2, dtype="int"):
+                  th=0.2, dtype="float"):
     """ Return randomly generated dataset of numbers with normally
     distributed values with given and sigma.
 
@@ -69,7 +69,7 @@ def random_normal(theta=(0, 1), shape=(5, 5), missingness="mcar",
     elif dtype == "float":
         pass
     corruptor = Corruptor(data, th=th)
-    raw_data = getattr(corruptor, missingness)()["data"]
+    raw_data = getattr(corruptor, missingness)()
     return raw_data
 
 

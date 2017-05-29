@@ -1,8 +1,10 @@
 """test_mcar_test.py"""
 import unittest
 import numpy as np
-# from impyute import datasets
+import sys
+import os
 from impyute.utils import checks
+# from impyute import datasets
 
 
 class TestChecks(unittest.TestCase):
@@ -19,8 +21,18 @@ class TestChecks(unittest.TestCase):
 
     def test_not_2d(self):
         """ Check 1d array, should return false"""
+        redirect_stdout(True)
         output = checks(np.array([1, 2]))
+        redirect_stdout(False)
         self.assertFalse(output)
+
+
+def redirect_stdout(redirect):
+    if redirect:
+        sys.stdout = open(os.devnull, "w")
+    else:
+        sys.stdout.close()
+        sys.stdout = sys.__stdout__
 
 
 if __name__ == "__main__":

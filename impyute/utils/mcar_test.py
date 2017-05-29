@@ -14,6 +14,6 @@ def mcar_test(data):
     """
     for ii, datapoint in enumerate(data.T):
         datapoint = datapoint[~np.isnan(datapoint)]
-        print(datapoint.mean())
+        datapoint.mean()
 
     return True

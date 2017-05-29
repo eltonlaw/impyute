@@ -5,6 +5,7 @@ from impyute.datasets import mnist
 from impyute.utils import find_null
 
 
+@unittest.skip("takes a long time, adds 30 sec for each test")
 class TestMNIST(unittest.TestCase):
     """ Tests for base.py/mnist"""
     def setUp(self):
@@ -16,7 +17,7 @@ class TestMNIST(unittest.TestCase):
 
     def test_missing_values_present(self):
         """ Check that the dataset is corrupted (missing values present)"""
-        self.assertFalse(find_null(self.data) == [])
+        self.assertTrue(find_null(self.data).size != 0)
 
 
 if __name__ == "__main__":
