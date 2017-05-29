@@ -5,6 +5,6 @@ time series data
 
 from .locf import locf
 from .arima import arima
-from .em import em
+from .dsae import dsae
 
-__all__ = ["locf", "arima", "em"]
+__all__ = ["locf", "arima", "dsae"]
