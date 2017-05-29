@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -9,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; impyute 0.0.3 documentation</title>
+  <title>Time Series Imputations &mdash; impyute 0.0.3 documentation</title>
   
 
   
@@ -27,16 +26,18 @@
 
   
   
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   
 
   
 
   
-    <link rel="top" title="impyute 0.0.3 documentation" href="index.html"/> 
+    <link rel="top" title="impyute 0.0.3 documentation" href="../index.html"/>
+        <link rel="up" title="API Reference" href="index.html"/>
+        <link rel="prev" title="Cross Sectional Imputation" href="cross_sectional_imputations.html"/> 
 
   
-  <script src="_static/js/modernizr.min.js"></script>
+  <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -52,7 +53,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> impyute
+            <a href="../index.html" class="icon icon-home"> impyute
           
 
           
@@ -69,7 +70,7 @@
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -87,13 +88,20 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="user_guide/getting_started.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="user_guide/overview.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="user_guide/tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="user_guide/diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/diagnostics.html">Diagnostics</a></li>
 </ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="api/index.html">API</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cross_sectional_imputations.html">Cross Sectional Imputation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Time Series Imputation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#arima">ARIMA</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/eltonlaw/impyute">GitHub Repo</a></li>
 </ul>
 
@@ -109,7 +117,7 @@
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">impyute</a>
+          <a href="../index.html">impyute</a>
         
       </nav>
 
@@ -137,9 +145,11 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li></li>
+          <li><a href="index.html">API Reference</a> &raquo;</li>
+        
+      <li>Time Series Imputations</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -156,11 +166,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <div class="section" id="time-series-imputations">
+<h1>Time Series Imputations<a class="headerlink" href="#time-series-imputations" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="arima">
+<h2>ARIMA<a class="headerlink" href="#arima" title="Permalink to this headline">¶</a></h2>
+<p>Short for Autoregressive Integrated Moving Average. Autoregressive means that the predicted value incorporates prior values in its calculation.</p>
+<p># .. autofunction:: imputations.arima</p>
+</div>
 </div>
 
 
@@ -170,6 +182,13 @@
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="cross_sectional_imputations.html" class="btn btn-neutral" title="Cross Sectional Imputation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -197,7 +216,7 @@
 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
+            URL_ROOT:'../',
             VERSION:'0.0.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -205,16 +224,16 @@
             SOURCELINK_SUFFIX: ''
         };
     </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
       <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
   
   
-    <script type="text/javascript" src="_static/js/theme.js"></script>
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
   
 
   

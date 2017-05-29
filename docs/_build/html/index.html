@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Documentation &mdash; impy 0.1 documentation</title>
+  <title>Impyute &mdash; impyute 0.0.3 documentation</title>
   
 
   
@@ -32,8 +32,8 @@
   
 
   
-    <link rel="top" title="impy 0.1 documentation" href="#"/>
-        <link rel="next" title="Overview" href="overview.html"/> 
+    <link rel="top" title="impyute 0.0.3 documentation" href="#"/>
+        <link rel="next" title="Getting Started" href="user_guide/getting_started.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -52,7 +52,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> impy
+            <a href="#" class="icon icon-home"> impyute
           
 
           
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.1
+                0.0.3
               </div>
             
           
@@ -87,10 +87,14 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ts_imputations.html">Time Series Imputations</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/eltonlaw/impy">GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/diagnostics.html">Diagnostics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/eltonlaw/impyute">GitHub Repo</a></li>
 </ul>
 
             
@@ -105,7 +109,7 @@
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">impy</a>
+          <a href="#">impyute</a>
         
       </nav>
 
@@ -135,14 +139,12 @@
     
       <li><a href="#">Docs</a> &raquo;</li>
         
-      <li>Documentation</li>
+      <li>Impyute</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/index.txt" rel="nofollow"> View page source</a>
-          
         
       </li>
     
@@ -154,22 +156,107 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="documentation">
-<h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="impyute">
+<h1>Impyute<a class="headerlink" href="#impyute" title="Permalink to this headline">¶</a></h1>
+<a class="reference external image-reference" href="https://travis-ci.org/eltonlaw/impyute"><img alt="https://travis-ci.org/eltonlaw/impyute.svg?branch=master" src="https://travis-ci.org/eltonlaw/impyute.svg?branch=master" /></a>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">impyute.datasets</span> <span class="kn">import</span> <span class="n">random_uniform</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">raw_data</span> <span class="o">=</span> <span class="n">random_uniform</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">missingness</span><span class="o">=</span><span class="s2">&quot;mcar&quot;</span><span class="p">,</span> <span class="n">th</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">raw_data</span><span class="p">)</span>
+<span class="go">[[  1.   0.   4.   0.   1.]</span>
+<span class="go"> [  1.  nan   6.   4.  nan]</span>
+<span class="go"> [  5.   0.  nan   1.   3.]</span>
+<span class="go"> [  2.   1.   5.   4.   6.]</span>
+<span class="go"> [  2.   1.   0.   0.   6.]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">impyute.imputations.cs</span> <span class="kn">import</span> <span class="n">mean_imputation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">complete_data</span> <span class="o">=</span> <span class="n">random_imputation</span><span class="p">(</span><span class="n">raw_data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">complete_data</span><span class="p">)</span>
+<span class="go">[[ 1.    0.    4.    0.    1.  ]</span>
+<span class="go"> [ 1.    0.5   6.    4.    4.  ]</span>
+<span class="go"> [ 5.    0.    3.75  1.    3.  ]</span>
+<span class="go"> [ 2.    1.    5.    4.    6.  ]</span>
+<span class="go"> [ 2.    1.    0.    0.    6.  ]]</span>
+</pre></div>
+</div>
+<div class="section" id="feature-support">
+<h2>Feature Support<a class="headerlink" href="#feature-support" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Imputation of Cross Sectional Data</dt>
+<dd><ul class="first last simple">
+<li>Multivariate Imputation by Chained Equations</li>
+<li>Expectation Maximization</li>
+<li>Mean Imputation</li>
+<li>Mode Imputation</li>
+<li>Median Imputation</li>
+<li>Random Imputation</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Imputation of Time Series Data</dt>
+<dd><ul class="first last simple">
+<li>Autoregressive Integrated Moving Average</li>
+<li>Expectation Maximization with the Kalman Filter</li>
+<li>Last Observation Carried Forward</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Raw and Complete Dataset Generation</p>
+</li>
+<li><dl class="first docutils">
+<dt>Diagnostic Tools</dt>
+<dd><ul class="first last simple">
+<li>Loggers</li>
+<li>Dataset Properties</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>To install impyute, run the following:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install impyute
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-contribute">
+<h2>How to Contribute<a class="headerlink" href="#how-to-contribute" title="Permalink to this headline">¶</a></h2>
+<p>Check out <a class="reference external" href="https://github.com/eltonlaw/impyute/blob/master/CONTRIBUTING.md">CONTRIBUTING</a></p>
+</div>
+</div>
+<div class="section" id="user-guide">
+<h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
 <p>Table of Contents</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/getting_started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/getting_started.html#troubleshooting">Troubleshooting</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="ts_imputations.html">Time Series Imputations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ts_imputations.html#time-series-data">Time series data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ts_imputations.html#time-series-imputation-algorithms">Time Series Imputation Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/diagnostics.html">Diagnostics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/diagnostics.html#little-s-mcar-test-1">Little's MCAR Test </a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/eltonlaw/impy">GitHub</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="api">
+<h1>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/cross_sectional_imputations.html">Cross Sectional Imputation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/time_series_imputations.html">Time Series Imputation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/eltonlaw/impyute">GitHub Repo</a></li>
 </ul>
 </div>
 </div>
@@ -184,7 +271,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="overview.html" class="btn btn-neutral float-right" title="Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="user_guide/getting_started.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>
@@ -216,7 +303,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1',
+            VERSION:'0.0.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

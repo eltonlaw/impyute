@@ -73,10 +73,10 @@ Table of Contents
 .. toctree::
    :maxdepth: 2
    
-   Overview <overview>
-   Getting Started <getting_started>
-   Tutorial <tutorial>
-   Contributing 
+   Getting Started <user_guide/getting_started>
+   Overview <user_guide/overview>
+   Tutorial <user_guide/tutorial>
+   Diagnostics <user_guide/diagnostics>
 
 
 API
@@ -87,4 +87,13 @@ API
 
    API <api/index>
    GitHub Repo <https://github.com/eltonlaw/impyute>
+
+Contributing
+============
+
+.. toctree::
+    :maxdepth: 2
+    Contributing Guidelines <contributing/index>
+    Philosophy <contributing/philosophy>
+    Current Goals <contributing/current_goals>
 
