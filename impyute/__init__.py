@@ -5,5 +5,5 @@ __author__ = 'Elton Law'
 __license__ = 'GPL-3.0'
 __copyright__ = 'Copyright 2017 Elton law'
 
-__all__ = ["datasets", "imputations", "diagnostics",
+__all__ = ["datasets", "imputations", "utils",
            "deletions", "filter"]

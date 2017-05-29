@@ -5,6 +5,7 @@ Expectation Maximization Imputation
 import numpy as np
 from impyute.utils import find_null
 import random
+from impyute.utils import checks
 
 
 def em(data, loops=50, dtype="cont"):
@@ -27,6 +28,8 @@ def em(data, loops=50, dtype="cont"):
     ---------
     numpy.nd.array
     """
+    if not checks(data):
+        raise Exception("Checks failed")
     null_xy = find_null(data)
     for x_i, y_i in null_xy:
         col = data[:, int(y_i)]

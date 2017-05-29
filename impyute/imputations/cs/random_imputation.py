@@ -4,6 +4,7 @@ Simple Random Imputation
 """
 import numpy as np
 from impyute.utils import find_null
+from impyute.utils import checks
 
 
 def random_imputation(data):
@@ -17,6 +18,8 @@ def random_imputation(data):
     ------
     numpy.ndarray
     """
+    if not checks(data):
+        raise Exception("Checks failed")
     null_xy = find_null(data)
     for x, y in null_xy:
         uniques = np.unique(data[:, y])

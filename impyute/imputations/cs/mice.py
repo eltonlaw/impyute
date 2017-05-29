@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn.linear_model import LinearRegression
 from impyute.utils import find_null
+from impyute.utils import checks
 
 
 def mice(data):
@@ -15,6 +16,8 @@ def mice(data):
     numpy.ndarray
 
     """
+    if not checks(data):
+        raise Exception("Checks failed")
     null_xy = find_null(data)
 
     # Add a column of zeros to the index values

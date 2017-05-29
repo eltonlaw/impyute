@@ -1,6 +1,7 @@
 """Autoregressive Integrated Moving Average Imputation"""
 import numpy as np
 from impyute.utils import find_null
+from impyute.utils import checks
 
 
 def arima(data, p, d, q):
@@ -21,6 +22,8 @@ def arima(data, p, d, q):
     numpy.ndarray
     """
     # Verify inputs
+    if not checks(data):
+        raise Exception("Checks failed")
     try:
         p = int(p)
         d = int(d)

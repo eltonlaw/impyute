@@ -2,6 +2,7 @@
 
 import numpy as np
 from impyute.utils import find_null
+from impyute.utils import checks
 
 
 def mean_imputation(data):
@@ -15,6 +16,8 @@ def mean_imputation(data):
     ------
     numpy.ndarray
     """
+    if not checks(data):
+        raise Exception("Checks failed")
     null_xy = find_null(data)
     for x_i, y_i in null_xy:
         row_wo_nan = data[:, [y_i]][~np.isnan(data[:, [y_i]])]

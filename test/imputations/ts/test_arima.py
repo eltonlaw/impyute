@@ -10,7 +10,7 @@ class TestArima(unittest.TestCase):
     def setUp(self):
         """
         self.data_c: Complete dataset/No missing values
-        self.data_m: Incommplete dataset/Has missing values
+        self.data_m: Incomplete dataset/Has missing values
         """
         mask = np.zeros((5, 5), dtype=bool)
         self.data_c = test_data(mask)

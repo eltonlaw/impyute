@@ -5,6 +5,7 @@ Last Observation Carried Forward Algorithm
 
 from impyute.utils import find_null
 import numpy as np
+from impyute.utils import checks
 
 
 def locf(data):
@@ -24,6 +25,8 @@ def locf(data):
     ------
     numpy.ndarray
     """
+    if not checks(data):
+        raise Exception("Checks failed")
     null_xy = find_null(data)
     for x_i, y_i in null_xy:
         # Simplest scenario, look one row back
