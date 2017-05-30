@@ -9,6 +9,7 @@ from .describe import describe
 # from .mcar_test import mcar_test
 from .count_missing import count_missing
 from .checks import checks
+from .config import config
 
 __all__ = ["find_null", "print_io", "describe", "count_missing",
-           "checks"]
+           "checks", "config"]
