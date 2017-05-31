@@ -13,9 +13,9 @@ class TestLOCF(unittest.TestCase):
         self.data_m: Incommplete dataset/Has missing values
         """
         mask = np.zeros((5, 5), dtype=bool)
-        self.data_c = test_data(mask)
+        self.data_c = test_data(mask=mask)
         mask[0][0] = True
-        self.data_m = test_data(mask)
+        self.data_m = test_data(mask=mask)
 
     def test_impute_no_missing_values(self):
         """ After imputation, no NaN's should exist"""

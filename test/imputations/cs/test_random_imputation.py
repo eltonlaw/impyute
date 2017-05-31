@@ -13,9 +13,9 @@ class TestRandomImputation(unittest.TestCase):
         self.data_m: Incommplete dataset/Has missing values
         """
         mask = np.zeros((3, 3), dtype=bool)
-        self.data_c = test_data(mask)
+        self.data_c = test_data(mask=mask)
         mask[0][0] = True
-        self.data_m = test_data(mask)
+        self.data_m = test_data(mask=mask)
 
     def test_return_type(self):
         """Check return type, should return an np.ndarray"""
