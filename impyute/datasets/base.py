@@ -81,7 +81,6 @@ def test_data(mask=np.zeros((3, 3), dtype=bool), th=0.2):
     th: float between[0,1]
         Percentage of missing data in generated dataset
     """
-    mask = np.zeros((5, 3, 3), dtype=bool)
     shape = np.shape(mask)
     data = np.reshape(np.arange(np.product(shape)), shape).astype("float")
     data[mask] = np.nan
