@@ -73,7 +73,7 @@ def random_normal(theta=(0, 1), shape=(5, 5), missingness="mcar",
     return raw_data
 
 
-def test_data(mask, th=0.2):
+def test_data(mask=np.zeros((3, 3), dtype=bool), th=0.2):
     """
     Returns a dataset to use with tests
     mask: True/False array, same size as dataset
@@ -81,8 +81,9 @@ def test_data(mask, th=0.2):
     th: float between[0,1]
         Percentage of missing data in generated dataset
     """
+    mask = np.zeros((5, 3, 3), dtype=bool)
     shape = np.shape(mask)
-    data = np.reshape(np.arange(shape[0] * shape[1]), shape).astype("float")
+    data = np.reshape(np.arange(np.product(shape)), shape).astype("float")
     data[mask] = np.nan
     return data
 
