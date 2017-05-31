@@ -12,4 +12,4 @@ from .checks import checks
 from .config import config
 
 __all__ = ["find_null", "print_io", "describe", "count_missing",
-           "checks", "config"]
+           "checks", "config", "compare"]
