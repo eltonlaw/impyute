@@ -11,7 +11,7 @@ reqs = [str(ir.req) for ir in parsed_reqs]
 setup(name='impyute',
       author='Elton Law',
       author_email='eltonlaw296@gmail.com',
-      version='0.0.3',
+      version='0.0.4',
       url='https://github.com/eltonlaw/impyute',
       description='Library of the different imputation algorithms; methods for \
       dealing with ambiguity and handling missing data.',
@@ -24,6 +24,4 @@ setup(name='impyute',
                    'Programming Language :: Python',
                    'Topic :: Software Development',
                    'Topic :: Scientific/Engineering'],
-      test_suite="nose.collector",
-      tests_require=["nose"],
       license='GPL-3.0')
