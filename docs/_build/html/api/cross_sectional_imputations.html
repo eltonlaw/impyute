@@ -35,7 +35,7 @@
     <link rel="top" title="impyute 0.0.3 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="index.html"/>
         <link rel="next" title="Time Series Imputations" href="time_series_imputations.html"/>
-        <link rel="prev" title="&lt;no title&gt;" href="diagnostics.html"/> 
+        <link rel="prev" title="&lt;no title&gt;" href="deletions.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -92,11 +92,36 @@
 <li class="toctree-l1"><a class="reference internal" href="../user_guide/getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user_guide/overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user_guide/tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../user_guide/diagnostics.html">Diagnostics</a></li>
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">API</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Cross Sectional Imputation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Cross Sectional Imputation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#random-imputation">Random Imputation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#args">Args</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#expectation-maximization">Expectation Maximization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Args</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#multivariate-imputation-by-chained-equations">Multivariate Imputation by Chained Equations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Args</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mean-imputation">Mean Imputation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Args</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mode-imputation">Mode Imputation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">Args</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#median-imputation">Median Imputation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id11">Args</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="time_series_imputations.html">Time Series Imputation</a></li>
 </ul>
 </li>
@@ -166,6 +191,110 @@
             
   <div class="section" id="cross-sectional-imputation">
 <h1>Cross Sectional Imputation<a class="headerlink" href="#cross-sectional-imputation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="random-imputation">
+<h2>Random Imputation<a class="headerlink" href="#random-imputation" title="Permalink to this headline">¶</a></h2>
+<p>Defined in <a class="reference external" href="https://github.com/eltonlaw/impyute/blob/master/impyute/imputations/cs/random_imputation.py">impyute.imputations.cs.random_imputation</a></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">random_imputation</span><span class="p">(</span>
+ <span class="n">data</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="args">
+<h3>Args<a class="headerlink" href="#args" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><cite>data</cite>: A 2D Matrix. Must be a <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html">numpy.array</a> of <cite>dtype</cite> <cite>float32</cite>, <cite>float64</cite>, <cite>int64</cite>, <cite>int32</cite>, <cite>uint8</cite>, <cite>uint16</cite>, <cite>int16</cite>, <cite>int8</cite>.</li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="expectation-maximization">
+<h2>Expectation Maximization<a class="headerlink" href="#expectation-maximization" title="Permalink to this headline">¶</a></h2>
+<p>Defined in <a class="reference external" href="https://github.com/eltonlaw/impyute/blob/master/impyute/imputations/cs/em.py">impyute.imputations.cs.em</a></p>
+<p>Imputes given data using the expectation maximizaton algorithm.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">em</span><span class="p">(</span>
+ <span class="n">data</span><span class="p">,</span>
+ <span class="n">loops</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+ <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;cont&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="id1">
+<h3>Args<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><cite>data</cite>: A 2D Matrix. Must be a <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html">numpy.array</a> of <cite>dtype</cite> <cite>float32</cite>, <cite>float64</cite>, <cite>int64</cite>, <cite>int32</cite>, <cite>uint8</cite>, <cite>uint16</cite>, <cite>int16</cite>, <cite>int8</cite>.</li>
+<li><cite>loops</cite>: Number of EM training iterations to run before breaking (Note that the algorithm will also break out of the loop if the likelihood doesn't change by at least 10% after 5 runs)</li>
+<li><cite>dtype</cite>: Must be string <cite>cont</cite> or <cite>disc</cite> to indicate whether the imputed data is continuous (<cite>float32, `float64</cite>) or discrete(<cite>int64</cite>, <cite>int32</cite>, <cite>uint8</cite>, <cite>uint16</cite>, <cite>int16</cite>, <cite>int8</cite>)</li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="multivariate-imputation-by-chained-equations">
+<h2>Multivariate Imputation by Chained Equations<a class="headerlink" href="#multivariate-imputation-by-chained-equations" title="Permalink to this headline">¶</a></h2>
+<p>Defined in <a class="reference external" href="https://github.com/eltonlaw/impyute/blob/master/impyute/imputations/cs/mice.py">impyute.imputations.cs.mice</a></p>
+<p>Imputes given data using the &quot;Multivariate Imputation By Chained Equations&quot; method.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">mice</span><span class="p">(</span>
+ <span class="n">data</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="id3">
+<h3>Args<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><cite>data</cite>: A 2D Matrix. Must be a <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html">numpy.array</a> of <cite>dtype</cite> <cite>float32</cite>, <cite>float64</cite>, <cite>int64</cite>, <cite>int32</cite>, <cite>uint8</cite>, <cite>uint16</cite>, <cite>int16</cite>, <cite>int8</cite>.</li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="mean-imputation">
+<h2>Mean Imputation<a class="headerlink" href="#mean-imputation" title="Permalink to this headline">¶</a></h2>
+<p>Defined in <a class="reference external" href="https://github.com/eltonlaw/impyute/blob/master/impyute/imputations/cs/averaging_imputations.py">impyute.imputations.cs.averaging_imputations</a></p>
+<p>Imputes given data by filling with the mean of the column.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">mean_imputation</span><span class="p">(</span>
+ <span class="n">data</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="id5">
+<h3>Args<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><cite>data</cite>: A 2D Matrix. Must be a <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html">numpy.array</a> of <cite>dtype</cite> <cite>float32</cite>, <cite>float64</cite>, <cite>int64</cite>, <cite>int32</cite>, <cite>uint8</cite>, <cite>uint16</cite>, <cite>int16</cite>, <cite>int8</cite>.</li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="mode-imputation">
+<h2>Mode Imputation<a class="headerlink" href="#mode-imputation" title="Permalink to this headline">¶</a></h2>
+<p>Defined in <a class="reference external" href="https://github.com/eltonlaw/impyute/blob/master/impyute/imputations/cs/averaging_imputations.py">impyute.imputations.cs.averaging_imputations</a></p>
+<p>Imputes given data by filling with the mode of the column.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">mode_imputation</span><span class="p">(</span>
+ <span class="n">data</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="id8">
+<h3>Args<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><cite>data</cite>: A 2D Matrix. Must be a <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html">numpy.array</a> of <cite>dtype</cite> <cite>float32</cite>, <cite>float64</cite>, <cite>int64</cite>, <cite>int32</cite>, <cite>uint8</cite>, <cite>uint16</cite>, <cite>int16</cite>, <cite>int8</cite>.</li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="median-imputation">
+<h2>Median Imputation<a class="headerlink" href="#median-imputation" title="Permalink to this headline">¶</a></h2>
+<p>Defined in <a class="reference external" href="https://github.com/eltonlaw/impyute/blob/master/impyute/imputations/cs/averaging_imputations.py">impyute.imputations.cs.averaging_imputations</a></p>
+<p>Imputes given data by filling with the median of the column.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">median_imputation</span><span class="p">(</span>
+ <span class="n">data</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="id11">
+<h3>Args<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><cite>data</cite>: A 2D Matrix. Must be a <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html">numpy.array</a> of <cite>dtype</cite> <cite>float32</cite>, <cite>float64</cite>, <cite>int64</cite>, <cite>int32</cite>, <cite>uint8</cite>, <cite>uint16</cite>, <cite>int16</cite>, <cite>int8</cite>.</li>
+</ul>
+</div>
+</div>
 </div>
 
 
@@ -181,7 +310,7 @@
         <a href="time_series_imputations.html" class="btn btn-neutral float-right" title="Time Series Imputations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="diagnostics.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="deletions.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

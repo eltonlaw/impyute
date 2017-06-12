@@ -89,9 +89,11 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#formatting-your-data">Formatting your Data</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diagnostics.html">Diagnostics</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../api/index.html">API</a></li>
@@ -161,6 +163,13 @@
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
 <p>impyute is a general purpose, imputations library written in Python. In statistics, imputation is the method of estimating missing values in a data set. There are a lot of different types of imputation, the result of the various types of datasets. On datasets with high percentages of missing values, some methods work better than others and vice versa.  Datasets can be cross sectional or time series, linear or non linear, continuous or categorical or boolean. As you can imagine, there are a lot of different specifications that need to be kept in mind.</p>
 <p>impyute was built for convenience, an all in one stop so that users can impute their dataset with minimal knowledge and get on with their day. With that in mind, the following tools are provided in this library:</p>
+<div class="section" id="formatting-your-data">
+<h2>Formatting your Data<a class="headerlink" href="#formatting-your-data" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Functions only accept <cite>&lt;class=np.ndarray&gt;</cite> as input.</li>
+<li>Columns are along the x axis and datapoints are along the y axis.</li>
+</ul>
+</div>
 </div>
 
 

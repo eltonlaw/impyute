@@ -6,6 +6,8 @@ impyute is a general purpose, imputations library written in Python. In statisti
 
 impyute was built for convenience, an all in one stop so that users can impute their dataset with minimal knowledge and get on with their day. With that in mind, the following tools are provided in this library:
 
-
-
+Formatting your Data
+=====================
+- Functions only accept `<class=np.ndarray>` as input.
+- Columns are along the x axis and datapoints are along the y axis.
 

@@ -2,11 +2,32 @@
  Time Series Imputations
 =========================
 
+----------------------------------
+ Last Observation Carried Forward 
+----------------------------------
 
+Defined in `impyute.imputations.ts.locf https://github.com/eltonlaw/impyute/blob/master/impyute/imputations/ts/locf.py`
 
--------
- ARIMA
--------
-Short for Autoregressive Integrated Moving Average. Autoregressive means that the predicted value incorporates prior values in its calculation.  
+.. code-block:: python
 
-# .. autofunction:: imputations.arima
+    locf(
+     data
+    )
+
+^^^^^^
+ Args
+^^^^^^
+
+* `data`: A 2D Matrix. Must be a `numpy.array https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html` of `dtype` `float32`, `float64`, `int64`, `int32`, `uint8`, `uint16`, `int16`, `int8`.
+
+------------------------------------------
+ Autoregressive Integrated Moving Average
+------------------------------------------
+
+(WIP)
+
+-------------------------------------------------
+ Expectation Maximization with the Kalman Filter
+-------------------------------------------------
+
+(WIP)

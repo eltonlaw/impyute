@@ -91,13 +91,17 @@
 <li class="toctree-l1"><a class="reference internal" href="../user_guide/getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user_guide/overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user_guide/tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../user_guide/diagnostics.html">Diagnostics</a></li>
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">API</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="cross_sectional_imputations.html">Cross Sectional Imputation</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Time Series Imputation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#arima">ARIMA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#last-observation-carried-forward">Last Observation Carried Forward</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#args">Args</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#autoregressive-integrated-moving-average">Autoregressive Integrated Moving Average</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#expectation-maximization-with-the-kalman-filter">Expectation Maximization with the Kalman Filter</a></li>
 </ul>
 </li>
 </ul>
@@ -168,10 +172,28 @@
             
   <div class="section" id="time-series-imputations">
 <h1>Time Series Imputations<a class="headerlink" href="#time-series-imputations" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="arima">
-<h2>ARIMA<a class="headerlink" href="#arima" title="Permalink to this headline">¶</a></h2>
-<p>Short for Autoregressive Integrated Moving Average. Autoregressive means that the predicted value incorporates prior values in its calculation.</p>
-<p># .. autofunction:: imputations.arima</p>
+<div class="section" id="last-observation-carried-forward">
+<h2>Last Observation Carried Forward<a class="headerlink" href="#last-observation-carried-forward" title="Permalink to this headline">¶</a></h2>
+<p>Defined in <cite>impyute.imputations.ts.locf https://github.com/eltonlaw/impyute/blob/master/impyute/imputations/ts/locf.py</cite></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">locf</span><span class="p">(</span>
+ <span class="n">data</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="args">
+<h3>Args<a class="headerlink" href="#args" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><cite>data</cite>: A 2D Matrix. Must be a <cite>numpy.array https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html</cite> of <cite>dtype</cite> <cite>float32</cite>, <cite>float64</cite>, <cite>int64</cite>, <cite>int32</cite>, <cite>uint8</cite>, <cite>uint16</cite>, <cite>int16</cite>, <cite>int8</cite>.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="autoregressive-integrated-moving-average">
+<h2>Autoregressive Integrated Moving Average<a class="headerlink" href="#autoregressive-integrated-moving-average" title="Permalink to this headline">¶</a></h2>
+<p>(WIP)</p>
+</div>
+<div class="section" id="expectation-maximization-with-the-kalman-filter">
+<h2>Expectation Maximization with the Kalman Filter<a class="headerlink" href="#expectation-maximization-with-the-kalman-filter" title="Permalink to this headline">¶</a></h2>
+<p>(WIP)</p>
 </div>
 </div>
 

@@ -38,14 +38,19 @@ Feature Support
     * Mode Imputation
     * Median Imputation
     * Random Imputation
+    * Multiple Imputation (WIP)
+    * Imputation Using Denoising Stacked Autoencoders (WIP)
 * Imputation of Time Series Data
-    * Autoregressive Integrated Moving Average
-    * Expectation Maximization with the Kalman Filter
+    * Autoregressive Integrated Moving Average (WIP)
+    * Expectation Maximization with the Kalman Filter (WIP)
     * Last Observation Carried Forward
 * Raw and Complete Dataset Generation
-* Diagnostic Tools
+* Tools
     * Loggers
     * Dataset Properties
+        * MCAR Test (WIP)
+        * Count % of Missing Values
+        * Location of Missing Values
 
 Installation
 ------------
@@ -54,7 +59,7 @@ To install impyute, run the following:
 
 .. code-block:: bash
 
-    $ pip install impyute
+    $ pip3 install impyute
 
 
 How to Contribute
@@ -76,7 +81,7 @@ Table of Contents
    Getting Started <user_guide/getting_started>
    Overview <user_guide/overview>
    Tutorial <user_guide/tutorial>
-   Diagnostics <user_guide/diagnostics>
+   Diagnostics <user_guide/utils>
 
 
 API
@@ -87,4 +92,13 @@ API
 
    API <api/index>
    GitHub Repo <https://github.com/eltonlaw/impyute>
+
+Contributing
+============
+
+.. toctree::
+    :maxdepth: 2
+    Contributing Guidelines <contributing/index>
+    Philosophy <contributing/philosophy>
+    Current Goals <contributing/current_goals>
 

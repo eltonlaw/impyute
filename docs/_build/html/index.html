@@ -90,7 +90,6 @@
 <li class="toctree-l1"><a class="reference internal" href="user_guide/getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_guide/overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_guide/tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="user_guide/diagnostics.html">Diagnostics</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/index.html">API</a></li>
@@ -189,6 +188,8 @@
 <li>Mode Imputation</li>
 <li>Median Imputation</li>
 <li>Random Imputation</li>
+<li>Multiple Imputation (WIP)</li>
+<li>Imputation Using Denoising Stacked Autoencoders (WIP)</li>
 </ul>
 </dd>
 </dl>
@@ -196,8 +197,8 @@
 <li><dl class="first docutils">
 <dt>Imputation of Time Series Data</dt>
 <dd><ul class="first last simple">
-<li>Autoregressive Integrated Moving Average</li>
-<li>Expectation Maximization with the Kalman Filter</li>
+<li>Autoregressive Integrated Moving Average (WIP)</li>
+<li>Expectation Maximization with the Kalman Filter (WIP)</li>
 <li>Last Observation Carried Forward</li>
 </ul>
 </dd>
@@ -206,10 +207,20 @@
 <li><p class="first">Raw and Complete Dataset Generation</p>
 </li>
 <li><dl class="first docutils">
-<dt>Diagnostic Tools</dt>
+<dt>Tools</dt>
+<dd><ul class="first last">
+<li><p class="first">Loggers</p>
+</li>
+<li><dl class="first docutils">
+<dt>Dataset Properties</dt>
 <dd><ul class="first last simple">
-<li>Loggers</li>
-<li>Dataset Properties</li>
+<li>MCAR Test (WIP)</li>
+<li>Count % of Missing Values</li>
+<li>Location of Missing Values</li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 </dd>
 </dl>
@@ -219,7 +230,7 @@
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>To install impyute, run the following:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install impyute
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip3 install impyute
 </pre></div>
 </div>
 </div>
@@ -238,12 +249,11 @@
 <li class="toctree-l2"><a class="reference internal" href="user_guide/getting_started.html#troubleshooting">Troubleshooting</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="user_guide/overview.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="user_guide/tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="user_guide/diagnostics.html">Diagnostics</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/diagnostics.html#little-s-mcar-test-1">Little's MCAR Test </a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/overview.html#formatting-your-data">Formatting your Data</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/tutorial.html">Tutorial</a></li>
 </ul>
 </div>
 </div>
@@ -259,6 +269,9 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/eltonlaw/impyute">GitHub Repo</a></li>
 </ul>
 </div>
+</div>
+<div class="section" id="id1">
+<h1>Contributing<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 </div>
 
 
