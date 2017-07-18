@@ -22,11 +22,6 @@ class TestEM(unittest.TestCase):
         imputed = em(self.data_m)
         self.assertTrue(isinstance(imputed, np.ndarray))
 
-    def test_impute_no_missing_values(self):
-        """ After imputation, no change should occur"""
-        imputed = em(self.data_c)
-        self.assertTrue(np.array_equal(imputed, self.data_c))
-
     def test_impute_missing_values(self):
         """ After imputation, no NaN's should exist"""
         imputed = em(self.data_m)

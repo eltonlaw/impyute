@@ -34,21 +34,6 @@ class TestAveraging(unittest.TestCase):
         imputed = mode_imputation(self.data_m)
         self.assertTrue(isinstance(imputed, np.ndarray))
 
-    def test_mean_impute_no_missing_values(self):
-        """ After imputation, no change should occur"""
-        imputed = mean_imputation(self.data_c)
-        self.assertTrue(np.array_equal(imputed, self.data_c))
-
-    def test_mode_impute_no_missing_values(self):
-        """ After imputation, no change should occur"""
-        imputed = mode_imputation(self.data_c)
-        self.assertTrue(np.array_equal(imputed, self.data_c))
-
-    def test_median_impute_no_missing_values(self):
-        """ After imputation, no change should occur"""
-        imputed = median_imputation(self.data_c)
-        self.assertTrue(np.array_equal(imputed, self.data_c))
-
     def test_mean_impute_missing_values(self):
         """ After imputation, no Nan's should exist"""
         imputed = mean_imputation(self.data_m)

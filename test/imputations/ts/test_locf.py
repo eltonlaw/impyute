@@ -17,11 +17,6 @@ class TestLOCF(unittest.TestCase):
         mask[0][0] = True
         self.data_m = test_data(mask=mask)
 
-    def test_impute_no_missing_values(self):
-        """ After imputation, no NaN's should exist"""
-        imputed = locf(self.data_c)
-        self.assertTrue(np.array_equal(imputed, self.data_c))
-
     def test_impute_missing_values(self):
         """ After imputation, no NaN's should exist"""
         imputed = locf(self.data_m)
