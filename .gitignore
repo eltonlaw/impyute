@@ -1,6 +1,7 @@
 __pycache__/
 **/.DS_Store
 *.pyc
+*.swp
 .cache/
 .eggs/
 build/

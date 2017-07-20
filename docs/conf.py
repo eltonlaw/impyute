@@ -22,7 +22,7 @@ import os
 sys.path.insert(0, os.path.abspath('..'))
 import impyute
 from impyute import __version__
-
+__version__ = '0.0.4'
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -119,6 +119,8 @@ pygments_style = 'sphinx'
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
 
+# For non-local travis and pypi images
+suppress_warnings = ['ref.doc']
 
 # -- Options for HTML output ----------------------------------------------
 
@@ -163,11 +165,12 @@ html_static_path = ['_static']
 # If not None, a 'Last updated on:' timestamp is inserted at every page
 # bottom, using the given strftime format.
 # The empty string is equivalent to '%b %d, %Y'.
-#html_last_updated_fmt = None
+html_last_updated_fmt = ''
 
 # If true, SmartyPants will be used to convert quotes and dashes to
 # typographically correct entities.
-html_use_smartypants = False
+# << DEPRECATED >>
+# html_use_smartypants = False
 
 # Custom sidebar templates, maps document names to template names.
 #html_sidebars = {}
@@ -218,7 +221,7 @@ html_show_copyright = True
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'Impyutedoc'
+htmlhelp_basename = 'ImpyuteDocs'
 
 # -- Options for LaTeX output ---------------------------------------------
 
