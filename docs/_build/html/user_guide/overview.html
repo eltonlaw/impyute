@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Overview &mdash; impyute 0.0.3 documentation</title>
+  <title>Overview &mdash; impyute 0.0.4 documentation</title>
   
 
   
@@ -32,9 +32,12 @@
   
 
   
-    <link rel="top" title="impyute 0.0.3 documentation" href="../index.html"/>
-        <link rel="next" title="Tutorial" href="tutorial.html"/>
-        <link rel="prev" title="Getting Started" href="getting_started.html"/> 
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="impyute 0.0.4 documentation" href="../index.html"/>
+        <link rel="next" title="Getting Started" href="getting_started.html"/>
+        <link rel="prev" title="Impyute" href="../index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -63,7 +66,7 @@
             
             
               <div class="version">
-                0.0.3
+                0.0.4
               </div>
             
           
@@ -88,16 +91,28 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#functionality">Functionality</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#formatting-your-data">Formatting your Data</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules_of_thumb.html">Rules of Thumb</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../api/index.html">API</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/eltonlaw/impyute">GitHub Repo</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/philosophy.html">Philosophy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/current_goals.html">Current Goals</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../references/index.html">Papers Master List</a></li>
 </ul>
 
             
@@ -161,13 +176,29 @@
             
   <div class="section" id="overview">
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="about">
+<h2>About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h2>
 <p>impyute is a general purpose, imputations library written in Python. In statistics, imputation is the method of estimating missing values in a data set. There are a lot of different types of imputation, the result of the various types of datasets. On datasets with high percentages of missing values, some methods work better than others and vice versa.  Datasets can be cross sectional or time series, linear or non linear, continuous or categorical or boolean. As you can imagine, there are a lot of different specifications that need to be kept in mind.</p>
-<p>impyute was built for convenience, an all in one stop so that users can impute their dataset with minimal knowledge and get on with their day. With that in mind, the following tools are provided in this library:</p>
+</div>
+<div class="section" id="functionality">
+<h2>Functionality<a class="headerlink" href="#functionality" title="Permalink to this headline">¶</a></h2>
+<p>impyute was built for convenience, an all in one stop so that users can impute their dataset with minimal knowledge and get on with their day. With that in mind, the following tools are provided for the user:</p>
+<ul class="simple">
+<li>Imputations (Fill in missing values)</li>
+<li>Deletions (Only use complete data)</li>
+<li>Diagnostics to identify the skew and distribution of missing values</li>
+<li>Comparison function to experiment with how different machine learning algorithms are affected by different imputation algorithms.</li>
+<li>Dataset generation to experiment with different types of missingness and different types of data.</li>
+</ul>
+</div>
 <div class="section" id="formatting-your-data">
 <h2>Formatting your Data<a class="headerlink" href="#formatting-your-data" title="Permalink to this headline">¶</a></h2>
+<p>Prior to running, checks are run to ensure the given data is in an acceptable format. Please ensure that your data satisfies the following criterion:</p>
 <ul class="simple">
-<li>Functions only accept <cite>&lt;class=np.ndarray&gt;</cite> as input.</li>
-<li>Columns are along the x axis and datapoints are along the y axis.</li>
+<li><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html">numpy.ndarray</a> with type <a class="reference external" href="https://docs.scipy.org/doc/numpy/user/basics.types.html">numpy.float</a></li>
+<li>Columns are along the x-axis and individual datapoints are along the y-axis.</li>
+<li>2D Matrix (3D is also allowed in certain cases, but requires special treatment)</li>
+<li>Missing values can be found with <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.isnan.html">numpy.isnan</a></li>
 </ul>
 </div>
 </div>
@@ -182,10 +213,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="tutorial.html" class="btn btn-neutral float-right" title="Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="getting_started.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="getting_started.html" class="btn btn-neutral" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../index.html" class="btn btn-neutral" title="Impyute" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -195,6 +226,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2017, Elton Law.
+      Last updated on Jul 20, 2017.
 
     </p>
   </div>
@@ -216,17 +248,17 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.0.3',
+            VERSION:'0.0.4',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

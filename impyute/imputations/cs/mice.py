@@ -4,25 +4,29 @@ from sklearn.linear_model import LinearRegression
 from impyute.utils import find_null
 from impyute.utils import checks
 
-
+# pylint: disable=too-many-locals
 def mice(data):
     """Multivariate Imputation by Chained Equations
 
     Reference:
-        Buuren, S. V., & Groothuis-Oudshoorn, K. (2011). Mice: Multivariate Imputation by
-        Chained Equations in R. Journal of Statistical Software, 45(3). doi:10.18637/jss.v045.i03
+        Buuren, S. V., & Groothuis-Oudshoorn, K. (2011). Mice: Multivariate
+        Imputation by Chained Equations in R. Journal of Statistical Software,
+        45(3). doi:10.18637/jss.v045.i03
 
-    Implementation follows the main idea from the paper above. Differs in decision of which variable
-    to regress on (here, I choose it at random). Also differs in stopping criterion (here the model
-    stops after change in prediction from previous prediction is less than 10%)
+    Implementation follows the main idea from the paper above. Differs in
+    decision of which variable to regress on (here, I choose it at random).
+    Also differs in stopping criterion (here the model stops after change in
+    prediction from previous prediction is less than 10%).
 
     PARAMETERS
-    ---------
+    ----------
     data: numpy.ndarray
+        Data to impute.
 
     RETURNS
-    ------
+    -------
     numpy.ndarray
+        Imputed data.
 
     """
     if not checks(data):

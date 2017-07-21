@@ -1,17 +1,20 @@
-"""Finds Null Values """
+""" impyute.utils.find_null """
 import numpy as np
 
 
 def find_null(data):
-    """Finds the indices of all missing values
+    """ Finds the indices of all missing values.
 
-    PARAMETERS
-    ---------
-    data: numpy.nd.array
+    Parameters
+    ----------
+    data: numpy.ndarray
+        Data to impute.
 
-    RETURNS
-    ------
+    Returns
+    -------
     List of tuples
+        Indices of all missing values in tuple format; (i, j)
+
     """
     null_xy = np.argwhere(np.isnan(data))
     return null_xy

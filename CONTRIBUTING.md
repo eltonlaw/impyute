@@ -1,4 +1,4 @@
-# Contributing to impyute
+# Contributing
 
 The following is a set of guidelines for contributing to the imputations library, impyute, which is hosted [here](https://github.com/eltonlaw/impyute) 
 1. Check for open [issues](https://github.com/eltonlaw/impyute/issues) or create a new one to discuss new features or bugs.
@@ -10,11 +10,15 @@ The following is a set of guidelines for contributing to the imputations library
 
 This project was created to cover everything required in the step of your workflow where you move from data with missing values to data without missing values. Simple enough right? Any enhancement that brings value with that in mind are welcome. 
 
-### Running Tests
+### Development
 
-``` shell
-$ python -m unittest discover
-```
+The unit testing framework used is just the basic `unittest` prepackaged with Python. To run tests:
+
+    $ python -m unittest discover
+
+Use [.pylintrc](https://github.com/eltonlaw/impyute/blob/master/.pylintrc) to lint files. You need pylint installed; [install pylint](https://www.pylint.org/#install)
+
+    $ pylint --rcfile=.pylintrc impyute/
 
 ### Code of Conduct
 

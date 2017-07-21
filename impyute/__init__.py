@@ -1,5 +1,9 @@
+"""
+Library of missing data imputations
+"""
+
 __title__ = 'impyute'
-__version__ = '0.0.3'
+__version__ = '0.0.4'
 __build__ = 0x021300
 __author__ = 'Elton Law'
 __license__ = 'GPL-3.0'

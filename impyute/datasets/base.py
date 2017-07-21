@@ -1,17 +1,19 @@
 """ impyute.datasets.base
-Artificial Dataset Generation
+
+Load/generate data
+
 """
 import numpy as np
 from impyute.datasets.corrupt import Corruptor
 
 
 def random_uniform(bound=(0, 10), shape=(5, 5), missingness="mcar",
-                   th=0.2, dtype="int"):
+                   thr=0.2, dtype="int"):
     """ Return randomly generated dataset of numbers with uniformly
     distributed values between bound[0] and bound[1]
 
-    PARAMETERS
-    ---------
+    Parameters
+    ----------
     bound:tuple (start,stop)
         Determines the range of values in the matrix. Index 0 for start
         value and index 1 for stop value. Start is inclusive, stop is
@@ -25,28 +27,26 @@ def random_uniform(bound=(0, 10), shape=(5, 5), missingness="mcar",
     dtype: ('int','float')
         Type of data
 
-    RETURNS
-    ------
+    Returns
+    -------
     numpy.ndarray
     """
-    a = bound[0]
-    b = bound[1]
     if dtype == "int":
-        data = np.random.randint(a, b, size=shape).astype(float)
+        data = np.random.randint(bound[0], bound[1], size=shape).astype(float)
     elif dtype == "float":
-        data = np.random.uniform(a, b, size=shape)
-    corruptor = Corruptor(data, th=th)
+        data = np.random.uniform(bound[0], bound[1], size=shape)
+    corruptor = Corruptor(data, thr=thr)
     raw_data = getattr(corruptor, missingness)()
     return raw_data
 
 
-def random_normal(theta=(0, 1), shape=(5, 5), missingness="mcar",
-                  th=0.2, dtype="float"):
+def random_normal(theta=(0, 1), shape=(5, 5), missingness="mcar", thr=0.2,
+                  dtype="float"):
     """ Return randomly generated dataset of numbers with normally
     distributed values with given and sigma.
 
-    PARAMETERS
-    ---------
+    Parameters
+    ----------
     theta: tuple (mu, sigma)
         Determines the range of values in the matrix
     shape:tuple(optional)
@@ -58,24 +58,24 @@ def random_normal(theta=(0, 1), shape=(5, 5), missingness="mcar",
     dtype: ('int','float')
         Type of data
 
-    RETURNS
-    ------
+    Returns
+    -------
     numpy.ndarray
     """
-    mu, sigma = theta
-    data = np.random.normal(mu, sigma, size=shape)
+    mean, sigma = theta
+    data = np.random.normal(mean, sigma, size=shape)
     if dtype == "int":
         data = np.round(data)
     elif dtype == "float":
         pass
-    corruptor = Corruptor(data, th=th)
+    corruptor = Corruptor(data, thr=thr)
     raw_data = getattr(corruptor, missingness)()
     return raw_data
 
 
-def test_data(mask=np.zeros((3, 3), dtype=bool), th=0.2):
-    """
-    Returns a dataset to use with tests
+def test_data(mask=np.zeros((3, 3), dtype=bool)):
+    """ Returns a dataset to use with tests (INTERNAL USE - FOR UNIT TESTING)
+
     mask: True/False array, same size as dataset
         Use True where missing values should occur and False everywhere else
     th: float between[0,1]
@@ -87,22 +87,22 @@ def test_data(mask=np.zeros((3, 3), dtype=bool), th=0.2):
     return data
 
 
-def mnist(missingness="mcar", th=0.2):
+def mnist(missingness="mcar", thr=0.2):
     """ Loads corrupted MNIST
 
-    PARAMETERS
-    ---------
+    Parameters
+    ----------
     missingness: ('mcar', 'mar', 'mnar')
         Type of missigness you want in your dataset
     th: float between [0,1]
         Percentage of missing data in generated data
 
-    RETURNS
-    ------
+    Returns
+    -------
     numpy.ndarray
     """
     from sklearn.datasets import fetch_mldata
-    mnist = fetch_mldata('MNIST original')
-    corruptor = Corruptor(mnist.data, th=th)
+    dataset = fetch_mldata('MNIST original')
+    corruptor = Corruptor(dataset.data, thr=thr)
     data = getattr(corruptor, missingness)()
-    return {"X": data, "Y": mnist.target}
+    return {"X": data, "Y": dataset.target}

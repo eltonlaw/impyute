@@ -1,6 +1,5 @@
 """
-The :mod: impyute.imputations.cs module contains imputation algorithms for
-time series data
+Imputations for time-series data.
 """
 
 from .locf import locf

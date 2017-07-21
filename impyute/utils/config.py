@@ -1,4 +1,4 @@
-"""Configuration Object"""
+"""impyute.utils.config"""
 import numpy as np
 
 
@@ -7,22 +7,24 @@ def config(data):
 
     If a dataset is passed, an architecture is generated.
 
-    PARAMETERS
+    Parameters
     ----------
     data: np.ndarray
-        A dataset in matrix form
+        Data to impute.
 
-    RETURNS
+    Returns
     -------
-    dictionary
-    """
-    config = {}
-    n_data, n_features = np.shape(data)
-    config["layers"] = generate_layers(n_data, n_features)
-    return config
+    dict
+        Dictionary of parameters.
 
+    """
+    cfg = {}
+    n_data, n_features = np.shape(data)
+    cfg["layers"] = generate_layers(n_data, n_features)
+    return cfg
 
 def generate_layers(n_data, n_features):
+    """ Generates layer node architecture """
     if n_data < 25000:
         n_layers = 2
     elif n_data < 50000:

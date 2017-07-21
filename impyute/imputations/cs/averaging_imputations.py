@@ -1,20 +1,22 @@
-""" Mean/mode/median imputation methods """
+""" impyute.imputations.cs.averaging_imputations """
 
 import numpy as np
 from impyute.utils import find_null
 from impyute.utils import checks
 
-
 def mean_imputation(data):
-    """ Substitute missing values with the mean of that column
+    """ Substitute missing values with the mean of that column.
 
-    PARAMETERS
-    ---------
+    Parameters
+    ----------
     data: numpy.ndarray
+        Data to impute.
 
-    RETURNS
-    ------
+    Returns
+    -------
     numpy.ndarray
+        Imputed data.
+
     """
     if not checks(data):
         raise Exception("Checks failed")
@@ -25,17 +27,19 @@ def mean_imputation(data):
         data[x_i][y_i] = new_value
     return data
 
-
 def median_imputation(data):
-    """ Substitute missing values with the median of that column(middle)
+    """ Substitute missing values with the median of that column(middle).
 
-    PARAMETERS
-    ---------
+    Parameters
+    ----------
     data: numpy.ndarray
+        Data to impute.
 
-    RETURNS
-    ------
+    Returns
+    -------
     numpy.ndarray
+        Imputed data.
+
     """
     null_xy = find_null(data)
     cols_missing = set(null_xy.T[1])
@@ -48,20 +52,22 @@ def median_imputation(data):
         data[x_i][y_i] = medians[str(y_i)]
     return data
 
-
 def mode_imputation(data):
-    """ Substitute missing values with the mode of that column(most frequent)
+    """ Substitute missing values with the mode of that column(most frequent).
 
     In the case that there is a tie (there are multiple, most frequent values)
     for a column randomly pick one of them.
 
-    PARAMETERS
-    ---------
+    Parameters
+    ----------
     data: numpy.ndarray
+        Data to impute.
 
-    RETURNS
-    ------
+    Returns
+    -------
     numpy.ndarray
+        Imputed data.
+
     """
     null_xy = find_null(data)
     modes = []

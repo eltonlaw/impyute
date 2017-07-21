@@ -1,6 +1,5 @@
 """
-The :mod: impyute.utils module provides some simple diagnostic tools to
-find useful information about your data
+Diagnostic tools to find information about data.
 """
 
 from .find_null import find_null

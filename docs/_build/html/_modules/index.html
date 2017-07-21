@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Overview: module code &mdash; impy 0.1 documentation</title>
+  <title>Overview: module code &mdash; impyute 0.0.4 documentation</title>
   
 
   
@@ -32,7 +32,10 @@
   
 
   
-    <link rel="top" title="impy 0.1 documentation" href="../index.html"/> 
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="impyute 0.0.4 documentation" href="../index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -51,7 +54,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> impy
+            <a href="../index.html" class="icon icon-home"> impyute
           
 
           
@@ -61,7 +64,7 @@
             
             
               <div class="version">
-                0.1
+                0.0.4
               </div>
             
           
@@ -86,10 +89,23 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ts_imputations.html">Time Series Imputations</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/eltonlaw/impy">GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/rules_of_thumb.html">Rules of Thumb</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/eltonlaw/impyute">GitHub Repo</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/philosophy.html">Philosophy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/current_goals.html">Current Goals</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../references/index.html">Papers Master List</a></li>
 </ul>
 
             
@@ -104,7 +120,7 @@
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">impy</a>
+          <a href="../index.html">impyute</a>
         
       </nav>
 
@@ -152,7 +168,20 @@
            <div itemprop="articleBody">
             
   <h1>All modules for which code is available</h1>
-<ul><li><a href="impy/imputations/arima.html">impy.imputations.arima</a></li>
+<ul><li><a href="impyute/datasets/base.html">impyute.datasets.base</a></li>
+<li><a href="impyute/deletions/complete_case.html">impyute.deletions.complete_case</a></li>
+<li><a href="impyute/imputations/cs/averaging_imputations.html">impyute.imputations.cs.averaging_imputations</a></li>
+<li><a href="impyute/imputations/cs/em.html">impyute.imputations.cs.em</a></li>
+<li><a href="impyute/imputations/cs/mice.html">impyute.imputations.cs.mice</a></li>
+<li><a href="impyute/imputations/cs/random_imputation.html">impyute.imputations.cs.random_imputation</a></li>
+<li><a href="impyute/imputations/ts/arima.html">impyute.imputations.ts.arima</a></li>
+<li><a href="impyute/imputations/ts/locf.html">impyute.imputations.ts.locf</a></li>
+<li><a href="impyute/utils/checks.html">impyute.utils.checks</a></li>
+<li><a href="impyute/utils/config.html">impyute.utils.config</a></li>
+<li><a href="impyute/utils/count_missing.html">impyute.utils.count_missing</a></li>
+<li><a href="impyute/utils/describe.html">impyute.utils.describe</a></li>
+<li><a href="impyute/utils/find_null.html">impyute.utils.find_null</a></li>
+<li><a href="impyute/utils/loggers.html">impyute.utils.loggers</a></li>
 </ul>
 
            </div>
@@ -168,6 +197,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2017, Elton Law.
+      Last updated on Jul 20, 2017.
 
     </p>
   </div>
@@ -189,17 +219,17 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1',
+            VERSION:'0.0.4',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

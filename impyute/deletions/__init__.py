@@ -1,5 +1,5 @@
 """
-The :mod: impyute.deletions module implements deletion algorithms
+Missing data approaches that delete values.
 """
 
 from .complete_case import complete_case

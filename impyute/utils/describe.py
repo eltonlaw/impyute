@@ -1,20 +1,19 @@
-"""Print input/output multiple times"""
-
+""" impyute.utils.describe """
 from impyute.utils import find_null
 
 
-def describe(data, verbose=True):
-    """ Describe
+def describe(data): # verbose=True):
+    """ Print input/output multiple times
 
-    PARAMETERS
-    ---------
+    Parameters
+    ----------
     data: numpy.nd.array
         The data you want to get a description from
     verbose: boolean(optional)
         Decides whether the description is short or long form
 
-    RETURNS
-    ------
+    Returns
+    -------
     dict
         missingness: list
             Confidence interval of data being MCAR, MAR or MNAR - in that order
@@ -36,6 +35,7 @@ def describe(data, verbose=True):
             std dev for each row/column
         min_max: list
             Finds the minimum and maximum for each row
+
     """
 #    missingness = [0.33, 0.33, 0.33]  # find_missingness(data)
     null_xy = find_null(data)

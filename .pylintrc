@@ -32,7 +32,7 @@ unsafe-load-any-extension=no
 # A comma-separated list of package or module names from where C extensions may
 # be loaded. Extensions are loading into the active Python interpreter and may
 # run arbitrary code
-extension-pkg-whitelist=
+extension-pkg-whitelist=numpy
 
 # Allow optimization of some AST trees. This will activate a peephole AST
 # optimizer, which will apply various small optimizations. For instance, it can
@@ -65,7 +65,7 @@ confidence=
 # --enable=similarities". If you want to run only the classes checker, but have
 # no Warning level messages displayed, use"--disable=all --enable=classes
 # --disable=W"
-disable=indexing-exception,apply-builtin,backtick,coerce-builtin,parameter-unpacking,execfile-builtin,old-octal-literal,raw_input-builtin,old-raise-syntax,dict-view-method,map-builtin-not-iterating,file-builtin,round-builtin,using-cmp-argument,metaclass-assignment,dict-iter-method,standarderror-builtin,nonzero-method,xrange-builtin,getslice-method,old-division,old-ne-operator,cmp-builtin,unicode-builtin,unichr-builtin,long-builtin,input-builtin,no-absolute-import,import-star-module-level,long-suffix,oct-method,coerce-method,setslice-method,print-statement,range-builtin-not-iterating,reduce-builtin,useless-suppression,next-method-called,delslice-method,hex-method,filter-builtin-not-iterating,zip-builtin-not-iterating,suppressed-message,reload-builtin,buffer-builtin,basestring-builtin,cmp-method,intern-builtin,unpacking-in-except,raising-string
+disable=indexing-exception,apply-builtin,backtick,coerce-builtin,parameter-unpacking,execfile-builtin,old-octal-literal,raw_input-builtin,old-raise-syntax,dict-view-method,map-builtin-not-iterating,file-builtin,round-builtin,using-cmp-argument,metaclass-assignment,dict-iter-method,standarderror-builtin,nonzero-method,xrange-builtin,getslice-method,old-division,old-ne-operator,cmp-builtin,unicode-builtin,unichr-builtin,long-builtin,input-builtin,no-absolute-import,import-star-module-level,long-suffix,oct-method,coerce-method,setslice-method,print-statement,range-builtin-not-iterating,reduce-builtin,useless-suppression,next-method-called,delslice-method,hex-method,filter-builtin-not-iterating,zip-builtin-not-iterating,suppressed-message,reload-builtin,buffer-builtin,basestring-builtin,cmp-method,intern-builtin,unpacking-in-except,raising-string,invalid-name
 
 
 [REPORTS]
@@ -193,7 +193,7 @@ max-nested-blocks=5
 [FORMAT]
 
 # Maximum number of characters on a single line.
-max-line-length=100
+max-line-length=79
 
 # Regexp for a line that is allowed to be longer than the limit.
 ignore-long-lines=^\s*(# )?<?https?://\S+>?$

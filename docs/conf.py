@@ -18,11 +18,12 @@ import sys
 import os
 
 # Insert Impyute into system
-
 sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath('../impyute'))
 import impyute
 from impyute import __version__
-__version__ = '0.0.4'
+
+#__version__ = '0.0.4'
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -40,10 +41,10 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
     'sphinx.ext.mathjax',
-    'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
     'sphinx.ext.autodoc',
+    'numpydoc'
 ]
 
 # Add any paths that contain templates here, relative to this directory.

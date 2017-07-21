@@ -45,7 +45,7 @@ Feature Support
 * Dataset Generation
     * Datasets
         * MNIST
-        * Random uniforml distribution
+        * Random uniform distribution
         * Random gaussian distribution
     * Missingness Corruptors
         * MCAR
@@ -54,7 +54,7 @@ Feature Support
 * Diagnostic Tools
     * Loggers
     * Distribution of Null Values
-    * Comparison of imputations (WIP)
+    * Comparison of imputations
     * Little's MCAR Test (WIP)
 
 Installation
@@ -65,6 +65,14 @@ To install impyute, run the following:
 .. code-block:: bash
 
     $ pip install impyute
+
+Or to get the most current version:
+
+.. code-block:: bash
+    
+    $ git clone https://github.com/eltonlaw/impyute
+    $ cd impyute
+    $ python setup.py install
 
 Documentation
 -------------

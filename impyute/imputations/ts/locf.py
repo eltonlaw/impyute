@@ -1,15 +1,11 @@
-"""
-Last Observation Carried Forward Algorithm
-------------------------------------------
-"""
-
-from impyute.utils import find_null
+""" impyute.imputations.ts.locf """
 import numpy as np
+from impyute.utils import find_null
 from impyute.utils import checks
 
 
 def locf(data):
-    """ For missing values use the last observation carried forward
+    """ Last Observation Carried Forward
 
     For each set of missing indices, use the value of one row before(same
     column). In the case that the missing value is the first row, look one
@@ -17,13 +13,16 @@ def locf(data):
     Repeat until you find a row in this column that's not NaN. All the rows
     before will be filled with this value.
 
-    PARAMETERS
-    ---------
+    Parameters
+    ----------
     data: numpy.ndarray
+        Data to impute.
 
-    RETURNS
-    ------
+    Returns
+    -------
     numpy.ndarray
+        Imputed data.
+
     """
     if not checks(data):
         raise Exception("Checks failed")
@@ -41,6 +40,7 @@ def locf(data):
                     val_found = True
                     break
             if val_found:
+                # pylint: disable=undefined-loop-variable
                 for x_nan in range(i):
                     data[x_i+x_nan][y_i] = data[x_i+i][y_i]
             else:

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; impyute 0.0.3 documentation</title>
+  <title>Deletions &mdash; impyute 0.0.4 documentation</title>
   
 
   
@@ -32,10 +32,13 @@
   
 
   
-    <link rel="top" title="impyute 0.0.3 documentation" href="../index.html"/>
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="impyute 0.0.4 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="index.html"/>
-        <link rel="next" title="&lt;no title&gt;" href="diagnostics.html"/>
-        <link rel="prev" title="API Reference" href="index.html"/> 
+        <link rel="next" title="Utilities" href="utils.html"/>
+        <link rel="prev" title="Datasets" href="datasets.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -64,7 +67,7 @@
             
             
               <div class="version">
-                0.0.3
+                0.0.4
               </div>
             
           
@@ -89,14 +92,30 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../user_guide/getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user_guide/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user_guide/tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user_guide/diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/rules_of_thumb.html">Rules of Thumb</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="datasets.html">Dataset Generation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Deletions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cross_sectional_imputations.html">Cross Sectional Imputation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time_series_imputations.html">Time Series Imputation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/eltonlaw/impyute">GitHub Repo</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="index.html">API</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/eltonlaw/impyute">GitHub Repo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/philosophy.html">Philosophy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/current_goals.html">Current Goals</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../references/index.html">Papers Master List</a></li>
 </ul>
 
             
@@ -143,7 +162,7 @@
         
           <li><a href="index.html">API Reference</a> &raquo;</li>
         
-      <li>&lt;no title&gt;</li>
+      <li>Deletions</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -160,7 +179,35 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  
+  <div class="section" id="module-impyute.deletions">
+<span id="deletions"></span><h1>Deletions<a class="headerlink" href="#module-impyute.deletions" title="Permalink to this headline">¶</a></h1>
+<p>Missing data approaches that delete values.</p>
+<dl class="function">
+<dt id="impyute.deletions.complete_case">
+<code class="descclassname">impyute.deletions.</code><code class="descname">complete_case</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/deletions/complete_case.html#complete_case"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.deletions.complete_case" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return only data rows with all columns</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data: numpy.ndarray</strong></p>
+<blockquote>
+<div><p>Data to impute.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">numpy.ndarray</p>
+<blockquote class="last">
+<div><p>Imputed data.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
 
            </div>
            <div class="articleComments">
@@ -171,10 +218,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="diagnostics.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="utils.html" class="btn btn-neutral float-right" title="Utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="datasets.html" class="btn btn-neutral" title="Datasets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -184,6 +231,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2017, Elton Law.
+      Last updated on Jul 20, 2017.
 
     </p>
   </div>
@@ -205,17 +253,17 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.0.3',
+            VERSION:'0.0.4',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

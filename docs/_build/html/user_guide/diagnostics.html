@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Diagnostics &mdash; impyute 0.0.3 documentation</title>
+  <title>Diagnostics &mdash; impyute 0.0.4 documentation</title>
   
 
   
@@ -32,7 +32,12 @@
   
 
   
-    <link rel="top" title="impyute 0.0.3 documentation" href="../index.html"/> 
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="impyute 0.0.4 documentation" href="../index.html"/>
+        <link rel="next" title="Rules of Thumb" href="rules_of_thumb.html"/>
+        <link rel="prev" title="Tutorial" href="tutorial.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -61,7 +66,7 @@
             
             
               <div class="version">
-                0.0.3
+                0.0.4
               </div>
             
           
@@ -85,14 +90,27 @@
               
             
             
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Diagnostics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#little-s-mcar-test-1">Little’s MCAR Test </a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rules_of_thumb.html">Rules of Thumb</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../api/index.html">API</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/eltonlaw/impyute">GitHub Repo</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/philosophy.html">Philosophy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/current_goals.html">Current Goals</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../references/index.html">Papers Master List</a></li>
 </ul>
 
             
@@ -157,8 +175,8 @@
   <div class="section" id="diagnostics">
 <h1>Diagnostics<a class="headerlink" href="#diagnostics" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="little-s-mcar-test-1">
-<h2>Little's MCAR Test <a class="footnote-reference" href="#id2" id="id1">[1]</a><a class="headerlink" href="#little-s-mcar-test-1" title="Permalink to this headline">¶</a></h2>
-<p>Take the mean of the data with missing values and take the mean of the data without missing values. If they're the same/simlar, then it's more likely that your data is MCAR.</p>
+<h2>Little’s MCAR Test <a class="footnote-reference" href="#id2" id="id1">[1]</a><a class="headerlink" href="#little-s-mcar-test-1" title="Permalink to this headline">¶</a></h2>
+<p>Take the mean of the data with missing values and take the mean of the data without missing values. If they’re the same/simlar, then it’s more likely that your data is MCAR.</p>
 <table class="docutils footnote" frame="void" id="id2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
@@ -176,12 +194,22 @@
           </div>
           <footer>
   
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rules_of_thumb.html" class="btn btn-neutral float-right" title="Rules of Thumb" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tutorial.html" class="btn btn-neutral" title="Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
         &copy; Copyright 2017, Elton Law.
+      Last updated on Jul 20, 2017.
 
     </p>
   </div>
@@ -203,17 +231,17 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.0.3',
+            VERSION:'0.0.4',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: ''
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

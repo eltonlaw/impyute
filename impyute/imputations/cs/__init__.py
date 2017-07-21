@@ -1,6 +1,5 @@
 """
-The :mod: impyute.imputations.ts module implements imputation algorithms for
-cross sectional data
+Imputations for cross-sectional data.
 """
 
 from .random_imputation import random_imputation

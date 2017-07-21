@@ -6,16 +6,20 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
-
+# pylint: disable=too-many-locals
 def compare(imputed, log_path="results.txt"):
-    """
-    PARAMETERS
+    """ Given an imputed dataset, runs a bunch of machine learning algorithms
+
+    Parameters
     ----------
     imputed: [(str, np.ndarray), (str, np.ndarray)...]
        List of tuples containing (imputation algorithm name, imputed data)
-    RETURNS
+
+    Returns
     ------
-    .txt file of classification results on imputed data
+    results.txt
+        Classification results on imputed data
+
     """
     clfs = [["SVC", SVC()],
             ["KNeighbours", KNeighborsClassifier(2)],
@@ -29,7 +33,7 @@ def compare(imputed, log_path="results.txt"):
         X_train, X_test, y_train, y_test = train_test_split(X, y,
                                                             test_size=0.33,
                                                             random_state=42)
-        print(imputation_name)
+        print("Imputation {} =========".format(imputation_name))
         for clf_name, clf in clfs:
             clf.fit(X_train, y_train)
             y_pred = clf.predict(X_test)

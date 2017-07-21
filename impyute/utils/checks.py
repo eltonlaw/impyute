@@ -1,10 +1,22 @@
-""" Checks format of input data """
+""" impyute.utils.check """
 import numpy as np
 from impyute.utils import find_null
 
 
 def checks(data, allow_3d=False):
-    """ Main check function to ensure input is correctly formatted"""
+    """ Main check function to ensure input is correctly formatted
+
+    Parameters
+    ----------
+    data: numpy.ndarray
+        Data to impute.
+
+    Returns
+    -------
+    bool
+        True if `data` is correctly formatted
+
+    """
     if not _shape_2d(data):
         if not allow_3d or not _shape_3d:
             print("Error: Not a 2D/3D Tensor")
@@ -34,7 +46,7 @@ def _is_ndarray(data):
 
 def _dtype_float(data):
     """ True if the values in the array are floating point"""
-    return np.array(list(data)).dtype == np.float64
+    return np.array(list(data)).dtype == np.float
 
 def _nan_exists(data):
     """ True if there is at least one np.nan in the array"""

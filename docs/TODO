@@ -1,0 +1,12 @@
+Implement
+- ARMA
+- ARIMA
+- Multiple Imputation
+- EM with Kalman Filter
+
+Feature Upgrades
+- `compare`: Allow customization of used ML algorithms
+
+Major Updates
+- Imputation of n-dimensional data
+- Imputation on specific formats (text, image, audio)
