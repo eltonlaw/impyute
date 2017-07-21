@@ -1,0 +1,2 @@
+sphinx == 1.6.3
+numpydoc == 0.7.0
