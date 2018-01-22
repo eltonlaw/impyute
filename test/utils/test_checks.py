@@ -1,4 +1,4 @@
-"""test_mcar_test.py"""
+"""test_checks.py"""
 import sys
 import os
 import unittest
@@ -41,35 +41,20 @@ class TestChecks(unittest.TestCase):
         output = checks(arr)
         self.assertTrue(output)
 
-    def test_3d_false(self):
-        """ Check 3d array without setting allow_3d=True, should return false"""
-        _redirect_stdout(True)
-        arr = np.ones((5, 5, 3))
-        arr[0][0][0] = np.nan
-        output = checks(arr)
-        _redirect_stdout(False)
-        self.assertFalse(output)
-
-    def test_3d_true(self):
-        """ Check 3d array setting allow_3d=True, should return true"""
-        arr = np.ones((5, 5, 3))
-        arr[0][0][0] = np.nan
-        output = checks(arr, allow_3d=True)
-        self.assertTrue(output)
 
     def test_not_nparray(self):
         """ If not an np.array, should return false"""
         _redirect_stdout(True)
         output = checks([[np.nan, 2.], [3, 4]])
         _redirect_stdout(False)
-        self.assertEqual(output, False)
+        self.assertFalse(output)
 
     def test_nan_exists(self):
         """ If no NaN, should return false"""
         _redirect_stdout(True)
-        output = checks(np.array([[1., 2.], [3, 4]]))
+        output = checks(np.array([[1.]]))
         _redirect_stdout(False)
-        self.assertEqual(output, False)
+        self.assertFalse(output)
 
 def _redirect_stdout(redirect):
     """ Used to avoid printing error messages to screen while running tests"""

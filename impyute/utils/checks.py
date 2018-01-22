@@ -3,7 +3,7 @@ import numpy as np
 from impyute.utils import find_null
 
 
-def checks(data, allow_3d=False):
+def checks(data, dims=2):
     """ Main check function to ensure input is correctly formatted
 
     Parameters
@@ -17,20 +17,21 @@ def checks(data, allow_3d=False):
         True if `data` is correctly formatted
 
     """
-    if not _shape_2d(data):
-        if not allow_3d or not _shape_3d:
-            print("Error: Not a 2D/3D Tensor")
-            return False
-    if not _is_ndarray(data):
-        print("Error: Not a np.ndarray")
+    if dims != 2:
+        print("Error: No support for arrays that aren't 2D yet.")
+    elif not _shape_2d(data):
+        print("Error: Not a 2D array.")
+    elif not _is_ndarray(data):
+        print("Error: Not a np.ndarray.")
         return False
-    if not _dtype_float(data):
-        print("Error: Data is not continuous")
+    elif not _dtype_float(data):
+        print("Error: Data is not float.")
         return False
-    if not _nan_exists(data):
+    elif not _nan_exists(data):
         print("Error: No NaN's in given data")
         return False
-    return True
+    else:
+        return True
 
 def _shape_2d(data):
     """ True if array is 2D"""
@@ -46,9 +47,9 @@ def _is_ndarray(data):
 
 def _dtype_float(data):
     """ True if the values in the array are floating point"""
-    return np.array(list(data)).dtype == np.float
+    return data.dtype == np.float
 
 def _nan_exists(data):
     """ True if there is at least one np.nan in the array"""
     null_xy = find_null(data)
-    return len(null_xy)
+    return len(null_xy) > 0

@@ -52,9 +52,10 @@ def compare(imputed, classifiers=["sklearn.svm.SVC"], log_path=None):
         X, y = data
         X_train, X_test, y_train, y_test = train_test_split(X, y,
                                                             test_size=0.33,
-                                                            random_state=42)
+                                                            random_state=0)
         print("Imputation {} =========".format(imputation_name))
         for clf_name, clf in clfs:
+            clf = clf()
             clf.fit(X_train, y_train)
             y_pred = clf.predict(X_test)
             accuracy = accuracy_score(y_test, y_pred)
