@@ -4,7 +4,7 @@ from impyute.utils import find_null
 from impyute.utils import checks
 
 
-def locf(data):
+def locf(data, axis=0):
     """ Last Observation Carried Forward
 
     For each set of missing indices, use the value of one row before(same
@@ -17,6 +17,9 @@ def locf(data):
     ----------
     data: numpy.ndarray
         Data to impute.
+    axis: boolean (optional)
+        0 if time series is in row format (Ex. data[0][:] is 1st data point).
+        1 if time series is in col format (Ex. data[:][0] is 1st data point).
 
     Returns
     -------
@@ -26,6 +29,12 @@ def locf(data):
     """
     if not checks(data):
         raise Exception("Checks failed")
+
+    if axis == 0:
+        data = np.transpose(data)
+    elif axis == 1:
+        pass
+
     null_xy = find_null(data)
     for x_i, y_i in null_xy:
         # Simplest scenario, look one row back

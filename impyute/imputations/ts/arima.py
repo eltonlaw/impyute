@@ -34,7 +34,7 @@ def arima(data, p, d, q):
         p = int(p)
         d = int(d)
         q = int(q)
-        data = isinstance(data, np.array)
+        data = isinstance(data, np.ndarray)
     except:
         raise Exception
     # ARIMA
