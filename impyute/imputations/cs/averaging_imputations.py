@@ -1,9 +1,9 @@
 """ impyute.imputations.cs.averaging_imputations """
-
 import numpy as np
 from impyute.utils import find_null
 from impyute.utils import checks
 
+@checks
 def mean_imputation(data):
     """ Substitute missing values with the mean of that column.
 
@@ -18,8 +18,6 @@ def mean_imputation(data):
         Imputed data.
 
     """
-    if not checks(data):
-        raise Exception("Checks failed")
     null_xy = find_null(data)
     for x_i, y_i in null_xy:
         row_wo_nan = data[:, [y_i]][~np.isnan(data[:, [y_i]])]
@@ -27,6 +25,7 @@ def mean_imputation(data):
         data[x_i][y_i] = new_value
     return data
 
+@checks
 def median_imputation(data):
     """ Substitute missing values with the median of that column(middle).
 
@@ -52,6 +51,7 @@ def median_imputation(data):
         data[x_i][y_i] = medians[str(y_i)]
     return data
 
+@checks
 def mode_imputation(data):
     """ Substitute missing values with the mode of that column(most frequent).
 

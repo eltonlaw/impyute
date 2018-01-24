@@ -3,8 +3,9 @@ import unittest
 import numpy as np
 from impyute.datasets import test_data
 from impyute.deletions import complete_case
+from impyute.utils import checks
 
-
+@checks
 class TestCC(unittest.TestCase):
     """ Test Complete Case """
     def setUp(self):
@@ -16,10 +17,6 @@ class TestCC(unittest.TestCase):
         self.data_c = test_data(mask)
         mask[0][0] = True
         self.data_m = test_data(mask)
-
-    def tearDown(self):
-        """Teardown"""
-        pass
 
     def test_return_type(self):
         """ Check return type, should return an np.ndarray"""

@@ -17,7 +17,7 @@ class TestCompare(unittest.TestCase):
         mask = np.zeros((5, 5), dtype=bool)
         mask[0][0] = True
         data_m = test_data(mask=mask)
-        labels = [1, 0, 1, 1, 0]
+        labels = np.array([1, 0, 1, 1, 0])
         self.imputed_mode = []
         self.imputed_mode.append(["mode", (mode_imputation(np.copy(data_m)), labels)])
         self.imputed_mode.append(["mean", (mean_imputation(np.copy(data_m)), labels)])

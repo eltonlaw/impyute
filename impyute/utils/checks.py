@@ -1,9 +1,9 @@
 """ impyute.utils.check """
+from functools import wraps
 import numpy as np
 from impyute.utils import find_null
 
-
-def checks(data, dims=2):
+def checks(fn):
     """ Main check function to ensure input is correctly formatted
 
     Parameters
@@ -17,21 +17,21 @@ def checks(data, dims=2):
         True if `data` is correctly formatted
 
     """
-    if dims != 2:
-        print("Error: No support for arrays that aren't 2D yet.")
-    elif not _shape_2d(data):
-        print("Error: Not a 2D array.")
-    elif not _is_ndarray(data):
-        print("Error: Not a np.ndarray.")
-        return False
-    elif not _dtype_float(data):
-        print("Error: Data is not float.")
-        return False
-    elif not _nan_exists(data):
-        print("Error: No NaN's in given data")
-        return False
-    else:
-        return True
+    @wraps(fn)
+    def wrapper(*args, **kwds):
+        data = args[0]
+        if len(np.shape(data)) != 2:
+            raise Exception("No support for arrays that aren't 2D yet.")
+        elif not _shape_2d(data):
+            raise Exception("Not a 2D array.")
+        elif not _is_ndarray(data):
+            raise Exception("Not a np.ndarray.")
+        elif not _dtype_float(data):
+            raise Exception("Data is not float.")
+        elif not _nan_exists(data):
+            raise Exception("No NaN's in given data")
+        return fn(*args, **kwds)
+    return wrapper
 
 def _shape_2d(data):
     """ True if array is 2D"""

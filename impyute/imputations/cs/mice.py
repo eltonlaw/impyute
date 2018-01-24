@@ -3,8 +3,9 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 from impyute.utils import find_null
 from impyute.utils import checks
-
 # pylint: disable=too-many-locals
+
+@checks
 def mice(data):
     """Multivariate Imputation by Chained Equations
 
@@ -29,8 +30,6 @@ def mice(data):
         Imputed data.
 
     """
-    if not checks(data):
-        raise Exception("Checks failed")
     null_xy = find_null(data)
 
     # Add a column of zeros to the index values

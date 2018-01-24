@@ -4,6 +4,7 @@ from impyute.utils import find_null
 from impyute.utils import checks
 
 
+@checks
 def locf(data, axis=0):
     """ Last Observation Carried Forward
 
@@ -27,9 +28,6 @@ def locf(data, axis=0):
         Imputed data.
 
     """
-    if not checks(data):
-        raise Exception("Checks failed")
-
     if axis == 0:
         data = np.transpose(data)
     elif axis == 1:

@@ -5,64 +5,52 @@ import unittest
 import numpy as np
 from impyute.utils import checks
 
-
 class TestChecks(unittest.TestCase):
     """ Tests for checks"""
-    def test_return_type(self):
-        """ Check return type, should return a boolean"""
-        _redirect_stdout(True)
-        output = checks(np.array([[1., 2.], [3, 4]]))
-        _redirect_stdout(False)
-        self.assertEqual(type(output), type(False))
+    def setUp(self):
+        """
+        self.data_c: Complete dataset/No missing values
+        self.data_m: Incommplete dataset/Has missing values
+        """
+        @checks
+        def foo(data):
+            return data
+        self.foo = foo
 
     def test_correct_input(self):
-        """ Test that an array that satisfies all checks returns True"""
-        # Integer np.ndarray (check: `_is_ndarray`, `_shape_2d`)
-        arr = np.array([[1, 2], [3, 4]])
+        """ Test that an array that should satisfy all checks, no Exception should be raised"""
+        # Integer np.ndarray (check: `_is_ndarray`, `_shape_2d`, `_nan_exists`)
+        arr = np.array([[np.nan, 2], [3, 4]])
         # Cast integer array to float (check: `_dtype_float`)
         arr.dtype = np.float
-        # Add a nan value to the array (check: `_nan_exists`)
-        arr[0][0] = np.nan
-        output = checks(arr)
-        self.assertTrue(output)
+        try:
+            out = self.foo(arr)
+        except Exception as e:
+            self.fail(e)
 
     def test_1d(self):
-        """ Check 1d array, should return false"""
-        _redirect_stdout(True)
+        """ Check 1d array, Exception raised"""
         arr = np.array([np.nan, 2])
-        output = checks(arr)
-        _redirect_stdout(False)
-        self.assertFalse(output)
-
-    def test_2d(self):
-        """ Check 2d array, should return true"""
-        arr = np.array([[1., 2.], [3, 4]])
-        arr[0][0] = np.nan
-        output = checks(arr)
-        self.assertTrue(output)
-
+        with self.assertRaises(Exception):
+            output = self.foo(arr)
 
     def test_not_nparray(self):
-        """ If not an np.array, should return false"""
-        _redirect_stdout(True)
-        output = checks([[np.nan, 2.], [3, 4]])
-        _redirect_stdout(False)
-        self.assertFalse(output)
+        """ If not an np.array, Exception raised"""
+        with self.assertRaises(Exception):
+            output = foo([[np.nan, 2.], [3, 4]])
 
     def test_nan_exists(self):
-        """ If no NaN, should return false"""
-        _redirect_stdout(True)
-        output = checks(np.array([[1.]]))
-        _redirect_stdout(False)
-        self.assertFalse(output)
+        """ If no NaN, Exception raised"""
+        with self.assertRaises(Exception):
+            output = foo(np.array([[1.]]))
 
-def _redirect_stdout(redirect):
-    """ Used to avoid printing error messages to screen while running tests"""
-    if redirect:
-        sys.stdout = open(os.devnull, "w")
-    else:
-        sys.stdout.close()
-        sys.stdout = sys.__stdout__
+# def _redirect_stdout(redirect):
+#     """ Used to avoid printing error messages to screen while running tests"""
+#     if redirect:
+#         sys.stdout = open(os.devnull, "w")
+#     else:
+#         sys.stdout.close()
+#         sys.stdout = sys.__stdout__
 
 
 if __name__ == "__main__":

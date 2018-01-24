@@ -3,6 +3,7 @@ import numpy as np
 from impyute.utils import find_null
 from impyute.utils import checks
 
+@checks
 def random_imputation(data):
     """ Fill missing values in with a randomly selected value from the same
     column.
@@ -18,8 +19,6 @@ def random_imputation(data):
         Imputed data.
 
     """
-    if not checks(data):
-        raise Exception("Checks failed")
     null_xy = find_null(data)
     for x, y in null_xy:
         uniques = np.unique(data[:, y])

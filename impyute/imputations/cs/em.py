@@ -5,6 +5,7 @@ import numpy as np
 from impyute.utils import find_null
 from impyute.utils import checks
 
+@checks
 def em(data, loops=50, dtype="cont"):
     """ Imputes given data using expectation maximization.
 
@@ -28,8 +29,6 @@ def em(data, loops=50, dtype="cont"):
         Imputed data.
 
     """
-    if not checks(data):
-        raise Exception("Checks failed")
     if dtype == "cont":
         null_xy = find_null(data)
         for x_i, y_i in null_xy:
