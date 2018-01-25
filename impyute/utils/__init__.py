@@ -7,9 +7,10 @@ from .loggers import print_io
 from .describe import describe
 # from .mcar_test import mcar_test
 from .count_missing import count_missing
+from .errors import BadInputError
 from .checks import checks
 from .config import config
 from .compare import compare
 
 __all__ = ["find_null", "print_io", "describe", "count_missing",
-           "checks", "config", "compare"]
+           "checks", "config", "compare", "BadInputError"]

@@ -2,6 +2,7 @@
 from functools import wraps
 import numpy as np
 from impyute.utils import find_null
+from impyute.utils import BadInputError
 
 def checks(fn):
     """ Main check function to ensure input is correctly formatted
@@ -19,17 +20,18 @@ def checks(fn):
     """
     @wraps(fn)
     def wrapper(*args, **kwds):
+        """ Run input checks"""
         data = args[0]
         if len(np.shape(data)) != 2:
-            raise Exception("No support for arrays that aren't 2D yet.")
+            raise BadInputError("No support for arrays that aren't 2D yet.")
         elif not _shape_2d(data):
-            raise Exception("Not a 2D array.")
+            raise BadInputError("Not a 2D array.")
         elif not _is_ndarray(data):
-            raise Exception("Not a np.ndarray.")
+            raise BadInputError("Not a np.ndarray.")
         elif not _dtype_float(data):
-            raise Exception("Data is not float.")
+            raise BadInputError("Data is not float.")
         elif not _nan_exists(data):
-            raise Exception("No NaN's in given data")
+            raise BadInputError("No NaN's in given data")
         return fn(*args, **kwds)
     return wrapper
 
