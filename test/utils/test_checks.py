@@ -4,6 +4,7 @@ import os
 import unittest
 import numpy as np
 from impyute.utils import checks
+from impyute.utils import BadInputError
 
 class TestChecks(unittest.TestCase):
     """ Tests for checks"""
@@ -18,31 +19,31 @@ class TestChecks(unittest.TestCase):
         self.foo = foo
 
     def test_correct_input(self):
-        """ Test that an array that should satisfy all checks, no Exception should be raised"""
+        """ Test that an array that should satisfy all checks, no BadInputError should be raised"""
         # Integer np.ndarray (check: `_is_ndarray`, `_shape_2d`, `_nan_exists`)
         arr = np.array([[np.nan, 2], [3, 4]])
         # Cast integer array to float (check: `_dtype_float`)
         arr.dtype = np.float
         try:
             out = self.foo(arr)
-        except Exception as e:
+        except BadInputError:
             self.fail(e)
 
     def test_1d(self):
-        """ Check 1d array, Exception raised"""
+        """ Check 1d array, BadInputError raised"""
         arr = np.array([np.nan, 2])
-        with self.assertRaises(Exception):
+        with self.assertRaises(BadInputError):
             output = self.foo(arr)
 
     def test_not_nparray(self):
-        """ If not an np.array, Exception raised"""
-        with self.assertRaises(Exception):
-            output = foo([[np.nan, 2.], [3, 4]])
+        """ If not an np.array, BadInputError raised"""
+        with self.assertRaises(BadInputError):
+            output = self.foo([[np.nan, 2.], [3, 4]])
 
     def test_nan_exists(self):
-        """ If no NaN, Exception raised"""
-        with self.assertRaises(Exception):
-            output = foo(np.array([[1.]]))
+        """ If no NaN, BadInputError raised"""
+        with self.assertRaises(BadInputError):
+            output = self.foo(np.array([[1.]]))
 
 # def _redirect_stdout(redirect):
 #     """ Used to avoid printing error messages to screen while running tests"""
