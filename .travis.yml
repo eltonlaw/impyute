@@ -3,8 +3,8 @@ python:
     - 3.6
     - 3.5
 install:
-    - pip install -r requirements.txt
-script: python -m unittest discover
+    - pip install -r requirements/test.txt
+script: pytest
 deploy:
   provider: releases
   api_key:

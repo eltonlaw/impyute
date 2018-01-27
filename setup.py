@@ -11,7 +11,7 @@ def get_description():
 
 def get_reqs():
     """ Parses `requirements.txt` for dependencies"""
-    parsed_reqs = parse_requirements("requirements.txt", session=False)
+    parsed_reqs = parse_requirements("requirements/common.txt", session=False)
     reqs = [str(ir.req) for ir in parsed_reqs]
     return reqs
 
