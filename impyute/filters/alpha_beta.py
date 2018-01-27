@@ -2,7 +2,7 @@
 import numpy as np
 
 
-def ab_filter(data, x_0, dx, alpha, beta, dt=1.):
+def alpha_beta(data, x_0, dx, alpha, beta, dt=1.):
     """
     data: numpy.nd.array
         Dataset
