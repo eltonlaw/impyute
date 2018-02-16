@@ -7,11 +7,16 @@ branches:
 
 language: python
 
+python:
+  - 3.6
+  - 3.5
+
+
 services:
   - docker
 
 before_install:
-  - docker build -t impyute/impyute
+  - docker build -t impyute/impyute .
 
 script:
   - docker run impyute/impyute
