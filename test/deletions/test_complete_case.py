@@ -33,6 +33,17 @@ class TestCC(unittest.TestCase):
         imputed = complete_case(self.data_m)
         self.assertTrue(np.shape(imputed) == (4, 5))
 
+    def test_imputed_values(self):
+        """ Assert values are as expected"""
+        imputed = complete_case(self.data_m)
+        expected = np.array([
+            [5., 6., 7., 8., 9.],
+            [10., 11., 12., 13., 14.],
+            [15., 16., 17., 18., 19.],
+            [20., 21., 22., 23., 24.]
+        ])
+        self.assertTrue(np.equal(imputed, expected).all())
+
 
 if __name__ == "__main__":
     unittest.main()

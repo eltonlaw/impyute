@@ -18,11 +18,11 @@ Using [Sphinx's autodoc](http://www.sphinx-doc.org/en/stable/ext/autodoc.html) m
 Use [.pylintrc](https://github.com/eltonlaw/impyute/blob/master/.pylintrc) to lint files in accordance with [PEP8](https://www.python.org/dev/peps/pep-0008/). You will first need pylint installed: [install pylint](https://www.pylint.org/#install)
 
     $ pylint --rcfile=.pylintrc impyute/
-    
-The unit testing framework used is `unittest` which comes prepackaged with Python. To run tests:
 
-    $ python -m unittest discover
-    
+Put unit tests in the `test` directory in root. The testing environment works like this: 1) Build a docker image with multiple python versions 2) Run the container with pytest for each python version.
+
+    $ make test
+
 ### Suggesting Enhancements
 
 This project was created to cover everything required in the step of your pipeline where you move from data with missing values to data without missing values. Simple enough right? Any enhancements that brings value with that in mind are welcome.
@@ -30,3 +30,4 @@ This project was created to cover everything required in the step of your pipeli
 ### Code of Conduct
 
 This project adheres to the Contributor Covenant [code of conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
+

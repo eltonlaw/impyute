@@ -1,6 +1,5 @@
 """ impyute.deletions.complete_case """
-import pandas as pd
-
+import numpy as np
 
 def complete_case(data):
     """ Return only data rows with all columns
@@ -16,6 +15,4 @@ def complete_case(data):
         Imputed data.
 
     """
-    df = pd.DataFrame(data)
-    df.dropna(axis=0, how="any", inplace=True)
-    return df.as_matrix()
+    return data[~np.isnan(data).any(axis=1)]
