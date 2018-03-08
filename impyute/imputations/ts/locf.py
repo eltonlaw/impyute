@@ -51,6 +51,5 @@ def locf(data, axis=0):
                 for x_nan in range(i):
                     data[x_i+x_nan][y_i] = data[x_i+i][y_i]
             else:
-                print("Error: Entire Column is NaN")
-                raise Exception
+                raise Exception("Error: Entire Column is NaN")
     return data

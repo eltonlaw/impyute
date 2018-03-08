@@ -1,10 +1,7 @@
 """test_averaging_imputations.py"""
 import unittest
 import numpy as np
-from impyute.imputations.cs import mean_imputation
-from impyute.imputations.cs import mode_imputation
-from impyute.imputations.cs import median_imputation
-from impyute.datasets import test_data
+import impyute as impy
 
 
 class TestAveraging(unittest.TestCase):
@@ -15,38 +12,38 @@ class TestAveraging(unittest.TestCase):
         self.data_m: Incommplete dataset/Has missing values
         """
         mask = np.zeros((5, 5), dtype=bool)
-        self.data_c = test_data(mask=mask)
+        self.data_c = impy.datasets.test_data(mask=mask)
         mask[0][0] = True
-        self.data_m = test_data(mask=mask)
+        self.data_m = impy.datasets.test_data(mask=mask)
 
     def test_mean_return_type(self):
         """ Check return type, should return an np.ndarray"""
-        imputed = mode_imputation(self.data_m)
+        imputed = impy.mode(self.data_m)
         self.assertTrue(isinstance(imputed, np.ndarray))
 
     def test_mode_return_type(self):
         """ Check return type, should return an np.ndarray"""
-        imputed = mode_imputation(self.data_m)
+        imputed = impy.mode(self.data_m)
         self.assertTrue(isinstance(imputed, np.ndarray))
 
     def test_median_return_type(self):
         """ Check return type, should return an np.ndarray"""
-        imputed = mode_imputation(self.data_m)
+        imputed = impy.mode(self.data_m)
         self.assertTrue(isinstance(imputed, np.ndarray))
 
     def test_mean_impute_missing_values(self):
         """ After imputation, no Nan's should exist"""
-        imputed = mean_imputation(self.data_m)
+        imputed = impy.mean(self.data_m)
         self.assertFalse(np.isnan(imputed).any())
 
     def test_mode_impute_missing_values(self):
         """ After imputation, no NaN's should exist"""
-        imputed = mode_imputation(self.data_m)
+        imputed = impy.mode(self.data_m)
         self.assertFalse(np.isnan(imputed).any())
 
     def test_median_impute_missing_values(self):
         """ After imputation, no NaN's should exist"""
-        imputed = median_imputation(self.data_m)
+        imputed = impy.median(self.data_m)
         self.assertFalse(np.isnan(imputed).any())
 
 

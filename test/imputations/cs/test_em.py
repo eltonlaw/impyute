@@ -1,8 +1,8 @@
 """test_em.py"""
 import unittest
 import numpy as np
+import impyute as impy
 from impyute.datasets import test_data
-from impyute.imputations.cs import em
 
 
 class TestEM(unittest.TestCase):
@@ -19,12 +19,12 @@ class TestEM(unittest.TestCase):
 
     def test_return_type(self):
         """ Check return type, should return an np.ndarray"""
-        imputed = em(self.data_m)
+        imputed = impy.em(self.data_m)
         self.assertTrue(isinstance(imputed, np.ndarray))
 
     def test_impute_missing_values(self):
         """ After imputation, no NaN's should exist"""
-        imputed = em(self.data_m)
+        imputed = impy.em(self.data_m)
         self.assertFalse(np.isnan(imputed).any())
 
 

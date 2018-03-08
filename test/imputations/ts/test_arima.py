@@ -1,8 +1,8 @@
 """test_arima.py"""
 import unittest
 import numpy as np
-from impyute.imputations.ts import arima
 from impyute.datasets import test_data
+import impyute as impy
 
 
 class TestArima(unittest.TestCase):
@@ -20,19 +20,19 @@ class TestArima(unittest.TestCase):
     @unittest.skip("function unfinished")
     def test_return_type(self):
         """Check return type, should return an np.ndarray"""
-        imputed = arima(self.data_m)
+        imputed = impy.arima(self.data_m)
         self.assertTrue(isinstance(imputed, np.ndarray))
 
     @unittest.skip("function unfinished")
     def test_impute_no_missing_values(self):
         """ After imputation, no change should occur"""
-        imputed = arima(self.data_c)
+        imputed = impy.arima(self.data_c)
         self.assertTrue(np.array_equal(imputed, self.data_c))
 
     @unittest.skip("function unfinished")
     def test_impute_missing_values(self):
         """After imputation, no NaN's should exist"""
-        imputed = arima(self.data_m)
+        imputed = impy.arima(self.data_m)
         self.assertFalse(np.isnan(imputed).any())
 
 
