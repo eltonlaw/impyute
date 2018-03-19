@@ -1,3 +1,4 @@
+.PHONY: all test
 all: test
 test:
 	docker pull eltonlaw/pybase
