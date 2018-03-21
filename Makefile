@@ -10,5 +10,6 @@ test:
 	docker run impyute python3.6 -m pytest
 
 upload:
-	python setup.py bdist_wheel --universal
+	python3 setup.py bdist_wheel --universal
+	python3 setup.py sdist
 	twine upload dist/*

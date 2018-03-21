@@ -7,7 +7,7 @@
 Impyute
 ========
 
-Impyute is a library of missing data imputation algorithms written in Python 3. This library was designed to be super lightweight, here's a sneak peak at what impyute can do. 
+Impyute is a library of missing data imputation algorithms. This library was designed to be super lightweight, here's a sneak peak at what impyute can do. 
 
 .. code-block:: python
 
@@ -43,16 +43,16 @@ Feature Support
 * Imputation of Time Series Data
     * Last Observation Carried Forward
     * Autoregressive Integrated Moving Average (WIP)
-* Dataset Generation
-    * Missingness Corruptors
-        * MCAR
-        * MAR (WIP)
-        * MNAR (WIP)
 * Diagnostic Tools
     * Loggers
     * Distribution of Null Values
     * Comparison of imputations
     * Little's MCAR Test (WIP)
+
+Versions
+--------
+
+Currently tested on 2.7, 3.4, 3.5 and 3.6
 
 Installation
 ------------
