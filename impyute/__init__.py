@@ -21,7 +21,7 @@ from impyute.imputations.cs import mean_imputation as mean
 from impyute.imputations.cs import median_imputation as median
 from impyute.imputations.cs import mode_imputation as mode
 from impyute.imputations.cs import em
-from impyute.imputations.cs import knn
+from impyute.imputations.cs import fast_knn
 from impyute.imputations.cs import mice
 from impyute.imputations.cs import random_imputation as random
 
@@ -30,7 +30,7 @@ __all__.extend([
     "median",
     "mode",
     "em",
-    "knn",
+    "fast_knn",
     "mice",
     "random"
 ])
