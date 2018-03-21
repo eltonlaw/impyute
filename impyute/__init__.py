@@ -4,7 +4,7 @@ Library of missing data imputations
 # pylint: disable=wrong-import-position
 
 __title__ = 'impyute'
-__version__ = '0.0.5'
+__version__ = '0.0.6'
 __build__ = 0x021300
 __author__ = 'Elton Law'
 __license__ = 'GPL-3.0'
