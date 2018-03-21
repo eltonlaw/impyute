@@ -11,27 +11,29 @@ Impyute is a library of missing data imputation algorithms written in Python 3. 
 
 .. code-block:: python
 
-    >>> from impyute.datasets import random_uniform
-    >>> raw_data = random_uniform(shape=(5, 5), missingness="mcar", th=0.2)
-    >>> print(raw_data)
-    [[  1.   0.   4.   0.   1.]
-     [  1.  nan   6.   4.  nan]
-     [  5.   0.  nan   1.   3.]
-     [  2.   1.   5.   4.   6.]
-     [  2.   1.   0.   0.   6.]]
-    >>> from impyute.imputations.cs import mean_imputation   
-    >>> complete_data = random_imputation(raw_data) 
-    >>> print(complete_data)
-    [[ 1.    0.    4.    0.    1.  ]
-     [ 1.    0.5   6.    4.    4.  ]
-     [ 5.    0.    3.75  1.    3.  ]
-     [ 2.    1.    5.    4.    6.  ]
-     [ 2.    1.    0.    0.    6.  ]]
+    >>> n = 5
+    >>> arr = np.random.uniform(high=6, size=(n, n))
+    >>> for _ in range(3):
+    >>>    arr[np.random.randint(n), np.random.randint(n)] = np.nan
+    >>> print(arr)
+    array([[0.25288643, 1.8149261 , 4.79943748, 0.54464834, np.nan],
+           [4.44798362, 0.93518716, 3.24430922, 2.50915032, 5.75956805],
+           [0.79802036, np.nan, 0.51729349, 5.06533123, 3.70669172],
+           [1.30848217, 2.08386584, 2.29894541, np.nan, 3.38661392],
+           [2.70989501, 3.13116687, 0.25851597, 4.24064355, 1.99607231]])
+    >>> import impyute as impy
+    >>> print(impy.mean(arr))
+    array([[0.25288643, 1.8149261 , 4.79943748, 0.54464834, 3.7122365],
+           [4.44798362, 0.93518716, 3.24430922, 2.50915032, 5.75956805],
+           [0.79802036, 1.99128649, 0.51729349, 5.06533123, 3.70669172],
+           [1.30848217, 2.08386584, 2.29894541, 3.08994336, 3.38661392],
+           [2.70989501, 3.13116687, 0.25851597, 4.24064355, 1.99607231]])
 
 Feature Support
 ---------------
 
 * Imputation of Cross Sectional Data
+    * K-Nearest Neighbours
     * Multivariate Imputation by Chained Equations
     * Expectation Maximization
     * Mean Imputation
@@ -41,12 +43,7 @@ Feature Support
 * Imputation of Time Series Data
     * Last Observation Carried Forward
     * Autoregressive Integrated Moving Average (WIP)
-    * Expectation Maximization with the Kalman Filter (WIP)
 * Dataset Generation
-    * Datasets
-        * MNIST
-        * Random uniform distribution
-        * Random gaussian distribution
     * Missingness Corruptors
         * MCAR
         * MAR (WIP)
