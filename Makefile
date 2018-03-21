@@ -1,5 +1,6 @@
-.PHONY: all test
+.PHONY: all test upload
 all: test
+
 test:
 	docker pull eltonlaw/pybase
 	docker build -t impyute .
@@ -7,3 +8,7 @@ test:
 	docker run impyute python3.4 -m pytest
 	docker run impyute python3.5 -m pytest
 	docker run impyute python3.6 -m pytest
+
+upload:
+	python setup.py bdist_wheel --universal
+	twine upload dist/*
