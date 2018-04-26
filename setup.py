@@ -1,7 +1,6 @@
 """ setup.py """
 import os
 from setuptools import setup, find_packages
-from pip.req import parse_requirements
 
 def get_description():
     """ Makes README file into a string"""
@@ -9,11 +8,10 @@ def get_description():
         long_description = file.read()
     return long_description
 
-def get_reqs():
-    """ Parses `requirements.txt` for dependencies"""
-    parsed_reqs = parse_requirements("requirements/common.txt", session=False)
-    reqs = [str(ir.req) for ir in parsed_reqs]
-    return reqs
+def parse_requirements(filename):
+    """ load requirements from a pip requirements file """
+    lineiter = (line.strip() for line in open(filename))
+    return [line for line in lineiter if line and not line.startswith("#")]
 
 def get_version():
     """ Gets version from impyute.__init__.py
@@ -36,7 +34,7 @@ setup(
     description='Cross-sectional and time-series data imputation algorithms',
     long_description=get_description(),
     packages=find_packages(exclude=['docs']),
-    install_requires=get_reqs(),
+    install_requires=parse_requirements("requirements/common.txt"),
     keywords='imputation',
     classifiers=['Development Status :: 3 - Alpha',
                  'Intended Audience :: Science/Research',
