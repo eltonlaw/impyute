@@ -10,7 +10,7 @@ from scipy.spatial import KDTree
 
 @preprocess
 @checks
-def fast_knn(data, k=5, **kwargs):
+def fast_knn(data, k=3, **kwargs):
     """ Impute using a variant of the nearest neighbours approach
 
     Basic idea: Impute array and then use the resulting complete
@@ -36,12 +36,12 @@ def fast_knn(data, k=5, **kwargs):
     kdtree = KDTree(data_c)
 
     for x_i, y_i in null_xy:
-        distances, indices = kdtree.query(data[x_i], k=k+1)
+        distances, indices = kdtree.query(data_c[x_i], k=k+1)
         # Will always return itself in the first index. Delete it.
         distances, indices = distances[1:], indices[1:]
         weights = (np.sum(distances)-distances)/np.sum(distances)
         # Make weights sum to 1
         weights_unit = weights/np.sum(weights)
         # Assign missing value the weighted average of `k` nearest neighbours
-        data[x_i][y_i] = np.dot(weights_unit, [data[y_i][ind] for ind in indices])
+        data[x_i][y_i] = np.dot(weights_unit, [data_c[y_i][ind] for ind in indices])
     return data

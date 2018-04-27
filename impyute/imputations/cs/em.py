@@ -31,7 +31,6 @@ def em(data, loops=50, **kwargs):
         Imputed data.
 
     """
-    data = data.copy()
     null_xy = find_null(data)
     for x_i, y_i in null_xy:
         col = data[:, int(y_i)]
