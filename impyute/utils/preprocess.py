@@ -20,9 +20,9 @@ def preprocess(fn):
     def wrapper(*args, **kwargs):
         """ Run input checks"""
         if "inplace" in kwargs and kwargs['inplace']:
-            data = args[0].copy()
-        else:
             data = args[0]
+        else:
+            data = args[0].copy()
 
         if len(args) == 1:
             return fn(data, **kwargs)
