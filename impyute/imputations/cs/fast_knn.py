@@ -2,12 +2,15 @@
 import numpy as np
 from impyute.utils import find_null
 from impyute.utils import checks
+from impyute.utils import preprocess
 from impyute.imputations.cs import mean_imputation
 from scipy.spatial import KDTree
 # pylint: disable=invalid-name
+# pylint:disable=unused-argument
 
+@preprocess
 @checks
-def fast_knn(data, k=5):
+def fast_knn(data, k=5, **kwargs):
     """ Impute using a variant of the nearest neighbours approach
 
     Basic idea: Impute array and then use the resulting complete

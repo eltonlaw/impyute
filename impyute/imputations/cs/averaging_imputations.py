@@ -2,9 +2,13 @@
 import numpy as np
 from impyute.utils import find_null
 from impyute.utils import checks
+from impyute.utils import preprocess
+# pylint:disable=unused-argument
+# pylint:disable=invalid-name
 
+@preprocess
 @checks
-def mean_imputation(data):
+def mean_imputation(data, **kwargs):
     """ Substitute missing values with the mean of that column.
 
     Parameters
@@ -25,8 +29,9 @@ def mean_imputation(data):
         data[x_i][y_i] = new_value
     return data
 
+@preprocess
 @checks
-def median_imputation(data):
+def median_imputation(data, **kwargs):
     """ Substitute missing values with the median of that column(middle).
 
     Parameters
@@ -51,8 +56,9 @@ def median_imputation(data):
         data[x_i][y_i] = medians[str(y_i)]
     return data
 
+@preprocess
 @checks
-def mode_imputation(data):
+def mode_imputation(data, **kwargs):
     """ Substitute missing values with the mode of that column(most frequent).
 
     In the case that there is a tie (there are multiple, most frequent values)

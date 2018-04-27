@@ -10,6 +10,7 @@ from .count_missing import count_missing
 from .errors import BadInputError
 from .checks import checks
 from .compare import compare
+from .preprocess import preprocess
 
 __all__ = ["find_null", "print_io", "describe", "count_missing",
-           "checks", "compare", "BadInputError"]
+           "checks", "compare", "BadInputError", "preprocess"]

@@ -3,10 +3,14 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 from impyute.utils import find_null
 from impyute.utils import checks
+from impyute.utils import preprocess
 # pylint: disable=too-many-locals
+# pylint:disable=invalid-name
+# pylint:disable=unused-argument
 
+@preprocess
 @checks
-def mice(data):
+def mice(data, **kwargs):
     """Multivariate Imputation by Chained Equations
 
     Reference:

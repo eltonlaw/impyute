@@ -3,6 +3,7 @@ from functools import wraps
 import numpy as np
 from impyute.utils import find_null
 from impyute.utils import BadInputError
+# pylint:disable=invalid-name
 
 def checks(fn):
     """ Main check function to ensure input is correctly formatted
@@ -19,7 +20,7 @@ def checks(fn):
 
     """
     @wraps(fn)
-    def wrapper(*args, **kwds):
+    def wrapper(*args, **kwargs):
         """ Run input checks"""
         data = args[0]
         if len(np.shape(data)) != 2:
@@ -32,7 +33,7 @@ def checks(fn):
             raise BadInputError("Data is not float.")
         elif not _nan_exists(data):
             raise BadInputError("No NaN's in given data")
-        return fn(*args, **kwds)
+        return fn(*args, **kwargs)
     return wrapper
 
 def _shape_2d(data):
