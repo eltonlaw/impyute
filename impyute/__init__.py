@@ -13,17 +13,17 @@ __copyright__ = 'Copyright 2017 Elton law'
 
 ### Top Level Modules
 
-__all__ = ["datasets", "utils", "deletions", "filters"]
+__all__ = ["dataset", "util", "deletion", "filter"]
 
 ### Cross Sectional Imputations
 
-from impyute.imputations.cs import mean_imputation as mean
-from impyute.imputations.cs import median_imputation as median
-from impyute.imputations.cs import mode_imputation as mode
-from impyute.imputations.cs import em
-from impyute.imputations.cs import fast_knn
-from impyute.imputations.cs import mice
-from impyute.imputations.cs import random_imputation as random
+from impyute.imputation.cs import mean
+from impyute.imputation.cs import median
+from impyute.imputation.cs import mode
+from impyute.imputation.cs import em
+from impyute.imputation.cs import fast_knn
+from impyute.imputation.cs import mice
+from impyute.imputation.cs import random
 
 __all__.extend([
     "mean",
@@ -37,8 +37,8 @@ __all__.extend([
 
 ### Time Series Imputations
 
-from impyute.imputations.ts import locf
-from impyute.imputations.ts import arima
+from impyute.imputation.ts import locf
+from impyute.imputation.ts import arima
 
 __all__.extend([
     "locf",
@@ -46,7 +46,7 @@ __all__.extend([
 ])
 
 ### Deletions
-from impyute.deletions import complete_case
+from impyute.deletion import complete_case
 
 __all__.extend([
     "complete_case"
