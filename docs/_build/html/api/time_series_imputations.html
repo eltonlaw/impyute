@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Time Series Imputations &mdash; impyute 0.0.4 documentation</title>
+  <title>Time Series Imputations &mdash; impyute 0.0.6 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="impyute 0.0.4 documentation" href="../index.html"/>
+    <link rel="top" title="impyute 0.0.6 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="index.html"/>
         <link rel="next" title="Contributing" href="../contributing/index.html"/>
         <link rel="prev" title="Cross Sectional Imputation" href="cross_sectional_imputations.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.0.4
+                0.0.6
               </div>
             
           
@@ -179,74 +179,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-impyute.imputations.ts">
-<span id="time-series-imputations"></span><h1>Time Series Imputations<a class="headerlink" href="#module-impyute.imputations.ts" title="Permalink to this headline">¶</a></h1>
-<p>Imputations for time-series data.</p>
-<dl class="function">
-<dt id="impyute.imputations.ts.locf">
-<code class="descclassname">impyute.imputations.ts.</code><code class="descname">locf</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/imputations/ts/locf.html#locf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.imputations.ts.locf" title="Permalink to this definition">¶</a></dt>
-<dd><p>Last Observation Carried Forward</p>
-<p>For each set of missing indices, use the value of one row before(same
-column). In the case that the missing value is the first row, look one
-row ahead instead. If this next row is also NaN, look to the next row.
-Repeat until you find a row in this column that’s not NaN. All the rows
-before will be filled with this value.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data: numpy.ndarray</strong></p>
-<blockquote>
-<div><p>Data to impute.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">numpy.ndarray</p>
-<blockquote class="last">
-<div><p>Imputed data.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="impyute.imputations.ts.arima">
-<code class="descclassname">impyute.imputations.ts.</code><code class="descname">arima</code><span class="sig-paren">(</span><em>data</em>, <em>p</em>, <em>d</em>, <em>q</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/imputations/ts/arima.html#arima"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.imputations.ts.arima" title="Permalink to this definition">¶</a></dt>
-<dd><p>Autoregressive Integrated Moving Average Imputation</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data: numpy.ndarray</strong></p>
-<blockquote>
-<div><p>Data to impute.</p>
-</div></blockquote>
-<p><strong>p: int</strong></p>
-<blockquote>
-<div><p>Number of autoregressive terms</p>
-</div></blockquote>
-<p><strong>d: int</strong></p>
-<blockquote>
-<div><p>Number of nonseasonal differences needed for stationarity</p>
-</div></blockquote>
-<p><strong>q: int</strong></p>
-<blockquote>
-<div><p>Number of lagged forecast errors in the prediction equation</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">numpy.ndarray</p>
-<blockquote class="last">
-<div><p>Imputed data.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
+  <div class="section" id="time-series-imputations">
+<h1>Time Series Imputations<a class="headerlink" href="#time-series-imputations" title="Permalink to this headline">¶</a></h1>
 </div>
 
 
@@ -272,7 +206,7 @@ before will be filled with this value.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2017, Elton Law.
-      Last updated on Jul 20, 2017.
+      Last updated on Jul 04, 2018.
 
     </p>
   </div>
@@ -294,7 +228,7 @@ before will be filled with this value.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.0.4',
+            VERSION:'0.0.6',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
