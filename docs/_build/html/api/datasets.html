@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Datasets &mdash; impyute 0.0.4 documentation</title>
+  <title>Datasets &mdash; impyute 0.0.6 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="impyute 0.0.4 documentation" href="../index.html"/>
+    <link rel="top" title="impyute 0.0.6 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="index.html"/>
         <link rel="next" title="Deletions" href="deletions.html"/>
         <link rel="prev" title="API Reference" href="index.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.0.4
+                0.0.6
               </div>
             
           
@@ -181,109 +181,6 @@
             
   <div class="section" id="datasets">
 <h1>Datasets<a class="headerlink" href="#datasets" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="impyute.datasets.mnist">
-<code class="descclassname">impyute.datasets.</code><code class="descname">mnist</code><span class="sig-paren">(</span><em>missingness='mcar'</em>, <em>thr=0.2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/datasets/base.html#mnist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.datasets.mnist" title="Permalink to this definition">¶</a></dt>
-<dd><p>Loads corrupted MNIST</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>missingness: (‘mcar’, ‘mar’, ‘mnar’)</strong></p>
-<blockquote>
-<div><p>Type of missigness you want in your dataset</p>
-</div></blockquote>
-<p><strong>th: float between [0,1]</strong></p>
-<blockquote>
-<div><p>Percentage of missing data in generated data</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">numpy.ndarray</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="impyute.datasets.random_normal">
-<code class="descclassname">impyute.datasets.</code><code class="descname">random_normal</code><span class="sig-paren">(</span><em>theta=(0</em>, <em>1)</em>, <em>shape=(5</em>, <em>5)</em>, <em>missingness='mcar'</em>, <em>thr=0.2</em>, <em>dtype='float'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/datasets/base.html#random_normal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.datasets.random_normal" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return randomly generated dataset of numbers with normally
-distributed values with given and sigma.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>theta: tuple (mu, sigma)</strong></p>
-<blockquote>
-<div><p>Determines the range of values in the matrix</p>
-</div></blockquote>
-<p><strong>shape:tuple(optional)</strong></p>
-<blockquote>
-<div><p>Size of the randomly generated data</p>
-</div></blockquote>
-<p><strong>missingness: (‘mcar’, ‘mar’, ‘mnar’)</strong></p>
-<blockquote>
-<div><p>Type of missigness you want in your dataset</p>
-</div></blockquote>
-<p><strong>th: float between [0,1]</strong></p>
-<blockquote>
-<div><p>Percentage of missing data in generated data</p>
-</div></blockquote>
-<p><strong>dtype: (‘int’,’float’)</strong></p>
-<blockquote>
-<div><p>Type of data</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">numpy.ndarray</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="impyute.datasets.random_uniform">
-<code class="descclassname">impyute.datasets.</code><code class="descname">random_uniform</code><span class="sig-paren">(</span><em>bound=(0</em>, <em>10)</em>, <em>shape=(5</em>, <em>5)</em>, <em>missingness='mcar'</em>, <em>thr=0.2</em>, <em>dtype='int'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/datasets/base.html#random_uniform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.datasets.random_uniform" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return randomly generated dataset of numbers with uniformly
-distributed values between bound[0] and bound[1]</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>bound:tuple (start,stop)</strong></p>
-<blockquote>
-<div><p>Determines the range of values in the matrix. Index 0 for start
-value and index 1 for stop value. Start is inclusive, stop is
-exclusive.</p>
-</div></blockquote>
-<p><strong>shape:tuple(optional)</strong></p>
-<blockquote>
-<div><p>Size of the randomly generated data</p>
-</div></blockquote>
-<p><strong>missingness: (‘mcar’, ‘mar’, ‘mnar’)</strong></p>
-<blockquote>
-<div><p>Type of missigness you want in your dataset</p>
-</div></blockquote>
-<p><strong>th: float between [0,1]</strong></p>
-<blockquote>
-<div><p>Percentage of missing data in generated data</p>
-</div></blockquote>
-<p><strong>dtype: (‘int’,’float’)</strong></p>
-<blockquote>
-<div><p>Type of data</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">numpy.ndarray</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </div>
 
 
@@ -309,7 +206,7 @@ exclusive.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2017, Elton Law.
-      Last updated on Jul 20, 2017.
+      Last updated on Jul 04, 2018.
 
     </p>
   </div>
@@ -331,7 +228,7 @@ exclusive.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.0.4',
+            VERSION:'0.0.6',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

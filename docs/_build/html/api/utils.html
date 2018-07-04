@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Utilities &mdash; impyute 0.0.4 documentation</title>
+  <title>Utilities &mdash; impyute 0.0.6 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="impyute 0.0.4 documentation" href="../index.html"/>
+    <link rel="top" title="impyute 0.0.6 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="index.html"/>
         <link rel="next" title="Cross Sectional Imputation" href="cross_sectional_imputations.html"/>
         <link rel="prev" title="Deletions" href="deletions.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.0.4
+                0.0.6
               </div>
             
           
@@ -181,184 +181,6 @@
             
   <div class="section" id="utilities">
 <h1>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h1>
-<span class="target" id="module-impyute.utils"></span><p>Diagnostic tools to find information about data.</p>
-<dl class="function">
-<dt id="impyute.utils.find_null">
-<code class="descclassname">impyute.utils.</code><code class="descname">find_null</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/utils/find_null.html#find_null"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.utils.find_null" title="Permalink to this definition">¶</a></dt>
-<dd><p>Finds the indices of all missing values.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data: numpy.ndarray</strong></p>
-<blockquote>
-<div><p>Data to impute.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">List of tuples</p>
-<blockquote class="last">
-<div><p>Indices of all missing values in tuple format; (i, j)</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="impyute.utils.print_io">
-<code class="descclassname">impyute.utils.</code><code class="descname">print_io</code><span class="sig-paren">(</span><em>fn</em>, <em>loops=1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/utils/loggers.html#print_io"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.utils.print_io" title="Permalink to this definition">¶</a></dt>
-<dd><p>Prints out input data and output data</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>fn: Function</strong></p>
-<p><strong>loops: # of Loops</strong></p>
-<p><strong>**kwargs: Arguments for random_normal function</strong></p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">n/a</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="impyute.utils.describe">
-<code class="descclassname">impyute.utils.</code><code class="descname">describe</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/utils/describe.html#describe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.utils.describe" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print input/output multiple times</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data: numpy.nd.array</strong></p>
-<blockquote>
-<div><p>The data you want to get a description from</p>
-</div></blockquote>
-<p><strong>verbose: boolean(optional)</strong></p>
-<blockquote>
-<div><p>Decides whether the description is short or long form</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dict</p>
-<blockquote class="last">
-<div><dl class="docutils">
-<dt>missingness: list</dt>
-<dd><p class="first last">Confidence interval of data being MCAR, MAR or MNAR - in that order</p>
-</dd>
-<dt>null_xy: list of tuples</dt>
-<dd><p class="first last">Indices of all null points</p>
-</dd>
-<dt>null_n: list</dt>
-<dd><p class="first last">Total number of null values for each column</p>
-</dd>
-<dt>pmissing_n: float</dt>
-<dd><p class="first last">Percentage of missing values in dataset</p>
-</dd>
-<dt>null_rows: list</dt>
-<dd><p class="first last">Indices of all rows that are completely null</p>
-</dd>
-<dt>null_cols: list</dt>
-<dd><p class="first last">Indices of all columns that are completely null</p>
-</dd>
-<dt>mean_rows: list</dt>
-<dd><p class="first last">Mean value of each row</p>
-</dd>
-<dt>mean_cols: list</dt>
-<dd><p class="first last">Mean value of each column</p>
-</dd>
-<dt>std_dev: list</dt>
-<dd><p class="first last">std dev for each row/column</p>
-</dd>
-<dt>min_max: list</dt>
-<dd><p class="first last">Finds the minimum and maximum for each row</p>
-</dd>
-</dl>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="impyute.utils.count_missing">
-<code class="descclassname">impyute.utils.</code><code class="descname">count_missing</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/utils/count_missing.html#count_missing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.utils.count_missing" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate the total percentage of missing values and also the
-percentage in each column.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data: np.array</strong></p>
-<blockquote>
-<div><p>Data to impute.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dict</p>
-<blockquote class="last">
-<div><p>Percentage of missing values in total and in each column.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="impyute.utils.checks">
-<code class="descclassname">impyute.utils.</code><code class="descname">checks</code><span class="sig-paren">(</span><em>data</em>, <em>allow_3d=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/utils/checks.html#checks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.utils.checks" title="Permalink to this definition">¶</a></dt>
-<dd><p>Main check function to ensure input is correctly formatted</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data: numpy.ndarray</strong></p>
-<blockquote>
-<div><p>Data to impute.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">bool</p>
-<blockquote class="last">
-<div><p>True if <cite>data</cite> is correctly formatted</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="impyute.utils.config">
-<code class="descclassname">impyute.utils.</code><code class="descname">config</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/utils/config.html#config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.utils.config" title="Permalink to this definition">¶</a></dt>
-<dd><p>Hidden Layer Configuraton Object for an Autoencoder</p>
-<p>If a dataset is passed, an architecture is generated.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data: np.ndarray</strong></p>
-<blockquote>
-<div><p>Data to impute.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dict</p>
-<blockquote class="last">
-<div><p>Dictionary of parameters.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </div>
 
 
@@ -384,7 +206,7 @@ percentage in each column.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2017, Elton Law.
-      Last updated on Jul 20, 2017.
+      Last updated on Jul 04, 2018.
 
     </p>
   </div>
@@ -406,7 +228,7 @@ percentage in each column.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.0.4',
+            VERSION:'0.0.6',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
