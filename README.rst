@@ -42,6 +42,7 @@ Feature Support
     * Random Imputation
 * Imputation of Time Series Data
     * Last Observation Carried Forward
+    * Moving Window
     * Autoregressive Integrated Moving Average (WIP)
 * Diagnostic Tools
     * Loggers
