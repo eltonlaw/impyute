@@ -39,10 +39,12 @@ __all__.extend([
 
 from impyute.imputation.ts import locf
 from impyute.imputation.ts import arima
+from impyute.imputation.ts import moving_window
 
 __all__.extend([
+    "arima",
     "locf",
-    "arima"
+    "moving_window"
 ])
 
 ### Deletions
