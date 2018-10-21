@@ -175,9 +175,11 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">impyute.util</span> <span class="k">import</span> <span class="n">find_null</span>
 <span class="kn">from</span> <span class="nn">impyute.util</span> <span class="k">import</span> <span class="n">checks</span>
+<span class="kn">from</span> <span class="nn">impyute.util</span> <span class="k">import</span> <span class="n">preprocess</span>
 
 
-<div class="viewcode-block" id="locf"><a class="viewcode-back" href="../../../../api/time_series_imputation.html#impyute.imputation.ts.locf">[docs]</a><span class="nd">@checks</span>
+<div class="viewcode-block" id="locf"><a class="viewcode-back" href="../../../../api/time_series_imputation.html#impyute.imputation.ts.locf">[docs]</a><span class="nd">@preprocess</span>
+<span class="nd">@checks</span>
 <span class="k">def</span> <span class="nf">locf</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Last Observation Carried Forward</span>
 

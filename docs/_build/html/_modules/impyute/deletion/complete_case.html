@@ -173,8 +173,12 @@
   <h1>Source code for impyute.deletion.complete_case</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot; impyute.deletion.complete_case &quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">impyute.util</span> <span class="k">import</span> <span class="n">checks</span>
+<span class="kn">from</span> <span class="nn">impyute.util</span> <span class="k">import</span> <span class="n">preprocess</span>
 
-<div class="viewcode-block" id="complete_case"><a class="viewcode-back" href="../../../api/deletion.html#impyute.deletion.complete_case">[docs]</a><span class="k">def</span> <span class="nf">complete_case</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<div class="viewcode-block" id="complete_case"><a class="viewcode-back" href="../../../api/deletion.html#impyute.deletion.complete_case">[docs]</a><span class="nd">@preprocess</span>
+<span class="nd">@checks</span>
+<span class="k">def</span> <span class="nf">complete_case</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Return only data rows with all columns</span>
 
 <span class="sd">    Parameters</span>
