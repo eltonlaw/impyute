@@ -23,12 +23,12 @@ def mice(data, **kwargs):
     Also differs in stopping criterion (here the model stops after change in
     prediction from previous prediction is less than 10%).
 
-    PARAMETERS
+    Parameters
     ----------
     data: numpy.ndarray
         Data to impute.
 
-    RETURNS
+    Returns
     -------
     numpy.ndarray
         Imputed data.

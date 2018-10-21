@@ -21,8 +21,8 @@ def fast_knn(data, k=3, eps=0, p=2, distance_upper_bound=np.inf, leafsize=10, **
     This approach is much, much faster than the other implementation (fit+transform
     for each subset) which is almost prohibitively expensive.
 
-    Usage
-    -----
+    Example
+    -------
 
         >>> data = np.arange(25).reshape((5, 5)).astype(np.float)
         >>> data[0][2] =  np.nan
