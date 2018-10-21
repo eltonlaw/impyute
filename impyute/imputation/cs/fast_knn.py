@@ -21,39 +21,6 @@ def fast_knn(data, k=3, eps=0, p=2, distance_upper_bound=np.inf, leafsize=10, **
     This approach is much, much faster than the other implementation (fit+transform
     for each subset) which is almost prohibitively expensive.
 
-    Example
-    -------
-
-        >>> data = np.arange(25).reshape((5, 5)).astype(np.float)
-        >>> data[0][2] =  np.nan
-        >>> data
-        array([[ 0.,  1., nan,  3.,  4.],
-               [ 5.,  6.,  7.,  8.,  9.],
-               [10., 11., 12., 13., 14.],
-               [15., 16., 17., 18., 19.],
-               [20., 21., 22., 23., 24.]])
-        >> fast_knn(data, k=1) # Weighted average (by distance) of nearest 1 neighbour
-        array([[ 0.,  1.,  7.,  3.,  4.],
-               [ 5.,  6.,  7.,  8.,  9.],
-               [10., 11., 12., 13., 14.],
-               [15., 16., 17., 18., 19.],
-               [20., 21., 22., 23., 24.]])
-        >> fast_knn(data, k=2) # Weighted average of nearest 2 neighbours
-        array([[ 0.        ,  1.        , 10.08608891,  3.        ,  4.        ],
-               [ 5.        ,  6.        ,  7.        ,  8.        ,  9.        ],
-               [10.        , 11.        , 12.        , 13.        , 14.        ],
-               [15.        , 16.        , 17.        , 18.        , 19.        ],
-               [20.        , 21.        , 22.        , 23.        , 24.        ]])
-        >> fast_knn(data, k=3)
-        array([[ 0.        ,  1.        , 13.40249283,  3.        ,  4.        ],
-               [ 5.        ,  6.        ,  7.        ,  8.        ,  9.        ],
-               [10.        , 11.        , 12.        , 13.        , 14.        ],
-               [15.        , 16.        , 17.        , 18.        , 19.        ],
-               [20.        , 21.        , 22.        , 23.        , 24.        ]])
-        >> fast_knn(data, k=5) # There are at most only 4 neighbours. Raises error
-        ...
-        IndexError: index 5 is out of bounds for axis 0 with size 5
-
 
     Parameters
     ----------
@@ -99,6 +66,39 @@ def fast_knn(data, k=3, eps=0, p=2, distance_upper_bound=np.inf, leafsize=10, **
     -------
     numpy.ndarray
         Imputed data.
+
+    Examples
+    --------
+
+        >>> data = np.arange(25).reshape((5, 5)).astype(np.float)
+        >>> data[0][2] =  np.nan
+        >>> data
+        array([[ 0.,  1., nan,  3.,  4.],
+               [ 5.,  6.,  7.,  8.,  9.],
+               [10., 11., 12., 13., 14.],
+               [15., 16., 17., 18., 19.],
+               [20., 21., 22., 23., 24.]])
+        >> fast_knn(data, k=1) # Weighted average (by distance) of nearest 1 neighbour
+        array([[ 0.,  1.,  7.,  3.,  4.],
+               [ 5.,  6.,  7.,  8.,  9.],
+               [10., 11., 12., 13., 14.],
+               [15., 16., 17., 18., 19.],
+               [20., 21., 22., 23., 24.]])
+        >> fast_knn(data, k=2) # Weighted average of nearest 2 neighbours
+        array([[ 0.        ,  1.        , 10.08608891,  3.        ,  4.        ],
+               [ 5.        ,  6.        ,  7.        ,  8.        ,  9.        ],
+               [10.        , 11.        , 12.        , 13.        , 14.        ],
+               [15.        , 16.        , 17.        , 18.        , 19.        ],
+               [20.        , 21.        , 22.        , 23.        , 24.        ]])
+        >> fast_knn(data, k=3)
+        array([[ 0.        ,  1.        , 13.40249283,  3.        ,  4.        ],
+               [ 5.        ,  6.        ,  7.        ,  8.        ,  9.        ],
+               [10.        , 11.        , 12.        , 13.        , 14.        ],
+               [15.        , 16.        , 17.        , 18.        , 19.        ],
+               [20.        , 21.        , 22.        , 23.        , 24.        ]])
+        >> fast_knn(data, k=5) # There are at most only 4 neighbours. Raises error
+        ...
+        IndexError: index 5 is out of bounds for axis 0 with size 5
 
     """
     null_xy = find_null(data)

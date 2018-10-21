@@ -1,6 +1,0 @@
-===========
- Deletions 
-===========
-
-.. automodule:: impyute.deletions
-    :members:

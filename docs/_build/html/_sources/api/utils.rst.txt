@@ -1,6 +1,0 @@
-===========
- Utilities
-===========
-
-.. automodule:: impyute.utils
-    :members:

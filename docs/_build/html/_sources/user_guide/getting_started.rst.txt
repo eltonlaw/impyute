@@ -22,14 +22,13 @@ Dependencies
 ------------
 
 - NumPy
-- Pandas
 - SciPy
 - scikit-learn
-- TensorFlow
 
 Versions
 --------
-Currently, this package only works with Python 3.5 and 3.6.
+
+Currently, this package works with 2.7, 3.4, 3.5, 3.6 and 3.7
 
 
 Troubleshooting
