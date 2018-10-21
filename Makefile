@@ -26,6 +26,7 @@ install:
 docs:
 	cd docs && $(MAKE) html
 
+# Remember to call `docker login` first
 push_pybase:
-	docker build -t $(DOCKER_ID_USER)/pybase -f Dockerfile.pybase
+	docker build -t $(DOCKER_ID_USER)/pybase -f Dockerfile.pybase .
 	docker push $(DOCKER_ID_USER)/pybase
