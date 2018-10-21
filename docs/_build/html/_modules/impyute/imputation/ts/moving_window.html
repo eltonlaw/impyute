@@ -1,0 +1,369 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>impyute.imputation.ts.moving_window &mdash; impyute 0.0.7 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="impyute 0.0.7 documentation" href="../../../../index.html"/>
+        <link rel="up" title="Module code" href="../../../index.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> impyute
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user_guide/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user_guide/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user_guide/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user_guide/diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user_guide/rules_of_thumb.html">Rules of Thumb</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/index.html">API</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/eltonlaw/impyute">GitHub Repo</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing/philosophy.html">Philosophy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing/current_goals.html">Current Goals</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../references/index.html">Papers Master List</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">impyute</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>impyute.imputation.ts.moving_window</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for impyute.imputation.ts.moving_window</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot; impyute.imputation.ts.moving_window &quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">impyute.util</span> <span class="k">import</span> <span class="n">find_null</span>
+<span class="kn">from</span> <span class="nn">impyute.util</span> <span class="k">import</span> <span class="n">checks</span>
+<span class="kn">from</span> <span class="nn">impyute.util</span> <span class="k">import</span> <span class="n">preprocess</span>
+<span class="c1"># pylint: disable=invalid-name</span>
+<span class="c1"># pylint:disable=unused-argument</span>
+
+<div class="viewcode-block" id="moving_window"><a class="viewcode-back" href="../../../../api/time_series_imputation.html#impyute.imputation.ts.moving_window">[docs]</a><span class="nd">@preprocess</span>
+<span class="nd">@checks</span>
+<span class="k">def</span> <span class="nf">moving_window</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">nindex</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;coerce&quot;</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span>
+        <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Interpolate the missing values based on nearby values.</span>
+
+<span class="sd">    For example, with an array like this:</span>
+
+<span class="sd">        array([[-1.24940, -1.38673, -0.03214945,  0.08255145, -0.007415],</span>
+<span class="sd">               [ 2.14662,  0.32758 , -0.82601414,  1.78124027,  0.873998],</span>
+<span class="sd">               [-0.41400, -0.977629,         nan, -1.39255344,  1.680435],</span>
+<span class="sd">               [ 0.40975,  1.067599,  0.29152388, -1.70160145, -0.565226],</span>
+<span class="sd">               [-0.54592, -1.126187,  2.04004377,  0.16664863, -0.010677]])</span>
+
+<span class="sd">    Using a `k` or window size of 3. The one missing value would be set</span>
+<span class="sd">    to -1.18509122. The window operates on the horizontal axis.</span>
+
+<span class="sd">    Usage</span>
+<span class="sd">    -----</span>
+
+<span class="sd">    The parameters default the function to a moving mean. You may want to change</span>
+<span class="sd">    the default window size:</span>
+<span class="sd">        </span>
+<span class="sd">        moving_window(data, wsize=10)</span>
+
+<span class="sd">    To only look at past data (null value is at the rightmost index in the window):</span>
+
+<span class="sd">        moving_window(data, nindex=-1)</span>
+
+<span class="sd">    To use a custom function:</span>
+<span class="sd">    </span>
+<span class="sd">        moving_window(data, func=np.median)</span>
+
+<span class="sd">    You can also do something like take 1.5x the max of previous values in the window:</span>
+
+<span class="sd">        moving_window(data, func=lambda arr: max(arr) * 1.50, nindex=-1)</span>
+<span class="sd">    </span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data: numpy.ndarray</span>
+<span class="sd">        2D matrix to impute.</span>
+<span class="sd">    nindex: int</span>
+<span class="sd">        Null index. Index of the null value inside the moving average window.</span>
+<span class="sd">        Use cases: Say you wanted to make value skewed toward the left or right</span>
+<span class="sd">        side. 0 would only take the average of values from the right and -1</span>
+<span class="sd">        would only take the average of values from the left</span>
+<span class="sd">    wsize: int</span>
+<span class="sd">        Window size. Size of the moving average window/area of values being used</span>
+<span class="sd">        for each local imputation. This number includes the missing value.</span>
+<span class="sd">    errors: {&quot;raise&quot;, &quot;coerce&quot;, &quot;ignore&quot;}</span>
+<span class="sd">        Errors will occur with the indexing of the windows - for example if there</span>
+<span class="sd">        is a nan at data[x][0] and `nindex` is set to -1 or there is a nan at</span>
+<span class="sd">        data[x][-1] and `nindex` is set to 0. `&quot;raise&quot;` will raise an error,</span>
+<span class="sd">        `&quot;coerce&quot;` will try again using an nindex set to the middle and `&quot;ignore&quot;`</span>
+<span class="sd">        will just leave it as a nan.</span>
+<span class="sd">    inplace: {True, False}</span>
+<span class="sd">        Whether to return a copy or run on the passed-in array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    numpy.ndarray</span>
+<span class="sd">        Imputed data.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">errors</span> <span class="o">==</span> <span class="s2">&quot;ignore&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;`errors` value `ignore` not implemented yet. Sorry!&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">inplace</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="n">wsize</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">nindex</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">nindex</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="c1"># If using equal window side lengths</span>
+        <span class="k">assert</span> <span class="n">wsize</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;The parameter `wsize` should not be even &quot;</span>\
+        <span class="s2">&quot;if the value `nindex` is not set since it defaults to the midpoint &quot;</span>\
+        <span class="s2">&quot;and an even `wsize` makes the midpoint ambiguous&quot;</span>
+        <span class="n">wside_left</span> <span class="o">=</span> <span class="n">wsize</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">wside_right</span> <span class="o">=</span> <span class="n">wsize</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="k">else</span><span class="p">:</span> <span class="c1"># If using custom window side lengths</span>
+        <span class="k">assert</span> <span class="n">nindex</span> <span class="o">&lt;</span> <span class="n">wsize</span><span class="p">,</span> <span class="s2">&quot;The null index must be smaller than the window size&quot;</span>
+        <span class="k">if</span> <span class="n">nindex</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">wside_left</span> <span class="o">=</span> <span class="n">wsize</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="n">wside_right</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">wside_left</span> <span class="o">=</span> <span class="n">nindex</span>
+            <span class="n">wside_right</span> <span class="o">=</span> <span class="n">wsize</span> <span class="o">-</span> <span class="n">nindex</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">null_xy</span> <span class="o">=</span> <span class="n">find_null</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">n_null_prev</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">null_xy</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span> <span class="ow">in</span> <span class="n">null_xy</span><span class="p">:</span>
+            <span class="n">left_i</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y_i</span><span class="o">-</span><span class="n">wside_left</span><span class="p">)</span>
+            <span class="n">right_i</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">wsize</span><span class="p">,</span> <span class="n">y_i</span><span class="o">+</span><span class="n">wside_right</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">window</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">x_i</span><span class="p">,</span> <span class="n">left_i</span><span class="p">:</span> <span class="n">right_i</span><span class="p">]</span>
+            <span class="n">window_not_null</span> <span class="o">=</span> <span class="n">window</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">window</span><span class="p">)]</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">window_not_null</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">data</span><span class="p">[</span><span class="n">x_i</span><span class="p">][</span><span class="n">y_i</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">window_not_null</span><span class="p">)</span>
+                    <span class="k">continue</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">errors</span> <span class="o">==</span> <span class="s2">&quot;raise&quot;</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="n">e</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">pass</span>
+
+            <span class="c1"># Aggregate function didn&#39;t work for some reason</span>
+            <span class="k">if</span> <span class="n">errors</span> <span class="o">==</span> <span class="s2">&quot;coerce&quot;</span><span class="p">:</span>
+                <span class="n">wside_left</span> <span class="o">=</span> <span class="n">wsize</span> <span class="o">//</span> <span class="mi">2</span>
+                <span class="n">wside_right</span> <span class="o">=</span> <span class="n">wsize_left</span>
+                <span class="n">window</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span><span class="o">-</span><span class="n">wside_leftk</span><span class="p">:</span> <span class="n">y_i</span> <span class="o">+</span> <span class="n">wside_right</span><span class="p">]</span>
+                <span class="n">window_not_null</span> <span class="o">=</span> <span class="n">window</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">window</span><span class="p">)]</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">data</span><span class="p">[</span><span class="n">x_i</span><span class="p">][</span><span class="n">y_i</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">window_not_null</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="k">pass</span>
+        <span class="k">if</span> <span class="n">n_null_prev</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">find_null</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="n">data</span></div>
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Elton Law.
+      Last updated on Oct 21, 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'0.0.7',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

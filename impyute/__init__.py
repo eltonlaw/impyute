@@ -4,16 +4,16 @@ Library of missing data imputations
 # pylint: disable=wrong-import-position
 
 __title__ = 'impyute'
-__version__ = '0.0.6'
+__version__ = '0.0.7'
 __build__ = 0x021300
 __author__ = 'Elton Law'
-__license__ = 'GPL-3.0'
-__copyright__ = 'Copyright 2017 Elton law'
+__license__ = 'MIT'
+__copyright__ = 'Copyright 2018 Elton law'
 
 
 ### Top Level Modules
 
-__all__ = ["dataset", "util", "deletion", "filter"]
+__all__ = ["dataset", "util", "deletion"]
 
 ### Cross Sectional Imputations
 
@@ -38,11 +38,9 @@ __all__.extend([
 ### Time Series Imputations
 
 from impyute.imputation.ts import locf
-from impyute.imputation.ts import arima
 from impyute.imputation.ts import moving_window
 
 __all__.extend([
-    "arima",
     "locf",
     "moving_window"
 ])

@@ -33,25 +33,27 @@ Feature Support
 ---------------
 
 * Imputation of Cross Sectional Data
+    * K-Nearest Neighbours
     * Multivariate Imputation by Chained Equations
     * Expectation Maximization
     * Mean Imputation
     * Mode Imputation
     * Median Imputation
     * Random Imputation
-    * Multiple Imputation (WIP)
-    * Imputation Using Denoising Stacked Autoencoders (WIP)
 * Imputation of Time Series Data
-    * Autoregressive Integrated Moving Average (WIP)
-    * Expectation Maximization with the Kalman Filter (WIP)
     * Last Observation Carried Forward
-* Raw and Complete Dataset Generation
-* Tools
+    * Moving Window
+    * Autoregressive Integrated Moving Average (WIP)
+* Diagnostic Tools
     * Loggers
-    * Dataset Properties
-        * MCAR Test (WIP)
-        * Count % of Missing Values
-        * Location of Missing Values
+    * Distribution of Null Values
+    * Comparison of imputations
+    * Little's MCAR Test (WIP)
+
+Versions
+--------
+
+Currently tested on 2.7, 3.4, 3.5, 3.6 and 3.7
 
 Installation
 ------------
@@ -69,6 +71,11 @@ Or to get the most latest build:
     $ git clone https://github.com/eltonlaw/impyute
     $ cd impyute
     $ python setup.py install
+
+Documentation
+-------------
+
+Documentation is available here: http://impyute.readthedocs.io/
 
 
 How to Contribute

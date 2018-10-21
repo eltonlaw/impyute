@@ -2,5 +2,5 @@
  Cross Sectional Imputation
 ============================
 
-.. automodule:: impyute.imputations.cs
+.. automodule:: impyute.imputation.cs
     :members:

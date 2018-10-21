@@ -15,6 +15,7 @@ test: build
 	docker run impyute python3.6 -m pytest
 	docker run impyute python3.7 -m pytest
 
+# Need to pip install `wheel` and `twine`
 upload: build test docs
 	python3 setup.py bdist_wheel --universal
 	python3 setup.py sdist

@@ -1,0 +1,506 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Cross Sectional Imputation &mdash; impyute 0.0.7 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="impyute 0.0.7 documentation" href="../index.html"/>
+        <link rel="up" title="API Reference" href="index.html"/>
+        <link rel="next" title="Time Series Imputation" href="time_series_imputation.html"/>
+        <link rel="prev" title="Utility" href="util.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> impyute
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/rules_of_thumb.html">Rules of Thumb</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dataset.html">Dataset Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deletion.html">Deletions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="util.html">Utils</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Cross Sectional Imputation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time_series_imputation.html">Time Series Imputation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/eltonlaw/impyute">GitHub Repo</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/philosophy.html">Philosophy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/current_goals.html">Current Goals</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../references/index.html">Papers Master List</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">impyute</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">API Reference</a> &raquo;</li>
+        
+      <li>Cross Sectional Imputation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-impyute.imputation.cs">
+<span id="cross-sectional-imputation"></span><h1>Cross Sectional Imputation<a class="headerlink" href="#module-impyute.imputation.cs" title="Permalink to this headline">¶</a></h1>
+<p>Imputations for cross-sectional data.</p>
+<dl class="function">
+<dt id="impyute.imputation.cs.random">
+<code class="descclassname">impyute.imputation.cs.</code><code class="descname">random</code><span class="sig-paren">(</span><em>data</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/imputation/cs/random.html#random"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.imputation.cs.random" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill missing values in with a randomly selected value from the same
+column.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>data: numpy.ndarray</strong></dt>
+<dd><p class="first last">Data to impute.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>numpy.ndarray</strong></dt>
+<dd><p class="first last">Imputed data.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="impyute.imputation.cs.mean">
+<code class="descclassname">impyute.imputation.cs.</code><code class="descname">mean</code><span class="sig-paren">(</span><em>data</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/imputation/cs/central_tendency.html#mean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.imputation.cs.mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Substitute missing values with the mean of that column.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>data: numpy.ndarray</strong></dt>
+<dd><p class="first last">Data to impute.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>numpy.ndarray</strong></dt>
+<dd><p class="first last">Imputed data.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="impyute.imputation.cs.mode">
+<code class="descclassname">impyute.imputation.cs.</code><code class="descname">mode</code><span class="sig-paren">(</span><em>data</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/imputation/cs/central_tendency.html#mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.imputation.cs.mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Substitute missing values with the mode of that column(most frequent).</p>
+<p>In the case that there is a tie (there are multiple, most frequent values)
+for a column randomly pick one of them.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>data: numpy.ndarray</strong></dt>
+<dd><p class="first last">Data to impute.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>numpy.ndarray</strong></dt>
+<dd><p class="first last">Imputed data.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="impyute.imputation.cs.median">
+<code class="descclassname">impyute.imputation.cs.</code><code class="descname">median</code><span class="sig-paren">(</span><em>data</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/imputation/cs/central_tendency.html#median"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.imputation.cs.median" title="Permalink to this definition">¶</a></dt>
+<dd><p>Substitute missing values with the median of that column(middle).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>data: numpy.ndarray</strong></dt>
+<dd><p class="first last">Data to impute.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>numpy.ndarray</strong></dt>
+<dd><p class="first last">Imputed data.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="impyute.imputation.cs.mice">
+<code class="descclassname">impyute.imputation.cs.</code><code class="descname">mice</code><span class="sig-paren">(</span><em>data</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/imputation/cs/mice.html#mice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.imputation.cs.mice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multivariate Imputation by Chained Equations</p>
+<dl class="docutils">
+<dt>Reference:</dt>
+<dd>Buuren, S. V., &amp; Groothuis-Oudshoorn, K. (2011). Mice: Multivariate
+Imputation by Chained Equations in R. Journal of Statistical Software,
+45(3). doi:10.18637/jss.v045.i03</dd>
+</dl>
+<p>Implementation follows the main idea from the paper above. Differs in
+decision of which variable to regress on (here, I choose it at random).
+Also differs in stopping criterion (here the model stops after change in
+prediction from previous prediction is less than 10%).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>data: numpy.ndarray</strong></dt>
+<dd><p class="first last">Data to impute.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>numpy.ndarray</strong></dt>
+<dd><p class="first last">Imputed data.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="impyute.imputation.cs.em">
+<code class="descclassname">impyute.imputation.cs.</code><code class="descname">em</code><span class="sig-paren">(</span><em>data</em>, <em>loops=50</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/imputation/cs/em.html#em"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.imputation.cs.em" title="Permalink to this definition">¶</a></dt>
+<dd><p>Imputes given data using expectation maximization.</p>
+<p>E-step: Calculates the expected complete data log likelihood ratio.
+M-step: Finds the parameters that maximize the log likelihood of the
+complete data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>data: numpy.nd.array</strong></dt>
+<dd><p class="first last">Data to impute.</p>
+</dd>
+<dt><strong>loops: int</strong></dt>
+<dd><p class="first last">Number of em iterations to run before breaking.</p>
+</dd>
+<dt><strong>inplace: boolean</strong></dt>
+<dd><p class="first last">If True, operate on the numpy array reference</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>numpy.nd.array</strong></dt>
+<dd><p class="first last">Imputed data.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="impyute.imputation.cs.fast_knn">
+<code class="descclassname">impyute.imputation.cs.</code><code class="descname">fast_knn</code><span class="sig-paren">(</span><em>data</em>, <em>k=3</em>, <em>eps=0</em>, <em>p=2</em>, <em>distance_upper_bound=inf</em>, <em>leafsize=10</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/imputation/cs/fast_knn.html#fast_knn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.imputation.cs.fast_knn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Impute using a variant of the nearest neighbours approach</p>
+<p>Basic idea: Impute array with a basic mean impute and then use the resulting complete
+array to construct a KDTree. Use this KDTree to compute nearest neighbours.
+After finding <cite>k</cite> nearest neighbours, take the weighted average of them. Basically,
+find the nearest row in terms of distance</p>
+<p>This approach is much, much faster than the other implementation (fit+transform
+for each subset) which is almost prohibitively expensive.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>data: numpy.ndarray</strong></dt>
+<dd><p class="first last">2D matrix to impute.</p>
+</dd>
+<dt><strong>k: int, optional</strong></dt>
+<dd><p class="first last">Parameter used for method querying the KDTree class object. Number of
+neighbours used in the KNN query. Refer to the docs for
+[<cite>scipy.spatial.KDTree.query</cite>](<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.query.html">https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.query.html</a>).</p>
+</dd>
+<dt><strong>eps: nonnegative float, optional</strong></dt>
+<dd><p class="first last">Parameter used for method querying the KDTree class object. From the
+SciPy docs: “Return approximate nearest neighbors; the kth returned
+value is guaranteed to be no further than (1+eps) times the distance to
+the real kth nearest neighbor”. Refer to the docs for
+[<cite>scipy.spatial.KDTree.query</cite>](<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.query.html">https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.query.html</a>).</p>
+</dd>
+<dt><strong>p</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float, 1&lt;=p&lt;=infinity, optional</span></dt>
+<dd><p class="first last">Parameter used for method querying the KDTree class object. Straight from the
+SciPy docs: “Which Minkowski p-norm to use. 1 is the
+sum-of-absolute-values Manhattan distance 2 is the usual Euclidean
+distance infinity is the maximum-coordinate-difference distance”. Refer to
+the docs for
+[<cite>scipy.spatial.KDTree.query</cite>](<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.query.html">https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.query.html</a>).</p>
+</dd>
+<dt><strong>distance_upper_bound</strong> <span class="classifier-delimiter">:</span> <span class="classifier">nonnegative float, optional</span></dt>
+<dd><p class="first last">Parameter used for method querying the KDTree class object. Straight
+from the SciPy docs: “Return only neighbors within this distance. This
+is used to prune tree searches, so if you are doing a series of
+nearest-neighbor queries, it may help to supply the distance to the
+nearest neighbor of the most recent point.” Refer to the docs for
+[<cite>scipy.spatial.KDTree.query</cite>](<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.query.html">https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.query.html</a>).</p>
+</dd>
+<dt><strong>leafsize: int, optional</strong></dt>
+<dd><p class="first last">Parameter used for construction of the <cite>KDTree</cite> class object. Straight from
+the SciPy docs: “The number of points at which the algorithm switches
+over to brute-force. Has to be positive”. Refer to the docs for
+[<cite>scipy.spatial.KDTree</cite>](<a class="reference external" href="https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.spatial.KDTree.html">https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.spatial.KDTree.html</a>)
+for more information.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>numpy.ndarray</strong></dt>
+<dd><p class="first last">Imputed data.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="time_series_imputation.html" class="btn btn-neutral float-right" title="Time Series Imputation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="util.html" class="btn btn-neutral" title="Utility" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Elton Law.
+      Last updated on Oct 21, 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0.7',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

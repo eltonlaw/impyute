@@ -1,0 +1,472 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Utility &mdash; impyute 0.0.7 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="impyute 0.0.7 documentation" href="../index.html"/>
+        <link rel="up" title="API Reference" href="index.html"/>
+        <link rel="next" title="Cross Sectional Imputation" href="cross_sectional_imputation.html"/>
+        <link rel="prev" title="Deletion" href="deletion.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> impyute
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/rules_of_thumb.html">Rules of Thumb</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dataset.html">Dataset Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deletion.html">Deletions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cross_sectional_imputation.html">Cross Sectional Imputation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time_series_imputation.html">Time Series Imputation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/eltonlaw/impyute">GitHub Repo</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/philosophy.html">Philosophy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/current_goals.html">Current Goals</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../references/index.html">Papers Master List</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">impyute</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">API Reference</a> &raquo;</li>
+        
+      <li>Utility</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-impyute.util">
+<span id="utility"></span><h1>Utility<a class="headerlink" href="#module-impyute.util" title="Permalink to this headline">¶</a></h1>
+<p>Diagnostic tools to find information about data.</p>
+<dl class="function">
+<dt id="impyute.util.find_null">
+<code class="descclassname">impyute.util.</code><code class="descname">find_null</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/util/find_null.html#find_null"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.util.find_null" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the indices of all missing values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>data: numpy.ndarray</strong></dt>
+<dd><p class="first last">Data to impute.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>List of tuples</strong></dt>
+<dd><p class="first last">Indices of all missing values in tuple format; (i, j)</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="impyute.util.describe">
+<code class="descclassname">impyute.util.</code><code class="descname">describe</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/util/describe.html#describe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.util.describe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print input/output multiple times</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>data: numpy.nd.array</strong></dt>
+<dd><p class="first last">The data you want to get a description from</p>
+</dd>
+<dt><strong>verbose: boolean(optional)</strong></dt>
+<dd><p class="first last">Decides whether the description is short or long form</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>dict</strong></dt>
+<dd><dl class="first last docutils">
+<dt>missingness: list</dt>
+<dd><p class="first last">Confidence interval of data being MCAR, MAR or MNAR - in that order</p>
+</dd>
+<dt>null_xy: list of tuples</dt>
+<dd><p class="first last">Indices of all null points</p>
+</dd>
+<dt>null_n: list</dt>
+<dd><p class="first last">Total number of null values for each column</p>
+</dd>
+<dt>pmissing_n: float</dt>
+<dd><p class="first last">Percentage of missing values in dataset</p>
+</dd>
+<dt>null_rows: list</dt>
+<dd><p class="first last">Indices of all rows that are completely null</p>
+</dd>
+<dt>null_cols: list</dt>
+<dd><p class="first last">Indices of all columns that are completely null</p>
+</dd>
+<dt>mean_rows: list</dt>
+<dd><p class="first last">Mean value of each row</p>
+</dd>
+<dt>mean_cols: list</dt>
+<dd><p class="first last">Mean value of each column</p>
+</dd>
+<dt>std_dev: list</dt>
+<dd><p class="first last">std dev for each row/column</p>
+</dd>
+<dt>min_max: list</dt>
+<dd><p class="first last">Finds the minimum and maximum for each row</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="impyute.util.count_missing">
+<code class="descclassname">impyute.util.</code><code class="descname">count_missing</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/util/count_missing.html#count_missing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.util.count_missing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the total percentage of missing values and also the
+percentage in each column.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>data: np.array</strong></dt>
+<dd><p class="first last">Data to impute.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>dict</strong></dt>
+<dd><p class="first last">Percentage of missing values in total and in each column.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="impyute.util.checks">
+<code class="descclassname">impyute.util.</code><code class="descname">checks</code><span class="sig-paren">(</span><em>fn</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/util/checks.html#checks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.util.checks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main check function to ensure input is correctly formatted</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>data: numpy.ndarray</strong></dt>
+<dd><p class="first last">Data to impute.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>bool</strong></dt>
+<dd><p class="first last">True if <cite>data</cite> is correctly formatted</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="impyute.util.compare">
+<code class="descclassname">impyute.util.</code><code class="descname">compare</code><span class="sig-paren">(</span><em>imputed, classifiers=['sklearn.svm.SVC'], log_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/util/compare.html#compare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.util.compare" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an imputed dataset with labels and a list of supervised machine
+learning model, find accuracy score of all model/imputation pairs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>imputed: [(str, np.ndarray), (str, np.ndarray)…]</strong></dt>
+<dd><p class="first last">List of tuples containing (imputation_name, imputed_data) where
+<cite>imputation_name</cite> is a string and <cite>imputed_data</cite> is a tuple where
+<a href="#id1"><span class="problematic" id="id2">`</span></a>imputed_data`[0] is the data, X and <a href="#id3"><span class="problematic" id="id4">`</span></a>imputed_data`[1] is the label, y</p>
+</dd>
+<dt><strong>classifiers: [str, str…str] (optional)</strong></dt>
+<dd><p class="first last">Provide a list of classifiers to run imputed data sets on. Right now,
+it ONLY works with sklearn, the format should be like so:
+<cite>sklearn.SUBMODULE.FUNCTION</cite>. More generally its
+‘MODULE.SUBMODULE.FUNCTION’. If providing a custom classifier, make
+sure to add the file location to sys.path first and the classifier
+should also be structured like sklearn (with a <cite>fit</cite> and <cite>predict</cite>
+method).</p>
+</dd>
+<dt><strong>log_path: str (optional)</strong></dt>
+<dd><p class="first last">To write results to a file, provide a relative path</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>results.txt</strong></dt>
+<dd><p class="first last">Classification results on imputed data</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="exception">
+<dt id="impyute.util.BadInputError">
+<em class="property">exception </em><code class="descclassname">impyute.util.</code><code class="descname">BadInputError</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/util/errors.html#BadInputError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.util.BadInputError" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="impyute.util.preprocess">
+<code class="descclassname">impyute.util.</code><code class="descname">preprocess</code><span class="sig-paren">(</span><em>fn</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/util/preprocess.html#preprocess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.util.preprocess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base preprocess function for commonly used preprocessing</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>data: numpy.ndarray</strong></dt>
+<dd><p class="first last">Data to impute.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>bool</strong></dt>
+<dd><p class="first last">True if <cite>data</cite> is correctly formatted</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cross_sectional_imputation.html" class="btn btn-neutral float-right" title="Cross Sectional Imputation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="deletion.html" class="btn btn-neutral" title="Deletion" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Elton Law.
+      Last updated on Oct 21, 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0.7',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

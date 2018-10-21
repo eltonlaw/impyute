@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Impyute &mdash; impyute 0.0.6 documentation</title>
+  <title>Impyute &mdash; impyute 0.0.7 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="impyute 0.0.6 documentation" href="#"/>
+    <link rel="top" title="impyute 0.0.7 documentation" href="#"/>
         <link rel="next" title="Overview" href="user_guide/overview.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.0.6
+                0.0.7
               </div>
             
           
@@ -197,14 +197,13 @@
 <li><dl class="first docutils">
 <dt>Imputation of Cross Sectional Data</dt>
 <dd><ul class="first last">
+<li>K-Nearest Neighbours</li>
 <li>Multivariate Imputation by Chained Equations</li>
 <li>Expectation Maximization</li>
 <li>Mean Imputation</li>
 <li>Mode Imputation</li>
 <li>Median Imputation</li>
 <li>Random Imputation</li>
-<li>Multiple Imputation (WIP)</li>
-<li>Imputation Using Denoising Stacked Autoencoders (WIP)</li>
 </ul>
 </dd>
 </dl>
@@ -212,33 +211,29 @@
 <li><dl class="first docutils">
 <dt>Imputation of Time Series Data</dt>
 <dd><ul class="first last">
-<li>Autoregressive Integrated Moving Average (WIP)</li>
-<li>Expectation Maximization with the Kalman Filter (WIP)</li>
 <li>Last Observation Carried Forward</li>
+<li>Moving Window</li>
+<li>Autoregressive Integrated Moving Average (WIP)</li>
 </ul>
 </dd>
 </dl>
 </li>
-<li>Raw and Complete Dataset Generation</li>
 <li><dl class="first docutils">
-<dt>Tools</dt>
+<dt>Diagnostic Tools</dt>
 <dd><ul class="first last">
 <li>Loggers</li>
-<li><dl class="first docutils">
-<dt>Dataset Properties</dt>
-<dd><ul class="first last">
-<li>MCAR Test (WIP)</li>
-<li>Count % of Missing Values</li>
-<li>Location of Missing Values</li>
+<li>Distribution of Null Values</li>
+<li>Comparison of imputations</li>
+<li>Little’s MCAR Test (WIP)</li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
-</dd>
-</dl>
-</li>
-</ul>
+</div>
+<div class="section" id="versions">
+<h2>Versions<a class="headerlink" href="#versions" title="Permalink to this headline">¶</a></h2>
+<p>Currently tested on 2.7, 3.4, 3.5, 3.6 and 3.7</p>
 </div>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
@@ -252,6 +247,10 @@ $ <span class="nb">cd</span> impyute
 $ python setup.py install
 </pre></div>
 </div>
+</div>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>Documentation is available here: <a class="reference external" href="http://impyute.readthedocs.io/">http://impyute.readthedocs.io/</a></p>
 </div>
 <div class="section" id="how-to-contribute">
 <h2>How to Contribute<a class="headerlink" href="#how-to-contribute" title="Permalink to this headline">¶</a></h2>
@@ -295,11 +294,11 @@ $ python setup.py install
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/index.html">API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/datasets.html">Dataset Generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/deletions.html">Deletions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/utils.html">Utils</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/cross_sectional_imputations.html">Cross Sectional Imputation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/time_series_imputations.html">Time Series Imputation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/dataset.html">Dataset Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/deletion.html">Deletions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/util.html">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/cross_sectional_imputation.html">Cross Sectional Imputation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/time_series_imputation.html">Time Series Imputation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/eltonlaw/impyute">GitHub Repo</a></li>
@@ -368,7 +367,7 @@ $ python setup.py install
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.0.6',
+            VERSION:'0.0.7',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

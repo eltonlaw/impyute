@@ -1,0 +1,354 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Time Series Imputation &mdash; impyute 0.0.7 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="impyute 0.0.7 documentation" href="../index.html"/>
+        <link rel="up" title="API Reference" href="index.html"/>
+        <link rel="next" title="Contributing" href="../contributing/index.html"/>
+        <link rel="prev" title="Cross Sectional Imputation" href="cross_sectional_imputation.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> impyute
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/diagnostics.html">Diagnostics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/rules_of_thumb.html">Rules of Thumb</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dataset.html">Dataset Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deletion.html">Deletions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="util.html">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cross_sectional_imputation.html">Cross Sectional Imputation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Time Series Imputation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/eltonlaw/impyute">GitHub Repo</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/philosophy.html">Philosophy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/current_goals.html">Current Goals</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../references/index.html">Papers Master List</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">impyute</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">API Reference</a> &raquo;</li>
+        
+      <li>Time Series Imputation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-impyute.imputation.ts">
+<span id="time-series-imputation"></span><h1>Time Series Imputation<a class="headerlink" href="#module-impyute.imputation.ts" title="Permalink to this headline">¶</a></h1>
+<p>Imputations for time-series data.</p>
+<dl class="function">
+<dt id="impyute.imputation.ts.locf">
+<code class="descclassname">impyute.imputation.ts.</code><code class="descname">locf</code><span class="sig-paren">(</span><em>data</em>, <em>axis=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/imputation/ts/locf.html#locf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.imputation.ts.locf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Last Observation Carried Forward</p>
+<p>For each set of missing indices, use the value of one row before(same
+column). In the case that the missing value is the first row, look one
+row ahead instead. If this next row is also NaN, look to the next row.
+Repeat until you find a row in this column that’s not NaN. All the rows
+before will be filled with this value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>data: numpy.ndarray</strong></dt>
+<dd><p class="first last">Data to impute.</p>
+</dd>
+<dt><strong>axis: boolean (optional)</strong></dt>
+<dd><p class="first last">0 if time series is in row format (Ex. data[0][:] is 1st data point).
+1 if time series is in col format (Ex. data[:][0] is 1st data point).</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>numpy.ndarray</strong></dt>
+<dd><p class="first last">Imputed data.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="impyute.imputation.ts.moving_window">
+<code class="descclassname">impyute.imputation.ts.</code><code class="descname">moving_window</code><span class="sig-paren">(</span><em>data</em>, <em>nindex=None</em>, <em>wsize=5</em>, <em>errors='coerce'</em>, <em>func=&lt;function mean&gt;</em>, <em>inplace=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/impyute/imputation/ts/moving_window.html#moving_window"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#impyute.imputation.ts.moving_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interpolate the missing values based on nearby values.</p>
+<p>For example, with an array like this:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>array([[-1.24940, -1.38673, -0.03214945,  0.08255145, -0.007415],</dt>
+<dd>[ 2.14662,  0.32758 , -0.82601414,  1.78124027,  0.873998],
+[-0.41400, -0.977629,         nan, -1.39255344,  1.680435],
+[ 0.40975,  1.067599,  0.29152388, -1.70160145, -0.565226],
+[-0.54592, -1.126187,  2.04004377,  0.16664863, -0.010677]])</dd>
+</dl>
+</div></blockquote>
+<p>Using a <cite>k</cite> or window size of 3. The one missing value would be set
+to -1.18509122. The window operates on the horizontal axis.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>data: numpy.ndarray</strong></dt>
+<dd><p class="first last">2D matrix to impute.</p>
+</dd>
+<dt><strong>nindex: int</strong></dt>
+<dd><p class="first last">Null index. Index of the null value inside the moving average window.
+Use cases: Say you wanted to make value skewed toward the left or right
+side. 0 would only take the average of values from the right and -1
+would only take the average of values from the left</p>
+</dd>
+<dt><strong>wsize: int</strong></dt>
+<dd><p class="first last">Window size. Size of the moving average window/area of values being used
+for each local imputation. This number includes the missing value.</p>
+</dd>
+<dt><strong>errors: {“raise”, “coerce”, “ignore”}</strong></dt>
+<dd><p class="first last">Errors will occur with the indexing of the windows - for example if there
+is a nan at data[x][0] and <cite>nindex</cite> is set to -1 or there is a nan at
+data[x][-1] and <cite>nindex</cite> is set to 0. <cite>“raise”</cite> will raise an error,
+<cite>“coerce”</cite> will try again using an nindex set to the middle and <cite>“ignore”</cite>
+will just leave it as a nan.</p>
+</dd>
+<dt><strong>inplace: {True, False}</strong></dt>
+<dd><p class="first last">Whether to return a copy or run on the passed-in array</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>numpy.ndarray</strong></dt>
+<dd><p class="first last">Imputed data.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../contributing/index.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="cross_sectional_imputation.html" class="btn btn-neutral" title="Cross Sectional Imputation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Elton Law.
+      Last updated on Oct 21, 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0.7',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
