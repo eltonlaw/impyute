@@ -114,4 +114,3 @@ References
 .. toctree::
 
     Papers Master List <references/index>
-
