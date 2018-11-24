@@ -19,9 +19,10 @@ Use [.pylintrc](https://github.com/eltonlaw/impyute/blob/master/.pylintrc) to li
 
     $ pylint --rcfile=.pylintrc impyute/
 
-Put unit tests in the `test` directory in root. The testing environment works like this: 1) Build a docker image with multiple python versions 2) Run the container with pytest for each python version.
+To run unit tests you will need [Docker](https://docs.docker.com/install/). The unit testing framework used is the built-in one, [`unittest`](https://docs.python.org/3.6/library/unittest.html). Put unit tests in the `test` directory in root. The testing environment works like this: 1) Build a docker image with multiple python versions 2) Run the container with pytest for each python version.
 
     $ make test
+
 
 ### Suggesting Enhancements
 
