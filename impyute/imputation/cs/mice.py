@@ -56,7 +56,7 @@ def mice(data, **kwargs):
     # Step 5: Repeat step 2 - 4 until convergence (the 100 is arbitrary)
 
     converged = [False] * len(null_xyv)
-    while all(converged):
+    while not all(converged):
         # Step 2: Placeholders are set back to missing for one variable/column
         dependent_col = int(np.random.choice(list(cols_missing)))
         missing_xs = [int(x) for x, y, value in null_xyv if y == dependent_col]
@@ -71,16 +71,21 @@ def mice(data, **kwargs):
 
         # Step 4: Missing values for the missing variable/column are replaced
         # with predictions from our new linear regression model
-        temp = []
         # For null indices with the dependent column that was randomly chosen
-        for i, x_i, y_i, value in enumerate(null_xyv):
+        for i, z in enumerate(null_xyv):
+            x_i = z[0]
+            y_i = z[1]
+            value = data[x_i, y_i]
             if y_i == dependent_col:
                 # Row 'x' without the nan value
-                new_value = model.predict(np.delete(data[x_i], dependent_col))
+                new_value = model.predict([np.delete(data[x_i], dependent_col)])
                 data[x_i][y_i] = new_value.reshape(1, -1)
-                temp.append([x_i, y_i, new_value])
-                delta = (new_value-value)/value
-                if delta < 0.1:
+                if value == 0.0:
+                    delta = (new_value-value)/0.01
+                else:
+                    delta = (new_value-value)/value
+                if abs(delta) < 0.1:
                     converged[i] = True
-        null_xyv = temp
+                else:
+                    converged[i] = False
     return data
