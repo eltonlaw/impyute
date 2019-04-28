@@ -55,17 +55,29 @@ class TestMovingWindowCustomNindex(unittest.TestCase):
     def setUp(self):
         self.data = np.arange(0, 25).reshape(5, 5).astype(float)
 
-    def test_impute_leftmost_index(self):
-        self.data[2][0] = np.nan 
+    def test_impute_leftmost_index_falls_off(self):
+        self.data[2][0] = np.nan
         imputed = impy.moving_window(self.data, nindex=-1)
         self.assertFalse(np.isnan(imputed).any())
         self.assertEqual(imputed[2][0], 11.5)
 
-    def test_impute_rightmost_index(self):
-        self.data[2][-1] = np.nan 
+    def test_impute_rightmost_valid(self):
+        self.data[2][0] = np.nan
+        imputed = impy.moving_window(self.data, nindex=0)
+        self.assertFalse(np.isnan(imputed).any())
+        self.assertEqual(imputed[2][0], 12.5)
+
+    def test_impute_leftmost_falls_off(self):
+        self.data[2][-1] = np.nan
         imputed = impy.moving_window(self.data, nindex=0)
         self.assertFalse(np.isnan(imputed).any())
         self.assertEqual(imputed[2][-1], 12.5)
+
+    def test_impute_rightmost_index_valid(self):
+        self.data[2][-1] = np.nan
+        imputed = impy.moving_window(self.data, nindex=-1)
+        self.assertFalse(np.isnan(imputed).any())
+        self.assertEqual(imputed[2][-1], 11.5)
 
 if __name__ == "__main__":
     unittest.main()

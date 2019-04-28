@@ -28,7 +28,7 @@ def moving_window(data, nindex=None, wsize=5, errors="coerce", func=np.mean,
 
     The parameters default the function to a moving mean. You may want to change
     the default window size:
-        
+
         moving_window(data, wsize=10)
 
     To only look at past data (null value is at the rightmost index in the window):
@@ -36,7 +36,7 @@ def moving_window(data, nindex=None, wsize=5, errors="coerce", func=np.mean,
         moving_window(data, nindex=-1)
 
     To use a custom function:
-    
+
         moving_window(data, func=np.median)
 
     You can also do something like take 1.5x the max of previous values in the window:
@@ -77,8 +77,6 @@ def moving_window(data, nindex=None, wsize=5, errors="coerce", func=np.mean,
     if not inplace:
         data = data.copy()
 
-    wsize = 5
-    nindex = None
     if nindex is None: # If using equal window side lengths
         assert wsize % 2 == 1, "The parameter `wsize` should not be even "\
         "if the value `nindex` is not set since it defaults to the midpoint "\
@@ -99,7 +97,7 @@ def moving_window(data, nindex=None, wsize=5, errors="coerce", func=np.mean,
         n_null_prev = len(null_xy)
         for x_i, y_i in null_xy:
             left_i = max(0, y_i-wside_left)
-            right_i = min(wsize, y_i+wside_right+1)
+            right_i = min(len(data), y_i+wside_right+1)
             window = data[x_i, left_i: right_i]
             window_not_null = window[~np.isnan(window)]
 
@@ -110,19 +108,24 @@ def moving_window(data, nindex=None, wsize=5, errors="coerce", func=np.mean,
                 except Exception as e:
                     if errors == "raise":
                         raise e
-                    else:
-                        pass
 
-            # Aggregate function didn't work for some reason
             if errors == "coerce":
-                wside_left = wsize // 2
-                wside_right = wsize_left
-                window = data[x_i, y_i-wside_leftk: y_i + wside_right]
+                # If either the window has a length of 0 or the aggregate function fails somehow,
+                # do a fallback of just trying the best we can by using it as the middle and trying
+                # to recalculate. Use temporary wside_left/wside_right, for only the calculation of
+                # this specific problamatic value
+                wside_left_tmp = wsize // 2
+                wside_right_tmp = wside_left_tmp
+
+                left_i_tmp = max(0, y_i-wside_left_tmp)
+                right_i_tmp = min(len(data), y_i+wside_right_tmp+1)
+
+                window = data[x_i, left_i_tmp:right_i_tmp]
                 window_not_null = window[~np.isnan(window)]
                 try:
                     data[x_i][y_i] = func(window_not_null)
-                except Exception:
-                    pass
+                except Exception as e:
+                    print("Exception:", e)
         if n_null_prev == len(find_null(data)):
             break
 
