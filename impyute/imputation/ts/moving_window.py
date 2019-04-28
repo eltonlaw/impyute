@@ -77,8 +77,6 @@ def moving_window(data, nindex=None, wsize=5, errors="coerce", func=np.mean,
     if not inplace:
         data = data.copy()
 
-    wsize = 5
-    nindex = None
     if nindex is None: # If using equal window side lengths
         assert wsize % 2 == 1, "The parameter `wsize` should not be even "\
         "if the value `nindex` is not set since it defaults to the midpoint "\
