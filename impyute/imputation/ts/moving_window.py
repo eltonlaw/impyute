@@ -97,7 +97,7 @@ def moving_window(data, nindex=None, wsize=5, errors="coerce", func=np.mean,
         n_null_prev = len(null_xy)
         for x_i, y_i in null_xy:
             left_i = max(0, y_i-wside_left)
-            right_i = min(wsize, y_i+wside_right+1)
+            right_i = min(len(data), y_i+wside_right+1)
             window = data[x_i, left_i: right_i]
             window_not_null = window[~np.isnan(window)]
 
@@ -109,11 +109,18 @@ def moving_window(data, nindex=None, wsize=5, errors="coerce", func=np.mean,
                     if errors == "raise":
                         raise e
 
-            # Aggregate function didn't work for some reason
             if errors == "coerce":
-                wside_left = wsize // 2
-                wside_right = wsize_left
-                window = data[x_i, y_i-wside_leftk: y_i + wside_right]
+                # If either the window has a length of 0 or the aggregate function fails somehow,
+                # do a fallback of just trying the best we can by using it as the middle and trying
+                # to recalculate. Use temporary wside_left/wside_right, for only the calculation of
+                # this specific problamatic value
+                wside_left_tmp = wsize // 2
+                wside_right_tmp = wside_left_tmp
+
+                left_i_tmp = max(0, y_i-wside_left_tmp)
+                right_i_tmp = min(len(data), y_i+wside_right_tmp+1)
+
+                window = data[x_i, left_i_tmp:right_i_tmp]
                 window_not_null = window[~np.isnan(window)]
                 try:
                     data[x_i][y_i] = func(window_not_null)
