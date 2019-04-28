@@ -28,7 +28,7 @@ def moving_window(data, nindex=None, wsize=5, errors="coerce", func=np.mean,
 
     The parameters default the function to a moving mean. You may want to change
     the default window size:
-        
+
         moving_window(data, wsize=10)
 
     To only look at past data (null value is at the rightmost index in the window):
@@ -36,7 +36,7 @@ def moving_window(data, nindex=None, wsize=5, errors="coerce", func=np.mean,
         moving_window(data, nindex=-1)
 
     To use a custom function:
-    
+
         moving_window(data, func=np.median)
 
     You can also do something like take 1.5x the max of previous values in the window:
@@ -108,8 +108,6 @@ def moving_window(data, nindex=None, wsize=5, errors="coerce", func=np.mean,
                 except Exception as e:
                     if errors == "raise":
                         raise e
-                    else:
-                        pass
 
             # Aggregate function didn't work for some reason
             if errors == "coerce":
@@ -119,8 +117,8 @@ def moving_window(data, nindex=None, wsize=5, errors="coerce", func=np.mean,
                 window_not_null = window[~np.isnan(window)]
                 try:
                     data[x_i][y_i] = func(window_not_null)
-                except Exception:
-                    pass
+                except Exception as e:
+                    print("Exception:", e)
         if n_null_prev == len(find_null(data)):
             break
 
