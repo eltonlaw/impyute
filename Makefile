@@ -4,13 +4,16 @@ DOCKER_ID_USER=eltonlaw
 
 all: test
 
+rebuild-pybase:
+	docker rmi $(DOCKER_ID_USER)/pybase
+	docker build -f Dockerfile.pybase -t $(DOCKER_ID_USER)/pybase .
+
 build:
-	docker pull eltonlaw/pybase
+	docker pull $(DOCKER_ID_USER)/pybase
 	docker build -t impyute .
 
 test: build
 	docker run impyute python2.7 -m pytest
-	docker run impyute python3.4 -m pytest
 	docker run impyute python3.5 -m pytest
 	docker run impyute python3.6 -m pytest
 	docker run impyute python3.7 -m pytest
@@ -28,6 +31,6 @@ docs:
 	cd docs && $(MAKE) html
 
 # Remember to call `docker login` first
-push_pybase:
+push-pybase:
 	docker build -t $(DOCKER_ID_USER)/pybase -f Dockerfile.pybase .
 	docker push $(DOCKER_ID_USER)/pybase
