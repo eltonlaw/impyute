@@ -4,11 +4,11 @@ Library of missing data imputations
 # pylint: disable=wrong-import-position
 
 __title__ = 'impyute'
-__version__ = '0.0.7'
+__version__ = '0.0.8'
 __build__ = 0x021300
 __author__ = 'Elton Law'
 __license__ = 'MIT'
-__copyright__ = 'Copyright 2018 Elton law'
+__copyright__ = 'Copyright 2019 Elton law'
 
 
 ### Top Level Modules
