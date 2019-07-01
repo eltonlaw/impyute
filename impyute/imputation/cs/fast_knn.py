@@ -3,6 +3,7 @@ import numpy as np
 from impyute.util import find_null
 from impyute.util import checks
 from impyute.util import preprocess
+from impyute.util import inverse_distance_weighting as idw
 from impyute.imputation.cs import mean
 from scipy.spatial import KDTree
 # pylint: disable=invalid-name
@@ -110,7 +111,7 @@ def fast_knn(data, k=3, eps=0, p=2, distance_upper_bound=np.inf, leafsize=10, **
                                           p=p, distance_upper_bound=distance_upper_bound)
         # Will always return itself in the first index. Delete it.
         distances, indices = distances[1:], indices[1:]
-        weights = distances/np.sum(distances)
+        weights = idw.shepards(distances)
         # Assign missing value the weighted average of `k` nearest neighbours
         data[x_i][y_i] = np.dot(weights, [data_c[ind][y_i] for ind in indices])
     return data

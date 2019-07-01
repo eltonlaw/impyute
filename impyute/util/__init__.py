@@ -10,6 +10,8 @@ from .errors import BadInputError
 from .checks import checks
 from .compare import compare
 from .preprocess import preprocess
+from . import inverse_distance_weighting
 
 __all__ = ["find_null", "describe", "count_missing",
-           "checks", "compare", "BadInputError", "preprocess"]
+           "checks", "compare", "BadInputError", "preprocess"
+           "inverse_distance_weighting"]
