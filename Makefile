@@ -5,11 +5,16 @@ DOCKER_ID_USER=eltonlaw
 all: test
 
 rebuild-pybase:
-	docker rmi $(DOCKER_ID_USER)/pybase
+	docker rmi -f $(DOCKER_ID_USER)/pybase
 	docker build -f Dockerfile.pybase -t $(DOCKER_ID_USER)/pybase .
 
-build:
+pull-pybase:
 	docker pull $(DOCKER_ID_USER)/pybase
+
+build:
+	if [[ "$(docker images -q eltonlaw/pybase 2> /dev/null)" != "" ]]; then \
+		$(MAKE) pull-pybase; \
+	fi
 	docker build -t impyute .
 
 test: build
