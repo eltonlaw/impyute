@@ -2,6 +2,7 @@
 import unittest
 import numpy as np
 import impyute as impy
+import functools
 # pylint:disable=invalid-name
 
 class TestFastKNN(unittest.TestCase):
@@ -33,8 +34,18 @@ class TestFastKNN(unittest.TestCase):
                          [10. , 11. , 12. , 13. , 14. ],
                          [15. , 16. , 17. , 18. , 19. ],
                          [20. , 21. , 22. , 23. , 24. ]])
-        imputed = impy.fast_knn(data, k=2) # Weighted average of nearest 2 neighbours
-        self.assertTrue(np.isclose(imputed[0][2], 8.913911092686593))
+        imputed = impy.fast_knn(data, k=2)
+        assert np.isclose(imputed[0][2], 8.38888888888889)
+
+    def test_impute_value_custom_idw(self):
+        data = np.array([[ 0. , 1. , np.nan, 3. , 4. ],
+                         [ 5. , 6. , 7. , 8. , 9. ],
+                         [10. , 11. , 12. , 13. , 14. ],
+                         [15. , 16. , 17. , 18. , 19. ],
+                         [20. , 21. , 22. , 23. , 24. ]])
+        idw = functools.partial(impy.util.inverse_distance_weighting.shepards, power=1)
+        imputed = impy.fast_knn(data, k=2, idw=idw)
+        assert np.isclose(imputed[0][2], 8.913911092686593)
 
 if __name__ == "__main__":
     unittest.main()

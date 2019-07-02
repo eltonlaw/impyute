@@ -3,7 +3,7 @@ import numpy as np
 from impyute.util import find_null
 from impyute.util import checks
 from impyute.util import preprocess
-from impyute.util import inverse_distance_weighting as idw
+from impyute.util import inverse_distance_weighting as util_idw
 from impyute.imputation.cs import mean
 from scipy.spatial import KDTree
 # pylint: disable=invalid-name
@@ -11,7 +11,8 @@ from scipy.spatial import KDTree
 
 @preprocess
 @checks
-def fast_knn(data, k=3, eps=0, p=2, distance_upper_bound=np.inf, leafsize=10, **kwargs):
+def fast_knn(data, k=3, eps=0, p=2, distance_upper_bound=np.inf, leafsize=10,
+             idw=util_idw.shepards):
     """ Impute using a variant of the nearest neighbours approach
 
     Basic idea: Impute array with a basic mean impute and then use the resulting complete
@@ -21,7 +22,6 @@ def fast_knn(data, k=3, eps=0, p=2, distance_upper_bound=np.inf, leafsize=10, **
 
     This approach is much, much faster than the other implementation (fit+transform
     for each subset) which is almost prohibitively expensive.
-
 
     Parameters
     ----------
@@ -62,6 +62,11 @@ def fast_knn(data, k=3, eps=0, p=2, distance_upper_bound=np.inf, leafsize=10, **
         over to brute-force. Has to be positive". Refer to the docs for
         [`scipy.spatial.KDTree`](https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.spatial.KDTree.html)
         for more information.
+
+    idw: fn, optional
+        Function that takes one argument, a list of distances, and returns weighted percentages. You can define a custom
+        one or bootstrap from functions defined in `impy.util.inverse_distance_weighting` which can be using functools.partial,
+        for example: `functools.partial(impy.util.inverse_distance_weighting.shepards, power=1)`
 
     Returns
     -------
@@ -111,7 +116,7 @@ def fast_knn(data, k=3, eps=0, p=2, distance_upper_bound=np.inf, leafsize=10, **
                                           p=p, distance_upper_bound=distance_upper_bound)
         # Will always return itself in the first index. Delete it.
         distances, indices = distances[1:], indices[1:]
-        weights = idw.shepards(distances)
+        weights = idw(distances)
         # Assign missing value the weighted average of `k` nearest neighbours
         data[x_i][y_i] = np.dot(weights, [data_c[ind][y_i] for ind in indices])
     return data
