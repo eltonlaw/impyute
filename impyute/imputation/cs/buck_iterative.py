@@ -1,4 +1,4 @@
-""" impyute.imputation.cs.mice """
+""" impyute.imputation.cs.buck_iterative """
 import numpy as np
 from sklearn.linear_model import LinearRegression
 from impyute.util import find_null
@@ -10,7 +10,7 @@ from impyute.util import preprocess
 
 @preprocess
 @checks
-def mice(data, **kwargs):
+def buck_iterative(data, **kwargs):
     """Multivariate Imputation by Chained Equations
 
     Reference:
