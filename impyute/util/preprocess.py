@@ -49,7 +49,7 @@ def preprocess(fn):
         # then cast the input to an np.array and cast the output
         # back to a DataFrame.
         if pd_DataFrame and isinstance(args[0], pd_DataFrame):
-            args[0] = args[0].as_matrix()
+            args[0] = args[0].values
             return pd_DataFrame(fn(*args, **kwargs))
         else:
             return fn(*args, **kwargs)
