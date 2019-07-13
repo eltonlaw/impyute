@@ -3,12 +3,10 @@ import numpy as np
 from impyute.util import find_null
 from impyute.util import preprocess
 from impyute.util import checks
-# pylint:disable=invalid-name
-# pylint:disable=unused-argument
 
 @preprocess
 @checks
-def em(data, loops=50, **kwargs):
+def em(data, loops=50):
     """ Imputes given data using expectation maximization.
 
     E-step: Calculates the expected complete data log likelihood ratio.

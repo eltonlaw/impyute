@@ -3,12 +3,10 @@ import numpy as np
 from impyute.util import find_null
 from impyute.util import checks
 from impyute.util import preprocess
-# pylint:disable=unused-argument
-# pylint:disable=invalid-name
 
 @preprocess
 @checks
-def mean(data, **kwargs):
+def mean(data):
     """ Substitute missing values with the mean of that column.
 
     Parameters
@@ -31,7 +29,7 @@ def mean(data, **kwargs):
 
 @preprocess
 @checks
-def median(data, **kwargs):
+def median(data):
     """ Substitute missing values with the median of that column(middle).
 
     Parameters
@@ -58,7 +56,7 @@ def median(data, **kwargs):
 
 @preprocess
 @checks
-def mode(data, **kwargs):
+def mode(data):
     """ Substitute missing values with the mode of that column(most frequent).
 
     In the case that there is a tie (there are multiple, most frequent values)

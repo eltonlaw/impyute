@@ -3,13 +3,11 @@ import numpy as np
 from impyute.util import find_null
 from impyute.util import checks
 from impyute.util import preprocess
-# pylint: disable=invalid-name
-# pylint:disable=unused-argument
+# pylint: disable=invalid-name, too-many-arguments, too-many-locals, too-many-branches, broad-except, len-as-condition
 
 @preprocess
 @checks
-def moving_window(data, nindex=None, wsize=5, errors="coerce", func=np.mean,
-        inplace=False, **kwargs):
+def moving_window(data, nindex=None, wsize=5, errors="coerce", func=np.mean, inplace=False):
     """ Interpolate the missing values based on nearby values.
 
     For example, with an array like this:
@@ -42,7 +40,6 @@ def moving_window(data, nindex=None, wsize=5, errors="coerce", func=np.mean,
     You can also do something like take 1.5x the max of previous values in the window:
 
         moving_window(data, func=lambda arr: max(arr) * 1.50, nindex=-1)
-    
 
     Parameters
     ----------

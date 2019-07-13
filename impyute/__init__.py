@@ -1,5 +1,8 @@
-"""
-Library of missing data imputations
+""" impyute: Data imputations library to preprocess datasets with missing dat
+
+impyute.imputations.cs:   Imputations on cross sectional data
+impyute.imputations.ts:   Imputations on time series data
+impyute.deletion:         Deletion type missing data handling
 """
 # pylint: disable=wrong-import-position
 

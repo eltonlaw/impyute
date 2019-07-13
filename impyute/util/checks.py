@@ -3,7 +3,6 @@ from functools import wraps
 import numpy as np
 from impyute.util import find_null
 from impyute.util import BadInputError
-# pylint:disable=invalid-name
 
 def checks(fn):
     """ Main check function to ensure input is correctly formatted

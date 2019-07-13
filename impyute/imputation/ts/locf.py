@@ -4,7 +4,6 @@ from impyute.util import find_null
 from impyute.util import checks
 from impyute.util import preprocess
 
-
 @preprocess
 @checks
 def locf(data, axis=0):

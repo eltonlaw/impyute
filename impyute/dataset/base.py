@@ -1,14 +1,8 @@
-""" impyute.dataset.base
-
-Load/generate data
-
-"""
+""" Shared functions to load/generate data """
 import numpy as np
 from impyute.dataset.corrupt import Corruptor
 
-
-def randu(bound=(0, 10), shape=(5, 5), missingness="mcar",
-                   thr=0.2, dtype="int"):
+def randu(bound=(0, 10), shape=(5, 5), missingness="mcar", thr=0.2, dtype="int"):
     """ Return randomly generated dataset of numbers with uniformly
     distributed values between bound[0] and bound[1]
 
@@ -40,8 +34,7 @@ def randu(bound=(0, 10), shape=(5, 5), missingness="mcar",
     return raw_data
 
 
-def randn(theta=(0, 1), shape=(5, 5), missingness="mcar", thr=0.2,
-                  dtype="float"):
+def randn(theta=(0, 1), shape=(5, 5), missingness="mcar", thr=0.2, dtype="float"):
     """ Return randomly generated dataset of numbers with normally
     distributed values with given and sigma.
 

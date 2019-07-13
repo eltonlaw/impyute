@@ -1,7 +1,6 @@
 """ impyute.util.describe """
 from impyute.util import find_null
 
-
 def describe(data): # verbose=True):
     """ Print input/output multiple times
 

@@ -2,9 +2,7 @@
 import importlib
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-# pylint: disable=too-many-locals
-# pylint: disable=dangerous-default-value
-
+# pylint: disable=too-many-locals, dangerous-default-value
 
 def compare(imputed, classifiers=["sklearn.svm.SVC"], log_path=None):
     """

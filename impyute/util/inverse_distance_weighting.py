@@ -1,5 +1,6 @@
 """ impyute.util.inverse_distance_weighting """
-import numpy as np 
+import numpy as np
+
 def shepards(distances, power=2):
     """ Basic inverse distance weighting function
 
