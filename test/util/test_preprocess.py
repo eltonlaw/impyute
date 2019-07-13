@@ -18,23 +18,43 @@ class TestPreprocess(unittest.TestCase):
     def setUp(self):
         @preprocess
         def mul(arr, **kwargs):
-            arr = arr * 25
+            arr *= 25
             return arr
         self.mul = mul
+
+        @preprocess
+        def mul_no_kwargs(arr):
+            arr *= 25
+            return arr
+        self.mul_no_kwargs = mul_no_kwargs
 
     def test_inplace_false(self):
         A = np.ones((5, 5))
         A_copy = A.copy()
         self.mul(A, inplace=False)
-        assert all(map(all, A == A_copy))
+        assert A[0][0] == A_copy[0][0]
 
-    @unittest.skip("Implementation of this is still buggy, kind of \
-                    works only, depending on input")
     def test_inplace_true(self):
         A = np.ones((5, 5))
         A_copy = A.copy()
-        self.mul(A, inplace=False)
-        assert all(map(all, A != A_copy))
+        self.mul(A, inplace=True)
+        assert A[0][0] != A_copy[0][0]
+
+    def test_inplace_false_nokwargs(self):
+        A = np.ones((5, 5))
+        A_copy = A.copy()
+        # pylint: disable = unexpected-keyword-arg
+        self.mul_no_kwargs(A, inplace=False)
+        # pylint: enable = unexpected-keyword-arg
+        assert A[0][0] == A_copy[0][0]
+
+    def test_inplace_true_nokwargs(self):
+        A = np.ones((5, 5))
+        A_copy = A.copy()
+        # pylint: disable = unexpected-keyword-arg
+        self.mul_no_kwargs(A, inplace=True)
+        # pylint: enable = unexpected-keyword-arg
+        assert A[0][0] != A_copy[0][0]
 
     def test_pandas_input(self):
         """ Input: DataFrame, Output: DataFrame """
@@ -51,7 +71,6 @@ class TestPreprocess(unittest.TestCase):
 
         # Assert that the output is a DataFrame
         assert isinstance(mean(A), pd.DataFrame)
-
 
 if __name__ == "__main__":
     unittest.main()

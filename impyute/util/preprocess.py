@@ -48,7 +48,7 @@ def preprocess(fn):
         ## convert tuple to list so args can be modified
         args = list(args)
         ## Either make a copy or use a pointer to the original
-        if "inplace" in kwargs and kwargs['inplace']:
+        if kwargs.get('inplace'):
             args[0] = args[0]
         else:
             args[0] = args[0].copy()
