@@ -19,6 +19,15 @@ def execute_fn_with_args_and_or_kwargs(fn, args, kwargs):
     except TypeError:
         return fn(*args)
 
+def get_pandas_df():
+    """ Gets pandas DataFrame if we can import it """
+    try:
+        import pandas as pd
+        df = pd.DataFrame
+    except (ModuleNotFoundError, ImportError):
+        df = None
+    return df
+
 def preprocess(fn):
     """ Base preprocess function for commonly used preprocessing
 
@@ -45,17 +54,11 @@ def preprocess(fn):
         else:
             args[0] = args[0].copy()
 
-        # Check if Pandas exists
-        try:
-            import pandas as pd
-            pd_DataFrame = pd.DataFrame
-        except (ModuleNotFoundError, ImportError):
-            pd_DataFrame = None
         results = execute_fn_with_args_and_or_kwargs(fn, args, kwargs)
 
-        # If Pandas exists, and the input data is a dataframe
-        # then cast the input to an np.array and cast the output
-        # back to a DataFrame.
+        ## If Pandas exists, and the input data is a dataframe then cast the input
+        ## to an np.array and cast the output back to a DataFrame.
+        pd_DataFrame = get_pandas_df()
         if pd_DataFrame and isinstance(args[0], pd_DataFrame):
             args[0] = args[0].values
             results = pd_DataFrame(results)
