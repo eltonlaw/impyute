@@ -12,6 +12,13 @@ except ModuleNotFoundError:
     pass
 # pylint: enable=redefined-builtin, missing-docstring
 
+def execute_fn_with_args_and_or_kwargs(fn, args, kwargs):
+    """ If args + kwargs aren't accepted only args are passed in"""
+    try:
+        return fn(*args, **kwargs)
+    except TypeError:
+        return fn(*args)
+
 def preprocess(fn):
     """ Base preprocess function for commonly used preprocessing
 
@@ -44,13 +51,14 @@ def preprocess(fn):
             pd_DataFrame = pd.DataFrame
         except (ModuleNotFoundError, ImportError):
             pd_DataFrame = None
+        results = execute_fn_with_args_and_or_kwargs(fn, args, kwargs)
 
         # If Pandas exists, and the input data is a dataframe
         # then cast the input to an np.array and cast the output
         # back to a DataFrame.
         if pd_DataFrame and isinstance(args[0], pd_DataFrame):
             args[0] = args[0].values
-            return pd_DataFrame(fn(*args, **kwargs))
-        return fn(*args, **kwargs)
+            results = pd_DataFrame(results)
 
+        return results
     return wrapper
