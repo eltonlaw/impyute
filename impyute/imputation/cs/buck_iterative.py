@@ -5,23 +5,19 @@ from impyute.util import find_null
 from impyute.util import checks
 from impyute.util import preprocess
 # pylint: disable=too-many-locals
-# pylint:disable=invalid-name
-# pylint:disable=unused-argument
 
 @preprocess
 @checks
-def buck_iterative(data, **kwargs):
-    """Multivariate Imputation by Chained Equations
+def buck_iterative(data):
+    """ Iterative variant of buck's method
 
-    Reference:
-        Buuren, S. V., & Groothuis-Oudshoorn, K. (2011). Mice: Multivariate
-        Imputation by Chained Equations in R. Journal of Statistical Software,
-        45(3). doi:10.18637/jss.v045.i03
+    - Variable to regress on is chosen at random.
+    - EM type infinite regression loop stops after change in prediction from
+      previous prediction < 10% for all columns with missing values
 
-    Implementation follows the main idea from the paper above. Differs in
-    decision of which variable to regress on (here, I choose it at random).
-    Also differs in stopping criterion (here the model stops after change in
-    prediction from previous prediction is less than 10%).
+    A Method of Estimation of Missing Values in Multivariate Data Suitable for
+    use with an Electronic Computer S. F. Buck Journal of the Royal Statistical
+    Society. Series B (Methodological) Vol. 22, No. 2 (1960), pp. 302-306
 
     Parameters
     ----------
@@ -41,7 +37,7 @@ def buck_iterative(data, **kwargs):
 
     null_xyv = [[int(x), int(y), v] for x, y, v in null_xyv]
     temp = []
-    cols_missing = set([y for _, y, _ in null_xyv])
+    cols_missing = {y for _, y, _ in null_xyv}
 
     # Step 1: Simple Imputation, these are just placeholders
     for x_i, y_i, value in null_xyv:
@@ -84,8 +80,5 @@ def buck_iterative(data, **kwargs):
                     delta = (new_value-value)/0.01
                 else:
                     delta = (new_value-value)/value
-                if abs(delta) < 0.1:
-                    converged[i] = True
-                else:
-                    converged[i] = False
+                converged[i] = abs(delta) < 0.1
     return data

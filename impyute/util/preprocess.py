@@ -1,8 +1,8 @@
 """ impyute.util.preprocess """
 from functools import wraps
-# pylint:disable=invalid-name
 
-# TODO:Some hacky ass code to handle python2 not having `ModuleNotFoundError`
+# Hacky way to handle python2 not having `ModuleNotFoundError`
+# pylint: disable=redefined-builtin, missing-docstring
 try:
     raise ModuleNotFoundError
 except NameError:
@@ -10,7 +10,7 @@ except NameError:
         pass
 except ModuleNotFoundError:
     pass
-
+# pylint: enable=redefined-builtin, missing-docstring
 
 def preprocess(fn):
     """ Base preprocess function for commonly used preprocessing
@@ -51,7 +51,6 @@ def preprocess(fn):
         if pd_DataFrame and isinstance(args[0], pd_DataFrame):
             args[0] = args[0].as_matrix()
             return pd_DataFrame(fn(*args, **kwargs))
-        else:
-            return fn(*args, **kwargs)
+        return fn(*args, **kwargs)
 
     return wrapper

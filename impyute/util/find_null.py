@@ -1,7 +1,6 @@
 """ impyute.util.find_null """
 import numpy as np
 
-
 def find_null(data):
     """ Finds the indices of all missing values.
 

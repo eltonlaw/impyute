@@ -1,18 +1,16 @@
 """ impyute.imputation.cs.knn """
 import numpy as np
+from scipy.spatial import KDTree
 from impyute.util import find_null
 from impyute.util import checks
 from impyute.util import preprocess
 from impyute.util import inverse_distance_weighting as util_idw
 from impyute.imputation.cs import mean
-from scipy.spatial import KDTree
-# pylint: disable=invalid-name
-# pylint:disable=unused-argument
+# pylint: disable=too-many-arguments
 
 @preprocess
 @checks
-def fast_knn(data, k=3, eps=0, p=2, distance_upper_bound=np.inf, leafsize=10,
-             idw=util_idw.shepards):
+def fast_knn(data, k=3, eps=0, p=2, distance_upper_bound=np.inf, leafsize=10, idw=util_idw.shepards):
     """ Impute using a variant of the nearest neighbours approach
 
     Basic idea: Impute array with a basic mean impute and then use the resulting complete
@@ -31,14 +29,16 @@ def fast_knn(data, k=3, eps=0, p=2, distance_upper_bound=np.inf, leafsize=10,
     k: int, optional
         Parameter used for method querying the KDTree class object. Number of
         neighbours used in the KNN query. Refer to the docs for
-        [`scipy.spatial.KDTree.query`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.query.html).
+        [`scipy.spatial.KDTree.query`]
+        (https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.query.html).
 
     eps: nonnegative float, optional
         Parameter used for method querying the KDTree class object. From the
         SciPy docs: "Return approximate nearest neighbors; the kth returned
         value is guaranteed to be no further than (1+eps) times the distance to
         the real kth nearest neighbor". Refer to the docs for
-        [`scipy.spatial.KDTree.query`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.query.html).
+        [`scipy.spatial.KDTree.query`]
+        (https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.query.html).
 
     p : float, 1<=p<=infinity, optional
         Parameter used for method querying the KDTree class object. Straight from the
@@ -46,7 +46,8 @@ def fast_knn(data, k=3, eps=0, p=2, distance_upper_bound=np.inf, leafsize=10,
         sum-of-absolute-values Manhattan distance 2 is the usual Euclidean
         distance infinity is the maximum-coordinate-difference distance". Refer to
         the docs for
-        [`scipy.spatial.KDTree.query`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.query.html).
+        [`scipy.spatial.KDTree.query`]
+        (https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.query.html).
 
     distance_upper_bound : nonnegative float, optional
         Parameter used for method querying the KDTree class object. Straight
@@ -54,7 +55,8 @@ def fast_knn(data, k=3, eps=0, p=2, distance_upper_bound=np.inf, leafsize=10,
         is used to prune tree searches, so if you are doing a series of
         nearest-neighbor queries, it may help to supply the distance to the
         nearest neighbor of the most recent point." Refer to the docs for
-        [`scipy.spatial.KDTree.query`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.query.html).
+        [`scipy.spatial.KDTree.query`]
+        (https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.query.html).
 
     leafsize: int, optional
         Parameter used for construction of the `KDTree` class object. Straight from
@@ -65,8 +67,8 @@ def fast_knn(data, k=3, eps=0, p=2, distance_upper_bound=np.inf, leafsize=10,
 
     idw: fn, optional
         Function that takes one argument, a list of distances, and returns weighted percentages. You can define a custom
-        one or bootstrap from functions defined in `impy.util.inverse_distance_weighting` which can be using functools.partial,
-        for example: `functools.partial(impy.util.inverse_distance_weighting.shepards, power=1)`
+        one or bootstrap from functions defined in `impy.util.inverse_distance_weighting` which can be using
+        functools.partial, for example: `functools.partial(impy.util.inverse_distance_weighting.shepards, power=1)`
 
     Returns
     -------

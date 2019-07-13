@@ -12,3 +12,4 @@ build/
 dist/
 impyute.egg-info/
 *.swo
+syntastic

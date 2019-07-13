@@ -3,12 +3,10 @@ import numpy as np
 from impyute.util import find_null
 from impyute.util import preprocess
 from impyute.util import checks
-# pylint:disable=invalid-name
-# pylint:disable=unused-argument
 
 @preprocess
 @checks
-def random(data, **kwargs):
+def random(data):
     """ Fill missing values in with a randomly selected value from the same
     column.
 

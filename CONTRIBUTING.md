@@ -15,9 +15,11 @@ This project was built for Python 3.5 and 3.6. (If you would like to work on ext
 
 Using [Sphinx's autodoc](http://www.sphinx-doc.org/en/stable/ext/autodoc.html) module, docstrings are used as the documentation. Make sure that all docstrings are formatted according to the [NumPy/SciPy Docstring Standard](https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt#docstring-standard)
 
-Use [.pylintrc](https://github.com/eltonlaw/impyute/blob/master/.pylintrc) to lint files in accordance with [PEP8](https://www.python.org/dev/peps/pep-0008/). You will first need pylint installed: [install pylint](https://www.pylint.org/#install)
+Use [.pylintrc](https://github.com/eltonlaw/impyute/blob/master/.pylintrc) to lint files in accordance (mostly) with [PEP8](https://www.python.org/dev/peps/pep-0008/). You will first need pylint installed: [install pylint](https://www.pylint.org/#install). I recommend [integrating it with your editor](https://docs.pylint.org/en/1.6.0/ide-integration.html) or you can call it from bash with: 
 
     $ pylint --rcfile=.pylintrc impyute/
+
+Fix all warnings raised, if you feel that the warning isn't justified/serves no purpose, then feel free to [disable the specific message](http://pylint.pycqa.org/en/latest/user_guide/message-control.html) for whatever blocks are causing it.
 
 To run unit tests you will need [Docker](https://docs.docker.com/install/). The unit testing framework used is the built-in one, [`unittest`](https://docs.python.org/3.6/library/unittest.html). Put unit tests in the `test` directory in root. The testing environment works like this: 1) Build a docker image with multiple python versions 2) Run the container with pytest for each python version.
 
