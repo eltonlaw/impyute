@@ -1,7 +1,7 @@
 """ impyute.util.preprocess """
 from functools import wraps
 
-# Hacky way to handle python2 not having `ModuleNotFoundError`
+## Hacky way to handle python2 not having `ModuleNotFoundError`
 # pylint: disable=redefined-builtin, missing-docstring
 try:
     raise ModuleNotFoundError
@@ -40,22 +40,19 @@ def preprocess(fn):
     -------
     bool
         True if `data` is correctly formatted
-
     """
     @wraps(fn)
     def wrapper(*args, **kwargs):
         """ Run input checks"""
-        # convert tuple to list so args can be modified
+        ## convert tuple to list so args can be modified
         args = list(args)
-
-        # Either make a copy or use a pointer to the original
+        ## Either make a copy or use a pointer to the original
         if "inplace" in kwargs and kwargs['inplace']:
             args[0] = args[0]
         else:
             args[0] = args[0].copy()
-
+        ## function invokation
         results = execute_fn_with_args_and_or_kwargs(fn, args, kwargs)
-
         ## If Pandas exists, and the input data is a dataframe then cast the input
         ## to an np.array and cast the output back to a DataFrame.
         pd_DataFrame = get_pandas_df()
