@@ -44,6 +44,7 @@ def preprocess(fn):
     @wraps(fn)
     def wrapper(*args, **kwargs):
         """ Run input checks"""
+        postprocess_fn = None
         ## convert tuple to list so args can be modified
         args = list(args)
         ## Either make a copy or use a pointer to the original
@@ -51,14 +52,20 @@ def preprocess(fn):
             args[0] = args[0]
         else:
             args[0] = args[0].copy()
-        ## function invokation
-        results = execute_fn_with_args_and_or_kwargs(fn, args, kwargs)
-        ## If Pandas exists, and the input data is a dataframe then cast the input
-        ## to an np.array and cast the output back to a DataFrame.
+
+        ## If input data is a dataframe then cast the input to an np.array
+        ## and set an indicator flag before continuing
         pd_DataFrame = get_pandas_df()
         if pd_DataFrame and isinstance(args[0], pd_DataFrame):
+            postprocess_fn = pd_DataFrame
             args[0] = args[0].values
-            results = pd_DataFrame(results)
+
+        ## function invokation
+        results = execute_fn_with_args_and_or_kwargs(fn, args, kwargs)
+
+        ## cast the output back to a DataFrame.
+        if postprocess_fn is not None:
+            results = postprocess_fn(results)
 
         return results
     return wrapper
