@@ -118,6 +118,8 @@ def fast_knn(data, k=3, eps=0, p=2, distance_upper_bound=np.inf, leafsize=10, id
                                           p=p, distance_upper_bound=distance_upper_bound)
         # Will always return itself in the first index. Delete it.
         distances, indices = distances[1:], indices[1:]
+        # Add small constant to distances to avoid division by 0
+        distances += 1e-3
         weights = idw(distances)
         # Assign missing value the weighted average of `k` nearest neighbours
         data[x_i][y_i] = np.dot(weights, [data_c[ind][y_i] for ind in indices])
