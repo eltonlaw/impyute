@@ -10,7 +10,7 @@ data_m = impy.dataset.test_data(mask=mask)
 def test_mean_return_type():
     """ Check return type, should return an np.ndarray"""
     imputed = impy.mode(data_m)
-    assert isinstance(imputed, np.ndarray)
+    assert not isinstance(imputed, np.ndarray)
 
 def test_mode_return_type():
     """ Check return type, should return an np.ndarray"""
