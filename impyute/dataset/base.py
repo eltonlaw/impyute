@@ -66,20 +66,6 @@ def randn(theta=(0, 1), shape=(5, 5), missingness="mcar", thr=0.2, dtype="float"
     return raw_data
 
 
-def test_data(mask=np.zeros((3, 3), dtype=bool)):
-    """ Returns a dataset to use with tests (INTERNAL USE - FOR UNIT TESTING)
-
-    mask: True/False array, same size as dataset
-        Use True where missing values should occur and False everywhere else
-    th: float between[0,1]
-        Percentage of missing data in generated dataset
-    """
-    shape = np.shape(mask)
-    data = np.reshape(np.arange(np.product(shape)), shape).astype("float")
-    data[mask] = np.nan
-    return data
-
-
 def mnist(missingness="mcar", thr=0.2):
     """ Loads corrupted MNIST
 

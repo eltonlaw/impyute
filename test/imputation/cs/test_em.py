@@ -1,18 +1,11 @@
 """test_em.py"""
-import numpy as np
 import impyute as impy
+from impyute.util.testing import return_na_check
 
-mask = np.zeros((5, 5), dtype=bool)
-data_c = impy.dataset.test_data(mask=mask)
-mask[0][0] = True
-data_m = impy.dataset.test_data(mask=mask)
+SHAPE = (5, 5)
 
-def test_return_type():
-    """ Check return type, should return an np.ndarray"""
-    imputed = impy.em(data_m)
-    assert isinstance(imputed, np.ndarray)
 
-def test_impute_missing_values():
-    """ After imputation, no NaN's should exist"""
-    imputed = impy.em(data_m)
-    assert not np.isnan(imputed).any()
+def test_em_(test_data):
+    data = test_data(SHAPE)
+    imputed = impy.em(data)
+    return_na_check(imputed)
