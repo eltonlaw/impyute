@@ -1,5 +1,6 @@
 """test_compare.py"""
 import ast
+import pytest
 import numpy as np
 import impyute as impy
 
