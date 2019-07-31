@@ -1,6 +1,11 @@
 """ Shared functions to load/generate data """
 import numpy as np
+import string
+import random
+import math
+import itertools
 from impyute.dataset.corrupt import Corruptor
+from impyute.util import BadInputError
 
 def randu(bound=(0, 10), shape=(5, 5), missingness="mcar", thr=0.2, dtype="int"):
     """ Return randomly generated dataset of numbers with uniformly
@@ -15,8 +20,8 @@ def randu(bound=(0, 10), shape=(5, 5), missingness="mcar", thr=0.2, dtype="int")
     shape:tuple(optional)
         Size of the randomly generated data
     missingness: ('mcar', 'mar', 'mnar')
-        Type of missigness you want in your dataset
-    th: float between [0,1]
+        Type of missingness you want in your dataset
+    thr: float between [0,1]
         Percentage of missing data in generated data
     dtype: ('int','float')
         Type of data
@@ -45,8 +50,8 @@ def randn(theta=(0, 1), shape=(5, 5), missingness="mcar", thr=0.2, dtype="float"
     shape:tuple(optional)
         Size of the randomly generated data
     missingness: ('mcar', 'mar', 'mnar')
-        Type of missigness you want in your dataset
-    th: float between [0,1]
+        Type of missingness you want in your dataset
+    thr: float between [0,1]
         Percentage of missing data in generated data
     dtype: ('int','float')
         Type of data
@@ -64,6 +69,48 @@ def randn(theta=(0, 1), shape=(5, 5), missingness="mcar", thr=0.2, dtype="float"
     corruptor = Corruptor(data, thr=thr)
     raw_data = getattr(corruptor, missingness)()
     return raw_data
+
+def randc(nlevels=5, shape=(5, 5), missingness="mcar", thr=0.2):
+    """ Return randomly generated dataset with uniformly distributed categorical data (alphabetic character)
+
+    Parameters
+    ----------
+    :param nlevels: int
+        Specify the number of different categories in the dataset
+    :param shape: tuple(optional)
+        Size of the randomly generated data
+    :param missingness: string in ('mcar', 'mar', 'mnar')
+        Type of missingness you want in your dataset
+    :param thr: float between [0,1]
+        Percentage of missing data in generated data
+    :return:
+    """
+    if shape[0]*shape[1] < nlevels:
+        raise BadInputError("nlevel exceeds the size of desired dataset. Please decrease the nlevel or increase the shape")
+
+    length = len(string.ascii_lowercase)
+    n_fold = math.floor(math.log(nlevels, length))
+    cat_pool = list(string.ascii_lowercase)
+
+    # when nlevel > 26, the alphabetical character is used up, need to generate extra strings as categorical data
+    if n_fold > 0:
+        for i in range(2, n_fold+2):
+            pool_candidate = list(itertools.product(string.ascii_lowercase, repeat=i))
+            cat_pool.extend([''.join(w) for w in pool_candidate])
+            if len(cat_pool) > nlevels:
+                break
+
+    cat = random.sample(cat_pool, nlevels)
+    data = np.random.choice(cat, shape, replace=True)
+
+    # make sure the data frame has nlevel different categories
+    while len(np.unique(data)) != nlevels:
+        data = np.random.choice(cat, shape, replace=True)
+
+    corruptor = Corruptor(data, thr=thr, dtype=np.str)
+    raw_data = getattr(corruptor, missingness)()
+    return raw_data
+
 
 
 def test_data(mask=np.zeros((3, 3), dtype=bool)):
