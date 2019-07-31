@@ -23,10 +23,10 @@ class Corruptor:
         Overwrite values with MNAR placed NaN's.
 
     """
-    def __init__(self, data, thr=0.2):
+    def __init__(self, data, thr=0.2, dtype=np.float):
         self.dtype = data.dtype
         self.shape = np.shape(data)
-        self.data = data.astype(np.float)
+        self.data = data.astype(dtype)
         self.thr = thr
 
     def mcar(self):
