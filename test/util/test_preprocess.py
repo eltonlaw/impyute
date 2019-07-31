@@ -73,7 +73,7 @@ def test_pandas_input():
     """ Input: DataFrame, Output: DataFrame """
     # Skip this test if you don't have pandas
     pytest.importorskip('pandas')
-
+    import pandas as pd
     # Create a DataFrame with a NaN
     A = np.arange(25).reshape((5, 5)).astype(np.float)
     A[0, 0] = np.nan

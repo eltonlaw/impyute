@@ -1,5 +1,5 @@
+import os
 import shutil
-from pathlib import Path
 
 import pytest
 import numpy as np
@@ -43,8 +43,8 @@ def mw_data():
 @pytest.fixture(scope='session')
 def results_path(tmpdir_factory):
     temp = tmpdir_factory.mktemp('logs')
-    p = Path(temp).resolve()
-    log_path = p / 'results.txt'
+    p = os.path.realpath(temp)
+    log_path = os.path.join(p, 'results.txt')
     yield log_path
     if temp.exists():
         shutil.rmtree(str(temp))
