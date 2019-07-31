@@ -1,4 +1,5 @@
 """test_preprocess.py"""
+import pytest
 import numpy as np
 from impyute.util import preprocess
 from impyute.imputation.cs import mean
@@ -71,11 +72,7 @@ def test_inplace_true_nokwargs():
 def test_pandas_input():
     """ Input: DataFrame, Output: DataFrame """
     # Skip this test if you don't have pandas
-    try:
-        import pandas as pd
-    except (ModuleNotFoundError, ImportError):
-        assert True
-        return
+    pytest.importorskip('pandas')
 
     # Create a DataFrame with a NaN
     A = np.arange(25).reshape((5, 5)).astype(np.float)
