@@ -6,6 +6,7 @@ import impyute as impy
 SHAPE = (5, 5)
 
 
+@pytest.mark.filterwarnings('ignore::FutureWarning')
 def test_output_file_exists(test_data, results_path):
     data = test_data(SHAPE)
     labels = np.array([1, 0, 1, 1, 0])
