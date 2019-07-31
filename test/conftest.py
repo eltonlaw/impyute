@@ -43,7 +43,7 @@ def mw_data():
 @pytest.fixture(scope='session')
 def results_path(tmpdir_factory):
     temp = tmpdir_factory.mktemp('logs')
-    p = os.path.realpath(temp)
+    p = os.path.realpath(str(temp))
     log_path = os.path.join(p, 'results.txt')
     yield log_path
     if temp.exists():
