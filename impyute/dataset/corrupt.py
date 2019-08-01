@@ -9,7 +9,7 @@ class Corruptor:
     ----------
     data: np.ndarray
         Matrix of values with no NaN's that you want to add NaN's to.
-    th: float (optional)
+    thr: float (optional)
         The percentage of null values you want in your dataset, a number
         between 0 and 1.
 
