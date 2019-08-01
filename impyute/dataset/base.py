@@ -89,7 +89,7 @@ def randc(nlevels=5, shape=(5, 5), missingness="mcar", thr=0.2):
         raise BadInputError("nlevel exceeds the size of desired dataset. Please decrease the nlevel or increase the shape")
 
     length = len(string.ascii_lowercase)
-    n_fold = math.floor(math.log(nlevels, length))
+    n_fold = int(math.floor(math.log(nlevels, length)))
     cat_pool = list(string.ascii_lowercase)
 
     # when nlevel > 26, the alphabetical character is used up, need to generate extra strings as categorical data
