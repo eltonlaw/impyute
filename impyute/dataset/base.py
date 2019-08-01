@@ -75,15 +75,18 @@ def randc(nlevels=5, shape=(5, 5), missingness="mcar", thr=0.2):
 
     Parameters
     ----------
-    :param nlevels: int
+    nlevels: int
         Specify the number of different categories in the dataset
-    :param shape: tuple(optional)
+    shape: tuple(optional)
         Size of the randomly generated data
-    :param missingness: string in ('mcar', 'mar', 'mnar')
+    missingness: string in ('mcar', 'mar', 'mnar')
         Type of missingness you want in your dataset
-    :param thr: float between [0,1]
+    thr: float between [0,1]
         Percentage of missing data in generated data
-    :return:
+
+    Returns
+    -------
+    numpy.ndarray
     """
     if shape[0]*shape[1] < nlevels:
         raise BadInputError("nlevel exceeds the size of desired dataset. Please decrease the nlevel or increase the shape")
