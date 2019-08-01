@@ -9,7 +9,7 @@ class Corruptor:
     ----------
     data: np.ndarray
         Matrix of values with no NaN's that you want to add NaN's to.
-    th: float (optional)
+    thr: float (optional)
         The percentage of null values you want in your dataset, a number
         between 0 and 1.
 
@@ -23,10 +23,10 @@ class Corruptor:
         Overwrite values with MNAR placed NaN's.
 
     """
-    def __init__(self, data, thr=0.2):
+    def __init__(self, data, thr=0.2, dtype=np.float):
         self.dtype = data.dtype
         self.shape = np.shape(data)
-        self.data = data.astype(np.float)
+        self.data = data.astype(dtype)
         self.thr = thr
 
     def mcar(self):
