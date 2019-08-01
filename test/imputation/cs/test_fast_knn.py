@@ -2,37 +2,27 @@
 import functools
 import numpy as np
 import impyute as impy
+from impyute.util.testing import return_na_check
 # pylint:disable=invalid-name
 
-n = 100
-data_c = np.random.normal(size=n*n).reshape((n, n))
-data_m1 = data_c.copy()
-for _ in range(int(n*0.3*n)):
-    data_m1[np.random.randint(n)][np.random.randint(n)] = np.nan
+SHAPE = (5, 5)
 
-def test_return_type():
-    """ Check return type, should return an np.ndarray"""
-    imputed = impy.fast_knn(data_m1)
-    assert isinstance(imputed, np.ndarray)
 
-def test_impute_missing_values():
-    """ After imputation, no NaN's should exist"""
-    imputed = impy.fast_knn(data_m1)
-    assert not np.isnan(imputed).any()
+def test_return_type(knn_test_data):
+    imputed = impy.fast_knn(knn_test_data)
+    return_na_check(imputed)
 
-data_m2 = np.array([[0., 1., np.nan, 3., 4.],
-                    [5., 6., 7., 8., 9.],
-                    [10., 11., 12., 13., 14.],
-                    [15., 16., 17., 18., 19.],
-                    [20., 21., 22., 23., 24.]])
 
-def test_impute_value():
+def test_impute_value(test_data):
     "fast_knn using standard idw"
-    imputed = impy.fast_knn(data_m2, k=2)
-    assert np.isclose(imputed[0][2], 8.38888888888889)
+    data = test_data(SHAPE, 0, 2)
+    imputed = impy.fast_knn(data, k=2)
+    assert np.isclose(imputed[0, 2], 8.38888888888889)
 
-def test_impute_value_custom_idw():
+
+def test_impute_value_custom_idw(test_data):
     "fast_knn using custom idw"
+    data = test_data(SHAPE, 0, 2)
     idw = functools.partial(impy.util.inverse_distance_weighting.shepards, power=1)
-    imputed = impy.fast_knn(data_m2, k=2, idw=idw)
-    assert np.isclose(imputed[0][2], 8.913911092686593)
+    imputed = impy.fast_knn(data, k=2, idw=idw)
+    assert np.isclose(imputed[0, 2], 8.913911092686593)
