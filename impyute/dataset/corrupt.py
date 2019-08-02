@@ -50,10 +50,6 @@ class Corruptor:
                 cutoff = np.percentile(self.data[:, j], (1 - self.thr) * 100)
                 if self.data[i, j] > cutoff:
                     output[i, j + 1] = np.nan
-            # first columns
-            cutoff = np.percentile(self.data[:, -1], (1 - self.thr) * 100)
-            if self.data[i, -1] > cutoff:
-                output[i, 0] = np.nan
         return output
 
     def mnar(self):
