@@ -3,7 +3,7 @@ import numpy as np
 from impyute.util import find_null
 from impyute.util import checks
 from impyute.util import preprocess
-
+from impyute.util.errors import BadInputError
 @preprocess
 @checks
 def locf(data, axis=0):
@@ -33,6 +33,8 @@ def locf(data, axis=0):
         data = np.transpose(data)
     elif axis == 1:
         pass
+    else:
+        raise BadInputError("Error: Axis value is invalid, please use either 0 (row format) or 1 (column format)")
 
     null_xy = find_null(data)
     for x_i, y_i in null_xy:
