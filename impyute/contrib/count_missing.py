@@ -1,4 +1,4 @@
-""" impyute.util.count_missing.py """
+""" impyute.contrib.count_missing.py """
 import numpy as np
 from impyute.util import find_null
 

@@ -1,4 +1,4 @@
-""" impyute.util.describe """
+""" impyute.contrib.describe """
 from impyute.util import find_null
 
 def describe(data): # verbose=True):
