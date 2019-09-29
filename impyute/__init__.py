@@ -17,7 +17,12 @@ __copyright__ = 'Copyright 2019 Elton law'
 
 ### Top Level Modules
 
-__all__ = ["dataset", "deletion", "util", "contrib"]
+from impyute import dataset
+from impyute import deletion
+from impyute import util
+from impyute import contrib
+
+__all__ = ["contrib", "dataset", "deletion", "util"]
 
 ### Cross Sectional Imputations
 
