@@ -15,8 +15,7 @@ def find_null(data):
     -------
     List of tuples
         Indices of all missing values in tuple format; (i, j)
-
-    """
+"""
     return np.argwhere(np.isnan(data))
 
 def map_nd(fn, arr):
@@ -45,4 +44,4 @@ def every_nd(fn, arr):
     bool
 
     """
-   return all(map(fn, arr.flatten()))
+    return all(map(fn, arr.flatten()))

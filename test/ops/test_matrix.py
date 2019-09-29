@@ -13,5 +13,5 @@ def test_map_nd_2d():
         [True, True],
         [True, True],
     ])
-    actual = map_nd(_is_gt_5, arr)
+    actual = matrix.map_nd(_is_gt_5, arr)
     assert matrix.every_nd(bool, expected == actual)

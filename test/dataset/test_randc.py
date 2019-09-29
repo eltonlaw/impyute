@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 from impyute.dataset.base import randc
-from impyute.util import BadInputError
+from impyute.ops import BadInputError
 
 def test_raise_error_nlevel_exceed_shape():
     with pytest.raises(BadInputError) as e:

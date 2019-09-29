@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 from impyute.dataset import mnist
-from impyute.util import find_null
+from impyute.ops import find_null
 
 pytest.skip("takes ~30 sec each test", allow_module_level=True)
 data = mnist()["X"]

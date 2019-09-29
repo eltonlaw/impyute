@@ -14,15 +14,15 @@ def test_return_type(knn_test_data):
 
 
 def test_impute_value(test_data):
-    "fast_knn using standard idw"
+    """fast_knn using standard idw"""
     data = test_data(SHAPE, 0, 2)
     imputed = impy.fast_knn(data, k=2)
     assert np.isclose(imputed[0, 2], 8.38888888888889)
 
 
 def test_impute_value_custom_idw(test_data):
-    "fast_knn using custom idw"
+    """fast_knn using custom idw"""
     data = test_data(SHAPE, 0, 2)
-    idw = functools.partial(impy.util.inverse_distance_weighting.shepards, power=1)
+    idw = functools.partial(impy.ops.inverse_distance_weighting.shepards, power=1)
     imputed = impy.fast_knn(data, k=2, idw=idw)
     assert np.isclose(imputed[0, 2], 8.913911092686593)

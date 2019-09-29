@@ -5,9 +5,10 @@ and outputs
 """
 from functools import wraps
 import numpy as np
-from impyute.ops import BadInputError
+from impyute.ops import BadInputError, BadOutputError
 from impyute.ops import find_null
-from impyute.ops.util import identity, constantly, complement
+from impyute.ops.util import identity, constantly, complement, thread
+from impyute.ops.matrix import map_nd
 
 ## Hacky way to handle python2 not having `ModuleNotFoundError`
 # pylint: disable=redefined-builtin, missing-docstring
@@ -114,15 +115,14 @@ def conform_output(fn):
     """
     @wraps(fn)
     def wrapper(*args, **kwargs):
+        def raise_error(arr, x_i, y_i):
+            raise BadOutputError("{} does not conform".format(arr[x_i, y_i]))
         ## convert tuple to list so args can be modified
         args = list(args)
         # function that checks if the value is valid
-        valid_fn = kwargs.get("valid_fn", constantly(true))
+        valid_fn = kwargs.get("valid_fn", constantly(True))
         # function that modifies the invalid value to something valid
-        coerce_fn = kwargs.get(
-            "coerce_fn",
-            lambda arr, x_i, y_i: raise BadOutputError("{} does not conform".format(arr[x_i, y_i]))
-        ))
+        coerce_fn = kwargs.get("coerce_fn", raise_error)
 
         ## function invokation
         results = execute_fn_with_args_and_or_kwargs(fn, args, kwargs)
@@ -132,7 +132,7 @@ def conform_output(fn):
         # get indices of invalid values
         invalid_indices = np.argwhere(bool_arr)
         # run the coerce fn on each invalid indice
-        for x_i, y_i in invalid_indice:
+        for x_i, y_i in invalid_indices:
             results[x_i, y_i] = coerce_fn(results, x_i, y_i)
 
         return results
@@ -149,7 +149,7 @@ def preprocess(fn):
     return thread(
         fn,                 # function that's getting wrapped
         add_inplace_option, # allow choosing reference/copy
-        conform_output      # allow enforcing of some spec on returned outputs
+        conform_output,     # allow enforcing of some spec on returned outputs
         handle_df,          # if df type, cast to np.array on in and df on out
     )
 
