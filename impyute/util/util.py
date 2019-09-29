@@ -1,4 +1,5 @@
 """ Random utility functions """
+from functools import wraps
 
 def thread(arg, *fns):
     if len(fns) > 0:
@@ -14,3 +15,12 @@ def constantly(x):
     def func(*args, **kwargs):
         return x
     return func
+
+def complement(fn):
+    """ Return fn that outputs the opposite truth values of the
+    input function
+    """
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+        return not fn(*args, **kwargs)
+    return wrapper
