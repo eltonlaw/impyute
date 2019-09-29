@@ -1,6 +1,11 @@
 """ Random utility functions """
 from functools import wraps
 
+__all__ = [
+    "constantly", "complement", "identity", "thread",
+    "execute_fn_with_args_and_or_kwargs"
+    ]
+
 def thread(arg, *fns):
     if len(fns) > 0:
         return thread(fns[0](arg), *fns[1:])
@@ -24,3 +29,10 @@ def complement(fn):
     def wrapper(*args, **kwargs):
         return not fn(*args, **kwargs)
     return wrapper
+
+def execute_fn_with_args_and_or_kwargs(fn, args, kwargs):
+    """ If args + kwargs aren't accepted only args are passed in"""
+    try:
+        return fn(*args, **kwargs)
+    except TypeError:
+        return fn(*args)

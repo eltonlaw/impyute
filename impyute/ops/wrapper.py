@@ -5,10 +5,11 @@ and outputs
 """
 from functools import wraps
 import numpy as np
-from impyute.ops import BadInputError, BadOutputError
+from impyute.ops import BadInputError
+from impyute.ops import BadOutputError
 from impyute.ops import find_null
-from impyute.ops.util import identity, constantly, complement, thread
 from impyute.ops.matrix import map_nd
+from impyute.ops.util import *
 
 ## Hacky way to handle python2 not having `ModuleNotFoundError`
 # pylint: disable=redefined-builtin, missing-docstring
@@ -20,13 +21,6 @@ except NameError:
 except ModuleNotFoundError:
     pass
 # pylint: enable=redefined-builtin, missing-docstring
-
-def execute_fn_with_args_and_or_kwargs(fn, args, kwargs):
-    """ If args + kwargs aren't accepted only args are passed in"""
-    try:
-        return fn(*args, **kwargs)
-    except TypeError:
-        return fn(*args)
 
 def get_pandas_df():
     """ Gets pandas DataFrame if we can import it """
