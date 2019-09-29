@@ -3,7 +3,7 @@ from functools import wraps
 import numpy as np
 from impyute.util import BadInputError
 from impyute.util import find_null
-from impyute.util import util
+from impyute.util.util import identity, constantly, complement
 
 ## Hacky way to handle python2 not having `ModuleNotFoundError`
 # pylint: disable=redefined-builtin, missing-docstring
@@ -87,6 +87,53 @@ def add_inplace_option(fn):
         return execute_fn_with_args_and_or_kwargs(fn, args, kwargs)
     return wrapper
 
+def conform_output(fn):
+    """ Decorator to handle impossible values
+
+    Adds two optional kwargs, `coerce_fn` and `valid_fn`.
+
+    `valid_fn` function stub
+
+        def my_coerce_fn(some_literal) -> boolean
+
+    `coerce_fn` function stub
+
+        def my_coerce_fn(arr, x_i, y_i) -> some_literal
+
+    Valid function is something run on each element of the, this is
+    the function that we use to indicate whether the value is valid
+    or not
+
+    Coerce function has three arguments, the original matrix and
+    the two indices of the invalid value x_i and y_i. This function
+    will be run on all invalid values.
+    """
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+        ## convert tuple to list so args can be modified
+        args = list(args)
+        # function that checks if the value is valid
+        valid_fn = kwargs.get("valid_fn", constantly(true))
+        # function that modifies the invalid value to something valid
+        coerce_fn = kwargs.get(
+            "coerce_fn",
+            lambda arr, x_i, y_i: raise BadOutputError("{} does not conform".format(arr[x_i, y_i]))
+        ))
+
+        ## function invokation
+        results = execute_fn_with_args_and_or_kwargs(fn, args, kwargs)
+
+        # check each value to see if it's valid
+        bool_arr = map_nd(complement(valid_fn), results)
+        # get indices of invalid values
+        invalid_indices = np.argwhere(bool_arr)
+        # run the coerce fn on each invalid indice
+        for x_i, y_i in invalid_indice:
+            results[x_i, y_i] = coerce_fn(results, x_i, y_i)
+
+        return results
+    return wrapper
+
 def preprocess(fn):
     """ Helper decorator, all wrapper functions applied to modify input (matrix
     with missing values) and output (matrix with imputed values)
@@ -95,9 +142,10 @@ def preprocess(fn):
     entry point) since every other function assumes you're getting an np.array
     as input
     """
-    return util.thread(
+    return thread(
         fn,                 # function that's getting wrapped
         add_inplace_option, # allow choosing reference/copy
+        conform_output      # allow enforcing of some spec on returned outputs
         handle_df,          # if df type, cast to np.array on in and df on out
     )
 
