@@ -66,7 +66,7 @@ def handle_df(fn):
         return results
     return wrapper
 
-def inplace(fn):
+def add_inplace_option(fn):
     """ Decorator for inplace option
 
     Functions wrapped by this can have an `inplace` kwarg to use either a copy of
@@ -86,8 +86,25 @@ def inplace(fn):
         return execute_fn_with_args_and_or_kwargs(fn, args, kwargs)
     return wrapper
 
+def thread(arg, *fns):
+    if len(fns) > 0:
+        return thread(fns[0](arg), *fns[1:])
+    else:
+        return arg
+
 def preprocess(fn):
-    return inplace(handle_df(fn))
+    """ Helper decorator, all wrapper functions applied to modify input (matrix
+    with missing values) and output (matrix with imputed values)
+
+    NOTE: `handle_df` has to be last as it needs to be in the outer loop (first
+    entry point) since every other function assumes you're getting an np.array
+    as input
+    """
+    return thread(
+        fn,                 # function that's getting wrapped
+        add_inplace_option, # allow choosing reference/copy
+        handle_df,          # if df type, cast to np.array on in and df on out
+    )
 
 def _shape_2d(data):
     """ True if array is 2D"""
