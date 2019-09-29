@@ -3,6 +3,7 @@ from functools import wraps
 import numpy as np
 from impyute.util import BadInputError
 from impyute.util import find_null
+from impyute.util import util
 
 ## Hacky way to handle python2 not having `ModuleNotFoundError`
 # pylint: disable=redefined-builtin, missing-docstring
@@ -86,12 +87,6 @@ def add_inplace_option(fn):
         return execute_fn_with_args_and_or_kwargs(fn, args, kwargs)
     return wrapper
 
-def thread(arg, *fns):
-    if len(fns) > 0:
-        return thread(fns[0](arg), *fns[1:])
-    else:
-        return arg
-
 def preprocess(fn):
     """ Helper decorator, all wrapper functions applied to modify input (matrix
     with missing values) and output (matrix with imputed values)
@@ -100,7 +95,7 @@ def preprocess(fn):
     entry point) since every other function assumes you're getting an np.array
     as input
     """
-    return thread(
+    return util.thread(
         fn,                 # function that's getting wrapped
         add_inplace_option, # allow choosing reference/copy
         handle_df,          # if df type, cast to np.array on in and df on out
