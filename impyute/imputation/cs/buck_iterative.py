@@ -1,9 +1,8 @@
-""" impyute.imputation.cs.buck_iterative """
 import numpy as np
 from sklearn.linear_model import LinearRegression
-from impyute.util import find_null
-from impyute.util import checks
-from impyute.util import preprocess
+from impyute.ops import find_null
+from impyute.ops import checks
+from impyute.ops import preprocess
 # pylint: disable=too-many-locals
 
 @preprocess

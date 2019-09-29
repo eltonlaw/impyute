@@ -1,9 +1,9 @@
 import pytest
 import numpy as np
-from impyute.util import preprocess
 from impyute.imputation.cs import mean
-from impyute.util import BadInputError
-from impyute.util import checks
+from impyute.ops import preprocess
+from impyute.ops import BadInputError
+from impyute.ops import checks
 
 # pylint:disable=redefined-builtin
 try:

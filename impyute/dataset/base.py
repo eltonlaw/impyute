@@ -5,7 +5,7 @@ import random
 import math
 import itertools
 from impyute.dataset.corrupt import Corruptor
-from impyute.util import BadInputError
+from impyute.ops import BadInputError
 
 def randu(bound=(0, 10), shape=(5, 5), missingness="mcar", thr=0.2, dtype="int"):
     """ Return randomly generated dataset of numbers with uniformly

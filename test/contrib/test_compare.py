@@ -1,4 +1,3 @@
-"""test_compare.py"""
 import ast
 import pytest
 import numpy as np

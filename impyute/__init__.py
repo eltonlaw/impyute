@@ -19,10 +19,10 @@ __copyright__ = 'Copyright 2019 Elton law'
 
 from impyute import dataset
 from impyute import deletion
-from impyute import util
+from impyute import ops
 from impyute import contrib
 
-__all__ = ["contrib", "dataset", "deletion", "util"]
+__all__ = ["contrib", "dataset", "deletion", "ops"]
 
 ### Cross Sectional Imputations
 

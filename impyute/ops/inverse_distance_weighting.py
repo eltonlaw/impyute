@@ -1,4 +1,5 @@
-""" impyute.util.inverse_distance_weighting """
+""" Assign weights to distances in a way such that farther values are weighed less """
+
 import numpy as np
 
 def shepards(distances, power=2):

@@ -1,8 +1,7 @@
-""" impyute.imputation.cs.central_tendency """
 import numpy as np
-from impyute.util import find_null
-from impyute.util import checks
-from impyute.util import preprocess
+from impyute.ops import find_null
+from impyute.ops import checks
+from impyute.ops import preprocess
 
 @preprocess
 @checks

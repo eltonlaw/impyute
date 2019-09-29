@@ -1,5 +1,5 @@
 import numpy as np
-from impyute.util import matrix
+from impyute.ops import matrix
 
 def _is_gt_5(x):
     return x > 5

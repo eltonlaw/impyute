@@ -1,10 +1,9 @@
-""" impyute.imputation.cs.knn """
 import numpy as np
 from scipy.spatial import KDTree
-from impyute.util import find_null
-from impyute.util import checks
-from impyute.util import preprocess
-from impyute.util import inverse_distance_weighting as util_idw
+from impyute.ops import find_null
+from impyute.ops import checks
+from impyute.ops import preprocess
+from impyute.ops import inverse_distance_weighting as util_idw
 from impyute.imputation.cs import mean
 # pylint: disable=too-many-arguments
 

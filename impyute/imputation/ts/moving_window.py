@@ -1,8 +1,7 @@
-""" impyute.imputation.ts.moving_window """
 import numpy as np
-from impyute.util import find_null
-from impyute.util import checks
-from impyute.util import preprocess
+from impyute.ops import find_null
+from impyute.ops import checks
+from impyute.ops import preprocess
 # pylint: disable=invalid-name, too-many-arguments, too-many-locals, too-many-branches, broad-except, len-as-condition
 
 @preprocess

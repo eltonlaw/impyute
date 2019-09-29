@@ -2,7 +2,7 @@
 import functools
 import numpy as np
 import impyute as impy
-from impyute.util.testing import return_na_check
+from impyute.ops.testing import return_na_check
 # pylint:disable=invalid-name
 
 SHAPE = (5, 5)

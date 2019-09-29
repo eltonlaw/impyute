@@ -1,6 +1,6 @@
 """ impyute.contrib.count_missing.py """
 import numpy as np
-from impyute.util import find_null
+from impyute.ops import find_null
 
 def count_missing(data):
     """ Calculate the total percentage of missing values and also the

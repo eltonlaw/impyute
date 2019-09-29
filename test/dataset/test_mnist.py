@@ -1,4 +1,3 @@
-"""test_mnist.py"""
 import numpy as np
 import pytest
 from impyute.dataset import mnist

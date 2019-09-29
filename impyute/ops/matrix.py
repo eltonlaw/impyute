@@ -1,4 +1,4 @@
-""" impyute.util.matrix
+""" Common operations on matrices
 
 *Look into whether it's worth writing these in raw c*
 """

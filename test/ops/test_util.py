@@ -1,5 +1,5 @@
 import numpy as np
-from impyute.util.util import thread
+from impyute.ops.util import thread
 
 def _add_one(x):
     """ """

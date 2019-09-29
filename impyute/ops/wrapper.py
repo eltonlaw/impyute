@@ -1,9 +1,13 @@
-""" impyute.util.wrapper """
+""" Decorator functions to wrap around entry and exit
+
+... to easily apply to a function, functions that check/process inputs
+and outputs
+"""
 from functools import wraps
 import numpy as np
-from impyute.util import BadInputError
-from impyute.util import find_null
-from impyute.util.util import identity, constantly, complement
+from impyute.ops import BadInputError
+from impyute.ops import find_null
+from impyute.ops.util import identity, constantly, complement
 
 ## Hacky way to handle python2 not having `ModuleNotFoundError`
 # pylint: disable=redefined-builtin, missing-docstring
