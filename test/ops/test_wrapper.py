@@ -3,7 +3,9 @@ import numpy as np
 from impyute.imputation.cs import mean
 from impyute.ops import preprocess
 from impyute.ops import BadInputError
+from impyute.ops import BadOutputError
 from impyute.ops import checks
+from impyute.ops import wrapper
 
 # pylint:disable=redefined-builtin
 try:
@@ -105,3 +107,53 @@ def test_nan_exists():
     with pytest.raises(BadInputError) as excinfo:
         some_fn(np.array([[1.]]))
     assert str(excinfo.value) == "No NaN's in given data"
+
+@wrapper.conform_output
+def conform_output_dummy(x):
+    return x
+
+def is_between_0_1(x):
+    return 0 <= x <= 1
+
+def coerce_between_0_1(arr, x_i, y_i):
+    val = arr[x_i, y_i]
+    if val < 0:
+        return 0
+    elif val > 1:
+        return 1
+    else:
+        return x
+
+def test_conform_output_not_used():
+    """ If neither args passed, don't do anything"""
+    assert "some input" == conform_output_dummy("some input")
+
+def test_conform_output_valid_coerce():
+    """ Check value valid and coerce invalid values"""
+    arr = np.array([[1.1, 0.5], [0.2, -1]])
+    actual = conform_output_dummy(
+            arr,
+            valid_fn=is_between_0_1,
+            coerce_fn=coerce_between_0_1,
+            )
+    expected = np.array([[1.0, 0.5], [0.2, 0.0]])
+    assert np.array_equal(expected, actual)
+
+def test_conform_output_coerce():
+    """ Coerce function doesn't run if no valid_fn passed  """
+    arr = np.array([[1.1, 0.5], [0.2, -1]])
+    actual = conform_output_dummy(
+            arr,
+            coerce_fn=coerce_between_0_1,
+            )
+    expected = np.array([[1.1, 0.5], [0.2, -1]])
+    assert np.array_equal(expected, actual)
+
+def test_conform_output_valid():
+    """ No coerce_fn with valid_fn will raise BadOutputeError if invalid values
+    encountered. First invalid value is 1.1
+    """
+    arr = np.array([[1.1, 0.5], [0.2, -1]])
+    with pytest.raises(BadOutputError) as excinfo:
+        conform_output_dummy(arr, valid_fn=is_between_0_1)
+    assert str(excinfo.value) == "1.1 does not conform"
