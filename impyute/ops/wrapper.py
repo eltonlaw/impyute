@@ -9,7 +9,7 @@ from impyute.ops import BadInputError
 from impyute.ops import BadOutputError
 from impyute.ops import find_null
 from impyute.ops.matrix import map_nd
-from impyute.ops.util import *
+import impyute.ops.util as u
 
 ## Hacky way to handle python2 not having `ModuleNotFoundError`
 # pylint: disable=redefined-builtin, missing-docstring
@@ -57,7 +57,7 @@ def handle_df(fn):
             args[0] = args[0].values
 
         ## function invokation
-        results = execute_fn_with_args_and_or_kwargs(fn, args, kwargs)
+        results = u.execute_fn_with_args_and_or_kwargs(fn, args, kwargs)
 
         ## cast the output back to a DataFrame.
         if postprocess_fn is not None:
@@ -83,7 +83,7 @@ def add_inplace_option(fn):
             args[0] = args[0].copy()
 
         ## function invokation
-        return execute_fn_with_args_and_or_kwargs(fn, args, kwargs)
+        return u.execute_fn_with_args_and_or_kwargs(fn, args, kwargs)
     return wrapper
 
 def conform_output(fn):
@@ -114,15 +114,15 @@ def conform_output(fn):
         ## convert tuple to list so args can be modified
         args = list(args)
         # function that checks if the value is valid
-        valid_fn = kwargs.get("valid_fn", constantly(True))
+        valid_fn = kwargs.get("valid_fn", u.constantly(True))
         # function that modifies the invalid value to something valid
         coerce_fn = kwargs.get("coerce_fn", raise_error)
 
         ## function invokation
-        results = execute_fn_with_args_and_or_kwargs(fn, args, kwargs)
+        results = u.execute_fn_with_args_and_or_kwargs(fn, args, kwargs)
 
         # check each value to see if it's valid
-        bool_arr = map_nd(complement(valid_fn), results)
+        bool_arr = map_nd(u.complement(valid_fn), results)
         # get indices of invalid values
         invalid_indices = np.argwhere(bool_arr)
         # run the coerce fn on each invalid indice
@@ -140,7 +140,7 @@ def preprocess(fn):
     entry point) since every other function assumes you're getting an np.array
     as input
     """
-    return thread(
+    return u.thread(
         fn,                 # function that's getting wrapped
         add_inplace_option, # allow choosing reference/copy
         conform_output,     # allow enforcing of some spec on returned outputs
@@ -183,5 +183,5 @@ def checks(fn):
             raise BadInputError("Data is not float.")
         elif not _nan_exists(data):
             raise BadInputError("No NaN's in given data")
-        return execute_fn_with_args_and_or_kwargs(fn, args, kwargs)
+        return u.execute_fn_with_args_and_or_kwargs(fn, args, kwargs)
     return wrapper
