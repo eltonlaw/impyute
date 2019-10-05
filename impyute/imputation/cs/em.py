@@ -1,10 +1,9 @@
 import numpy as np
-from impyute.ops import find_null
-from impyute.ops import preprocess
-from impyute.ops import checks
+from impyute.ops import matrix
+from impyute.ops import wrapper
 
-@preprocess
-@checks
+@wrapper.wrappers
+@wrapper.checks
 def em(data, loops=50):
     """ Imputes given data using expectation maximization.
 
@@ -27,8 +26,8 @@ def em(data, loops=50):
         Imputed data.
 
     """
-    null_xy = find_null(data)
-    for x_i, y_i in null_xy:
+    nan_xy = matrix.nan_indices(data)
+    for x_i, y_i in nan_xy:
         col = data[:, int(y_i)]
         mu = col[~np.isnan(col)].mean()
         std = col[~np.isnan(col)].std()

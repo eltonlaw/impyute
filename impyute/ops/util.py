@@ -1,6 +1,7 @@
 """ Random utility functions """
 from functools import wraps
 
+# Things that get exposed from * import
 __all__ = [
     "constantly", "complement", "identity", "thread",
     "execute_fn_with_args_and_or_kwargs"

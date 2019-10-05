@@ -1,16 +1,16 @@
 import numpy as np
 from scipy.spatial import KDTree
-from impyute.ops import find_null
-from impyute.ops import checks
-from impyute.ops import preprocess
-from impyute.ops import inverse_distance_weighting as util_idw
-from impyute.imputation import cs
+from impyute.ops import matrix
+from impyute.ops import wrapper
+from impyute.ops import inverse_distance_weighting as idw
+
+from . import mean
 # pylint: disable=too-many-arguments
 
-@preprocess
-@checks
+@wrapper.wrappers
+@wrapper.checks
 def fast_knn(data, k=3, eps=0, p=2, distance_upper_bound=np.inf, leafsize=10,
-        idw_fn=idw.shepards, init_impute_fn=cs.mean):
+        idw_fn=idw.shepards, init_impute_fn=mean):
     """ Impute using a variant of the nearest neighbours approach
 
     Basic idea: Impute array with a passed in initial impute fn (mean impute)
@@ -112,11 +112,11 @@ def fast_knn(data, k=3, eps=0, p=2, distance_upper_bound=np.inf, leafsize=10,
         IndexError: index 5 is out of bounds for axis 0 with size 5
 
     """
-    null_xy = find_null(data)
+    nan_xy = matrix.nan_indices(data)
     data_c = init_impute_fn(data)
     kdtree = KDTree(data_c, leafsize=leafsize)
 
-    for x_i, y_i in null_xy:
+    for x_i, y_i in nan_xy:
         distances, indices = kdtree.query(data_c[x_i], k=k+1, eps=eps,
                                           p=p, distance_upper_bound=distance_upper_bound)
         # Will always return itself in the first index. Delete it.

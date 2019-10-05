@@ -1,8 +1,10 @@
 """ impyute.contrib.describe """
-from impyute.ops import find_null
+from impyute.ops import matrix
 
 def describe(data): # verbose=True):
     """ Print input/output multiple times
+
+    Eventually will be used instead of matrix.nan_indices everywhere
 
     Parameters
     ----------
@@ -16,15 +18,15 @@ def describe(data): # verbose=True):
     dict
         missingness: list
             Confidence interval of data being MCAR, MAR or MNAR - in that order
-        null_xy: list of tuples
+        nan_xy: list of tuples
             Indices of all null points
-        null_n: list
+        nan_n: list
             Total number of null values for each column
         pmissing_n: float
             Percentage of missing values in dataset
-        null_rows: list
+        nan_rows: list
             Indices of all rows that are completely null
-        null_cols: list
+        nan_cols: list
             Indices of all columns that are completely null
         mean_rows: list
             Mean value of each row
@@ -37,24 +39,24 @@ def describe(data): # verbose=True):
 
     """
 #    missingness = [0.33, 0.33, 0.33]  # find_missingness(data)
-    null_xy = find_null(data)
-    null_n = len(null_xy)
-    pmissing_n = float(null_n/len(data.flatten))
+    nan_xy = matrix.nan_indices(data)
+    nan_n = len(nan_xy)
+    pmissing_n = float(nan_n/len(data.flatten))
 #    pmissing_rows = ""
 #    pmissing_cols = ""
-#    null_rows = ""
-#    null_cols = ""
+#    nan_rows = ""
+#    nan_cols = ""
 #    mean_rows = ""
 #    mean_cols = ""
 #    std_dev = ""
 #                   "missingness": missingness,
-    description = {"null_xy": null_xy,
-                   "null_n": null_n,
+    description = {"nan_xy": nan_xy,
+                   "nan_n": nan_n,
                    "pmissing_n": pmissing_n}
 #                   "pmissing_rows": pmissing_rows,
 #                   "pmissing_cols": pmissing_cols,
-#                   "null_rows": null_rows,
-#                   "null_cols": null_cols,
+#                   "nan_rows": nan_rows,
+#                   "nan_cols": nan_cols,
 #                   "mean_rows": mean_rows,
 #                   "mean_cols": mean_cols,
 #                   "std_dev": std_dev}

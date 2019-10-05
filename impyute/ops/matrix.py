@@ -4,7 +4,7 @@
 """
 import numpy as np
 
-def find_null(data):
+def nan_indices(data):
     """ Finds the indices of all missing values.
 
     Parameters
@@ -15,7 +15,7 @@ def find_null(data):
     -------
     List of tuples
         Indices of all missing values in tuple format; (i, j)
-"""
+    """
     return np.argwhere(np.isnan(data))
 
 def map_nd(fn, arr):

@@ -1,10 +1,9 @@
 """ impyute.deletion.complete_case """
 import numpy as np
-from impyute.ops import checks
-from impyute.ops import preprocess
+from impyute.ops import wrapper
 
-@preprocess
-@checks
+@wrapper.wrappers
+@wrapper.checks
 def complete_case(data):
     """ Return only data rows with all columns
 

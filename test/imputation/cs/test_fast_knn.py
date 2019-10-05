@@ -23,6 +23,6 @@ def test_impute_value(test_data):
 def test_impute_value_custom_idw(test_data):
     """fast_knn using custom idw"""
     data = test_data(SHAPE, 0, 2)
-    idw = functools.partial(impy.ops.inverse_distance_weighting.shepards, power=1)
-    imputed = impy.fast_knn(data, k=2, idw=idw)
+    idw_fn = functools.partial(impy.ops.inverse_distance_weighting.shepards, power=1)
+    imputed = impy.fast_knn(data, k=2, idw_fn=idw_fn)
     assert np.isclose(imputed[0, 2], 8.913911092686593)

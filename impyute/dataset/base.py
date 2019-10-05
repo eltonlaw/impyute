@@ -1,11 +1,11 @@
 """ Shared functions to load/generate data """
-import numpy as np
-import string
-import random
-import math
 import itertools
+import math
+import random
+import string
+import numpy as np
 from impyute.dataset.corrupt import Corruptor
-from impyute.ops import BadInputError
+from impyute.ops import error
 
 def randu(bound=(0, 10), shape=(5, 5), missingness="mcar", thr=0.2, dtype="int"):
     """ Return randomly generated dataset of numbers with uniformly
@@ -89,7 +89,7 @@ def randc(nlevels=5, shape=(5, 5), missingness="mcar", thr=0.2):
     numpy.ndarray
     """
     if shape[0]*shape[1] < nlevels:
-        raise BadInputError("nlevel exceeds the size of desired dataset. Please decrease the nlevel or increase the shape")
+        raise error.BadInputError("nlevel exceeds the size of desired dataset. Please decrease the nlevel or increase the shape")
 
     length = len(string.ascii_lowercase)
     n_fold = int(math.floor(math.log(nlevels, length)))

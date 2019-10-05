@@ -6,3 +6,9 @@
     * `impyute.util.compare -> `impyute.contrib.compare`
     * `impyute.util.count_missing` -> `impyute.contrib.count_missing`
     * `impyute.util.describe` -> `impyute.contrib.describe`
+- Util namespace breaking changes
+    * impyute.util.find_null->impyute.ops.matrix.nan_indices
+    * impyute.util.preprocess->impyute.ops.wrapper.wrappers
+    * impyute.util.checks->impyute.ops.wrapper.checks
+    * impyute.util.BadInputError -> impyute.ops.errors.BadInputError
+    * impyute.util.BadOutputError -> impyute.ops.errors.BadOutputError

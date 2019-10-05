@@ -5,11 +5,10 @@ and outputs
 """
 from functools import wraps
 import numpy as np
-from impyute.ops import BadInputError
-from impyute.ops import BadOutputError
-from impyute.ops import find_null
-from impyute.ops.matrix import map_nd
-import impyute.ops.util as u
+
+from . import error
+from . import matrix
+from . import util as u
 
 ## Hacky way to handle python2 not having `ModuleNotFoundError`
 # pylint: disable=redefined-builtin, missing-docstring
@@ -110,7 +109,7 @@ def conform_output(fn):
     @wraps(fn)
     def wrapper(*args, **kwargs):
         def raise_error(arr, x_i, y_i):
-            raise BadOutputError("{} does not conform".format(arr[x_i, y_i]))
+            raise error.BadOutputError("{} does not conform".format(arr[x_i, y_i]))
         ## convert tuple to list so args can be modified
         args = list(args)
         # function that checks if the value is valid
@@ -122,7 +121,7 @@ def conform_output(fn):
         results = u.execute_fn_with_args_and_or_kwargs(fn, args, kwargs)
 
         # check each value to see if it's valid
-        bool_arr = map_nd(u.complement(valid_fn), results)
+        bool_arr = matrix.map_nd(u.complement(valid_fn), results)
         # get indices of invalid values
         invalid_indices = np.argwhere(bool_arr)
         # run the coerce fn on each invalid indice
@@ -132,7 +131,7 @@ def conform_output(fn):
         return results
     return wrapper
 
-def preprocess(fn):
+def wrappers(fn):
     """ Helper decorator, all wrapper functions applied to modify input (matrix
     with missing values) and output (matrix with imputed values)
 
@@ -165,8 +164,8 @@ def _dtype_float(data):
 
 def _nan_exists(data):
     """ True if there is at least one np.nan in the array"""
-    null_xy = find_null(data)
-    return len(null_xy) > 0
+    nan_xy = matrix.nan_indices(data)
+    return len(nan_xy) > 0
 
 def checks(fn):
     """ Throw exception if error runs"""
@@ -174,14 +173,14 @@ def checks(fn):
     def wrapper(*args, **kwargs):
         data = args[0]
         if len(np.shape(data)) != 2:
-            raise BadInputError("No support for arrays that aren't 2D yet.")
+            raise error.BadInputError("No support for arrays that aren't 2D yet.")
         elif not _shape_2d(data):
-            raise BadInputError("Not a 2D array.")
+            raise error.BadInputError("Not a 2D array.")
         elif not _is_ndarray(data):
-            raise BadInputError("Not a np.ndarray.")
+            raise error.BadInputError("Not a np.ndarray.")
         elif not _dtype_float(data):
-            raise BadInputError("Data is not float.")
+            raise error.BadInputError("Data is not float.")
         elif not _nan_exists(data):
-            raise BadInputError("No NaN's in given data")
+            raise error.BadInputError("No NaN's in given data")
         return u.execute_fn_with_args_and_or_kwargs(fn, args, kwargs)
     return wrapper

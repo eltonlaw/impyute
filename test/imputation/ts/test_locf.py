@@ -2,7 +2,7 @@
 import numpy as np
 import impyute as impy
 from impyute.ops.testing import return_na_check
-from impyute.ops.errors import BadInputError
+from impyute.ops import error
 
 SHAPE = (5, 5)
 
@@ -39,5 +39,5 @@ def test_na_at_i_end(test_data):
 def test_out_of_bounds(test_data):
     """Check out of bounds error, should throw BadInputError for any axis outside [0,1]"""
     data = test_data(SHAPE)
-    with np.testing.assert_raises(BadInputError):
+    with np.testing.assert_raises(error.BadInputError):
         impy.locf(data, axis=3)
