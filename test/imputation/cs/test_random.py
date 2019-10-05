@@ -1,6 +1,6 @@
 """test_random_imputation.py"""
 import impyute as impy
-from impyute.util.testing import return_na_check
+from impyute.ops.testing import return_na_check
 
 SHAPE = (3, 3)
 

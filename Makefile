@@ -2,7 +2,19 @@ DOCKER_ID_USER=eltonlaw
 
 .PHONY: all build test upload install docs
 
-all: test
+all: test-local
+
+install-local:
+	cd $(IMPYUTE_ROOT) && python setup.py develop
+
+uninstall-local:
+	cd $(IMPYUTE_ROOT) && python setup.py develop --uninstall
+
+test-local:
+	cd $(IMPYUTE_ROOT) && pytest
+
+clean:
+	find . -type f -name '*.pyc' -delete
 
 rebuild-pybase:
 	docker rmi -f $(DOCKER_ID_USER)/pybase

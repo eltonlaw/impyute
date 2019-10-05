@@ -1,13 +1,11 @@
-""" impyute.imputation.cs.buck_iterative """
 import numpy as np
 from sklearn.linear_model import LinearRegression
-from impyute.util import find_null
-from impyute.util import checks
-from impyute.util import preprocess
+from impyute.ops import matrix
+from impyute.ops import wrapper
 # pylint: disable=too-many-locals
 
-@preprocess
-@checks
+@wrapper.wrappers
+@wrapper.checks
 def buck_iterative(data):
     """ Iterative variant of buck's method
 
@@ -30,32 +28,32 @@ def buck_iterative(data):
         Imputed data.
 
     """
-    null_xy = find_null(data)
+    nan_xy = matrix.nan_indices(data)
 
     # Add a column of zeros to the index values
-    null_xyv = np.append(null_xy, np.zeros((np.shape(null_xy)[0], 1)), axis=1)
+    nan_xyz = np.append(nan_xy, np.zeros((np.shape(nan_xy)[0], 1)), axis=1)
 
-    null_xyv = [[int(x), int(y), v] for x, y, v in null_xyv]
+    nan_xyz = [[int(x), int(y), v] for x, y, v in nan_xyz]
     temp = []
-    cols_missing = {y for _, y, _ in null_xyv}
+    cols_missing = {y for _, y, _ in nan_xyz}
 
     # Step 1: Simple Imputation, these are just placeholders
-    for x_i, y_i, value in null_xyv:
+    for x_i, y_i, value in nan_xyz:
         # Column containing nan value without the nan value
         col = data[:, [y_i]][~np.isnan(data[:, [y_i]])]
 
         new_value = np.mean(col)
         data[x_i][y_i] = new_value
         temp.append([x_i, y_i, new_value])
-    null_xyv = temp
+    nan_xyz = temp
 
     # Step 5: Repeat step 2 - 4 until convergence (the 100 is arbitrary)
 
-    converged = [False] * len(null_xyv)
+    converged = [False] * len(nan_xyz)
     while not all(converged):
         # Step 2: Placeholders are set back to missing for one variable/column
         dependent_col = int(np.random.choice(list(cols_missing)))
-        missing_xs = [int(x) for x, y, value in null_xyv if y == dependent_col]
+        missing_xs = [int(x) for x, y, value in nan_xyz if y == dependent_col]
 
         # Step 3: Perform linear regression using the other variables
         x_train, y_train = [], []
@@ -68,7 +66,7 @@ def buck_iterative(data):
         # Step 4: Missing values for the missing variable/column are replaced
         # with predictions from our new linear regression model
         # For null indices with the dependent column that was randomly chosen
-        for i, z in enumerate(null_xyv):
+        for i, z in enumerate(nan_xyz):
             x_i = z[0]
             y_i = z[1]
             value = data[x_i, y_i]

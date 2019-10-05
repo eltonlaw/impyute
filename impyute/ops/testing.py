@@ -1,3 +1,4 @@
+""" Utilities used for unit tests """
 import numpy as np
 
 

@@ -1,13 +1,12 @@
-""" impyute.imputation.ts.moving_window """
 import numpy as np
-from impyute.util import find_null
-from impyute.util import checks
-from impyute.util import preprocess
+from impyute.ops import matrix
+from impyute.ops import wrapper
 # pylint: disable=invalid-name, too-many-arguments, too-many-locals, too-many-branches, broad-except, len-as-condition
 
-@preprocess
-@checks
-def moving_window(data, nindex=None, wsize=5, errors="coerce", func=np.mean, inplace=False):
+@wrapper.wrappers
+@wrapper.checks
+def moving_window(data, nindex=None, wsize=5, errors="coerce", func=np.mean,
+        inplace=False):
     """ Interpolate the missing values based on nearby values.
 
     For example, with an array like this:
@@ -90,9 +89,9 @@ def moving_window(data, nindex=None, wsize=5, errors="coerce", func=np.mean, inp
             wside_right = wsize - nindex - 1
 
     while True:
-        null_xy = find_null(data)
-        n_null_prev = len(null_xy)
-        for x_i, y_i in null_xy:
+        nan_xy = matrix.nan_indices(data)
+        n_nan_prev = len(nan_xy)
+        for x_i, y_i in nan_xy:
             left_i = max(0, y_i-wside_left)
             right_i = min(len(data), y_i+wside_right+1)
             window = data[x_i, left_i: right_i]
@@ -123,7 +122,7 @@ def moving_window(data, nindex=None, wsize=5, errors="coerce", func=np.mean, inp
                     data[x_i][y_i] = func(window_not_null)
                 except Exception as e:
                     print("Exception:", e)
-        if n_null_prev == len(find_null(data)):
+        if n_nan_prev == len(matrix.nan_indices(data)):
             break
 
     return data

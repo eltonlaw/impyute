@@ -1,22 +1,23 @@
-""" impyute.imputation.cs.knn """
 import numpy as np
 from scipy.spatial import KDTree
-from impyute.util import find_null
-from impyute.util import checks
-from impyute.util import preprocess
-from impyute.util import inverse_distance_weighting as util_idw
-from impyute.imputation.cs import mean
+from impyute.ops import matrix
+from impyute.ops import wrapper
+from impyute.ops import inverse_distance_weighting as idw
+
+from . import mean
 # pylint: disable=too-many-arguments
 
-@preprocess
-@checks
-def fast_knn(data, k=3, eps=0, p=2, distance_upper_bound=np.inf, leafsize=10, idw=util_idw.shepards):
+@wrapper.wrappers
+@wrapper.checks
+def fast_knn(data, k=3, eps=0, p=2, distance_upper_bound=np.inf, leafsize=10,
+        idw_fn=idw.shepards, init_impute_fn=mean):
     """ Impute using a variant of the nearest neighbours approach
 
-    Basic idea: Impute array with a basic mean impute and then use the resulting complete
-    array to construct a KDTree. Use this KDTree to compute nearest neighbours.
-    After finding `k` nearest neighbours, take the weighted average of them. Basically,
-    find the nearest row in terms of distance
+    Basic idea: Impute array with a passed in initial impute fn (mean impute)
+    and then use the resulting complete array to construct a KDTree. Use this
+    KDTree to compute nearest neighbours.  After finding `k` nearest
+    neighbours, take the weighted average of them. Basically, find the nearest
+    row in terms of distance
 
     This approach is much, much faster than the other implementation (fit+transform
     for each subset) which is almost prohibitively expensive.
@@ -65,10 +66,12 @@ def fast_knn(data, k=3, eps=0, p=2, distance_upper_bound=np.inf, leafsize=10, id
         [`scipy.spatial.KDTree`](https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.spatial.KDTree.html)
         for more information.
 
-    idw: fn, optional
+    idw_fn: fn, optional
         Function that takes one argument, a list of distances, and returns weighted percentages. You can define a custom
         one or bootstrap from functions defined in `impy.util.inverse_distance_weighting` which can be using
         functools.partial, for example: `functools.partial(impy.util.inverse_distance_weighting.shepards, power=1)`
+
+    init_impute_fn: fn, optional
 
     Returns
     -------
@@ -109,18 +112,18 @@ def fast_knn(data, k=3, eps=0, p=2, distance_upper_bound=np.inf, leafsize=10, id
         IndexError: index 5 is out of bounds for axis 0 with size 5
 
     """
-    null_xy = find_null(data)
-    data_c = mean(data)
+    nan_xy = matrix.nan_indices(data)
+    data_c = init_impute_fn(data)
     kdtree = KDTree(data_c, leafsize=leafsize)
 
-    for x_i, y_i in null_xy:
+    for x_i, y_i in nan_xy:
         distances, indices = kdtree.query(data_c[x_i], k=k+1, eps=eps,
                                           p=p, distance_upper_bound=distance_upper_bound)
         # Will always return itself in the first index. Delete it.
         distances, indices = distances[1:], indices[1:]
         # Add small constant to distances to avoid division by 0
         distances += 1e-3
-        weights = idw(distances)
+        weights = idw_fn(distances)
         # Assign missing value the weighted average of `k` nearest neighbours
         data[x_i][y_i] = np.dot(weights, [data_c[ind][y_i] for ind in indices])
     return data

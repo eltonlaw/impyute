@@ -1,6 +1,6 @@
 """test_buck_iterative.py"""
 import impyute as impy
-from impyute.util.testing import return_na_check
+from impyute.ops.testing import return_na_check
 
 
 def test_buck_iter(buck_test_data):

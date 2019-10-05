@@ -1,6 +1,6 @@
-""" impyute.util.count_missing.py """
+""" impyute.contrib.count_missing.py """
 import numpy as np
-from impyute.util import find_null
+from impyute.ops import matrix
 
 def count_missing(data):
     """ Calculate the total percentage of missing values and also the
@@ -18,13 +18,13 @@ def count_missing(data):
 
     """
     size = len(data.flatten())
-    null_xy = find_null(data)
-    np.unique(null_xy)
-    counter = {y: 0. for y in np.unique(null_xy.T[1])}
+    nan_xy = matrix.nan_indices(data)
+    np.unique(nan_xy)
+    counter = {y: 0. for y in np.unique(nan_xy.T[1])}
     change_in_percentage = 1./size
-    for _, y in null_xy:
+    for _, y in nan_xy:
         counter[y] += change_in_percentage
-    total_missing = len(null_xy)/size
+    total_missing = len(nan_xy)/size
     counter["total"] = total_missing
 
     return counter

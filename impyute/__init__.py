@@ -3,6 +3,7 @@
 impyute.imputations.cs:   Imputations on cross sectional data
 impyute.imputations.ts:   Imputations on time series data
 impyute.deletion:         Deletion type missing data handling
+impyute.contrib:          Volatile and experimental code
 """
 # pylint: disable=wrong-import-position
 
@@ -16,7 +17,12 @@ __copyright__ = 'Copyright 2019 Elton law'
 
 ### Top Level Modules
 
-__all__ = ["dataset", "util", "deletion"]
+from impyute import dataset
+from impyute import deletion
+from impyute import ops
+from impyute import contrib
+
+__all__ = ["contrib", "dataset", "deletion", "ops"]
 
 ### Cross Sectional Imputations
 

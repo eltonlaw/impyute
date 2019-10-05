@@ -1,11 +1,9 @@
-""" impyute.imputation.cs.random """
 import numpy as np
-from impyute.util import find_null
-from impyute.util import preprocess
-from impyute.util import checks
+from impyute.ops import matrix
+from impyute.ops import wrapper
 
-@preprocess
-@checks
+@wrapper.wrappers
+@wrapper.checks
 def random(data):
     """ Fill missing values in with a randomly selected value from the same
     column.
@@ -21,8 +19,8 @@ def random(data):
         Imputed data.
 
     """
-    null_xy = find_null(data)
-    for x, y in null_xy:
+    nan_xy = matrix.nan_indices(data)
+    for x, y in nan_xy:
         uniques = np.unique(data[:, y])
         uniques = uniques[~np.isnan(uniques)]
         data[x][y] = np.random.choice(uniques)

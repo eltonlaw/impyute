@@ -1,11 +1,10 @@
-""" impyute.imputation.ts.locf """
 import numpy as np
-from impyute.util import find_null
-from impyute.util import checks
-from impyute.util import preprocess
-from impyute.util.errors import BadInputError
-@preprocess
-@checks
+from impyute.ops import matrix
+from impyute.ops import wrapper
+from impyute.ops import error
+
+@wrapper.wrappers
+@wrapper.checks
 def locf(data, axis=0):
     """ Last Observation Carried Forward
 
@@ -34,10 +33,10 @@ def locf(data, axis=0):
     elif axis == 1:
         pass
     else:
-        raise BadInputError("Error: Axis value is invalid, please use either 0 (row format) or 1 (column format)")
+        raise error.BadInputError("Error: Axis value is invalid, please use either 0 (row format) or 1 (column format)")
 
-    null_xy = find_null(data)
-    for x_i, y_i in null_xy:
+    nan_xy = matrix.nan_indices(data)
+    for x_i, y_i in nan_xy:
         # Simplest scenario, look one row back
         if x_i-1 > -1:
             data[x_i][y_i] = data[x_i-1][y_i]

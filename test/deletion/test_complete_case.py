@@ -1,7 +1,6 @@
-"""test_complete_case.py"""
 import numpy as np
 from impyute.deletion import complete_case
-from impyute.util.testing import return_na_check
+from impyute.ops.testing import return_na_check
 
 SHAPE = (5, 5)
 
