@@ -5,6 +5,7 @@ from .central_tendency import mean
 from .central_tendency import mode
 from .central_tendency import median
 from .buck_iterative import buck_iterative
+from .mice import mice
 from .em import em
 from .fast_knn import fast_knn
 

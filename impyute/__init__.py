@@ -32,6 +32,7 @@ from impyute.imputation.cs import mode
 from impyute.imputation.cs import em
 from impyute.imputation.cs import fast_knn
 from impyute.imputation.cs import buck_iterative
+from impyute.imputation.cs import mice
 from impyute.imputation.cs import random
 
 __all__.extend([
@@ -41,6 +42,7 @@ __all__.extend([
     "em",
     "fast_knn",
     "buck_iterative",
+    "mice",
     "random"
 ])
 
