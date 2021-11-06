@@ -4,7 +4,7 @@ from impyute.ops import wrapper
 
 @wrapper.wrappers
 @wrapper.checks
-def em(data, loops=50):
+def em(data, eps=0.1):
     """ Imputes given data using expectation maximization.
 
     E-step: Calculates the expected complete data log likelihood ratio.
@@ -15,8 +15,9 @@ def em(data, loops=50):
     ----------
     data: numpy.nd.array
         Data to impute.
-    loops: int
-        Number of em iterations to run before breaking.
+    eps: float
+        The amount of minimum change between iterations to break, if relative change < eps, converge.
+        relative change = abs(current - previous) / previous
     inplace: boolean
         If True, operate on the numpy array reference
 
@@ -33,7 +34,8 @@ def em(data, loops=50):
         std = col[~np.isnan(col)].std()
         col[x_i] = np.random.normal(loc=mu, scale=std)
         previous, i = 1, 1
-        for i in range(loops):
+        while True:
+            i += 1
             # Expectation
             mu = col[~np.isnan(col)].mean()
             std = col[~np.isnan(col)].std()
@@ -41,8 +43,8 @@ def em(data, loops=50):
             col[x_i] = np.random.normal(loc=mu, scale=std)
             # Break out of loop if likelihood doesn't change at least 10%
             # and has run at least 5 times
-            delta = (col[x_i]-previous)/previous
-            if i > 5 and delta < 0.1:
+            delta = np.abs(col[x_i]-previous)/previous
+            if i > 5 and delta < eps:
                 data[x_i][y_i] = col[x_i]
                 break
             data[x_i][y_i] = col[x_i]
