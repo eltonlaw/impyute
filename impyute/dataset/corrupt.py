@@ -43,7 +43,14 @@ class Corruptor:
 
     def mar(self):
         """ Overwrites values with MAR placed NaN's """
-        pass
+        output = self.data.copy()
+        nrow, ncol = self.data.shape
+        for i in range(0, nrow):
+            for j in range(0, ncol - 1):
+                cutoff = np.percentile(self.data[:, j], (1 - self.thr) * 100)
+                if self.data[i, j] > cutoff:
+                    output[i, j + 1] = np.nan
+        return output
 
     def mnar(self):
         """ Overwrites values with MNAR placed NaN's """
